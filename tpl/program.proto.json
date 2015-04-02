@@ -1,0 +1,50 @@
+{
+	"boot": {
+		"package": "./package.json"
+	},
+	"config": {
+		"genesis.pinf.org/0": {
+			"$to": "genesis-pinf-system",
+		},
+		"github.com/pinf-it/pinf-it-vcs-insight/0": {
+			"$to": "genesis-pinf-system-vcs"
+		},
+		"github.com/pinf-to/pinf-to-sourcemint/0": {
+			"$to": "genesis-pinf-system-bundle",
+			"catalog": {
+				"uid": "{{$from.genesis-pinf-system.uid}}",
+				"revision": "{{$from.genesis-pinf-system-vcs.commit}}",
+				"name": "{{$from.genesis-pinf-system.basename}}",
+				"alias": "{{$from.genesis-pinf-system.basename}}"
+			},
+			"streams": {
+				"master": {
+					"id": "github.com/pinf-to/pinf-to-smi/demos/01-HelloWorld",
+					"revision": "{{sourceHash()}}",
+					"aspects": {
+						"archive.tar.gz": {
+							"bundler": "tar.gz"
+						},
+						"archive1.tar.gz": {
+							"bundler": "tar.gz"
+						}
+					}
+				}
+			}
+		},
+		"github.com/pinf-to/pinf-to-aws-s3/0": {
+			"$to": "genesis-pinf-system-distribution",
+			"accessKeyId": "{{env.AWS_ACCESS_KEY}}",
+			"secretAccessKey": "{{env.AWS_SECRET_KEY}}",
+			"distributions": {
+				"pub": {
+					"bucket": "{{$from.genesis-pinf-system.basename}}",
+					"source": "{{$from.genesis-pinf-system-bundle.path}}"
+				}
+			}
+		},
+		"github.com/pinf-it/pinf-it-bundler/0": {
+			"target": "browser"
+        }
+	}
+}

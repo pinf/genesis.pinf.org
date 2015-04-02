@@ -7,11 +7,6 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	BO_run_node -v
-
-
-	BO_isSourced SOURCED1
-	echo "SOURCED $__BO_DIR__: $SOURCED1"
-
+	BO_run_node "$__BO_DIR__"'/{{$from.system.basename}}.js'
 }
-init
+init $@

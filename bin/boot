@@ -1,0 +1,75 @@
+#!/bin/bash
+# Source https://github.com/cadorn/bash.origin
+if [ ! -f "$HOME/.bash.origin" ]; then
+    # TODO: Alternatively use `wget`
+    curl "https://raw.githubusercontent.com/bash-origin/bash.origin/master/bash.origin?t=$(date +%s)" | BO="install" sh
+fi
+. "$HOME/.bash.origin"
+function init {
+	eval BO_SELF_BASH_SOURCE="$BO_READ_SELF_BASH_SOURCE"
+	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
+	local __BO_DIR__="$___TMP___"
+
+	function boot {
+
+		# TODO: Detect if booting self or booting another package.
+		bootSelf
+	}
+
+	function bootSelf {
+
+		local SYSTEM_UID_PATH="$__BO_DIR__/../.pinf.uid"
+
+		if [ ! -f "$SYSTEM_UID_PATH" ]; then
+			if ! BO_has "uuidgen"; then
+				echo "Error: 'uuidgen' command not found!"\
+					  "Please install and re-run or patch this script"\
+					  "($__BO_DIR__/boot) to use an alternative command"\
+					  "that is available on your system."
+				exit 1
+			fi
+			uuidgen > "$SYSTEM_UID_PATH"
+		fi
+
+		local TPL_PATH="$__BO_DIR__/../tpl"
+		local TARGET_PATH="$__BO_DIR__/.."
+		local SYSTEM_UID="`cat $SYSTEM_UID_PATH`"
+		local SYSTEM_BASENAME="$( basename $( dirname "$__BO_DIR__/..") )"
+
+		forceCopyFile "$TPL_PATH/bin/__from.system.basename__" "$TARGET_PATH/bin/$SYSTEM_BASENAME"
+		forceCopyFile "$TPL_PATH/bin/__from.system.basename__.js" "$TARGET_PATH/bin/$SYSTEM_BASENAME.js"
+
+		forceCopyFile "$TPL_PATH/bin/install" "$TARGET_PATH/bin/install"
+		forceCopyFile "$TPL_PATH/bin/activate" "$TARGET_PATH/bin/activate"
+		forceCopyFile "$TPL_PATH/bin/demo" "$TARGET_PATH/bin/demo"
+		forceCopyFile "$TPL_PATH/bin/test" "$TARGET_PATH/bin/test"
+
+		forceCopyFile "$TPL_PATH/.gitignore.tpl" "$TARGET_PATH/.gitignore"
+		forceCopyFile "$TPL_PATH/main.js" "$TARGET_PATH/main.js"
+		forceCopyFile "$TPL_PATH/package.json.tpl" "$TARGET_PATH/package.json"
+		forceCopyFile "$TPL_PATH/program.json.tpl" "$TARGET_PATH/program.json"
+		forceCopyFile "$TPL_PATH/README.md.tpl" "$TARGET_PATH/README.md"
+
+
+echo "SYSTEM_UID: $SYSTEM_UID"
+
+	}
+
+	function forceCopyFile {
+		cp -f "$1" "$2"
+	}
+
+	function replaceInFile {
+		perl -pi -e 's/abc/XYZ/g' /tmp/file.txt
+	}
+
+
+	function signalDone {
+		echo "BOOT DONE"
+	}
+
+
+	boot
+	signalDone
+}
+init @$

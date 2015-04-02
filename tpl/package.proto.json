@@ -1,0 +1,16 @@
+{
+	"dependencies": {
+		"bash.origin": "0.1.x"
+	},
+	"main": "./main.js",
+	"exports": {
+		"bundles": {
+			"main.js": "./main.js"
+		}
+	},
+	"config": {
+		"pio.deploy.converter": {
+			"name": "nodejs-lib"
+		}
+	}
+}
