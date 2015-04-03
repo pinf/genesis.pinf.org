@@ -103,8 +103,9 @@ exports.for = function (API) {
 						"!boot.js",
 						"!package.json",
 						"!program.json",
+						"!program.rt.json",
 						"!.gitignore",
-						"!*.proto.json"
+						"!*.proto.json",
 					], {
 						cwd: fromPath
 					});

@@ -10,6 +10,18 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
+	function format {
+		if [ "$1" == "HEADER" ]; then
+			echo "##################################################";
+			echo "# $2";
+			echo "##################################################";
+		fi
+		if [ "$1" == "FOOTER" ]; then
+			echo "##################################################";
+			echo ""
+		fi
+	}
+
 	function boot {
 
 #		sed "s|%%EXTENDS%%|[\"$TPL_PATH\"]|g" "$TPL_PATH/program.json.tpl" > "$TARGET_PATH/program.json"
@@ -21,10 +33,21 @@ function init {
 	}
 
 	function bootSelf {
+
+		format "HEADER" "Turning template"
+
 		pushd "$__BO_DIR__/../tpl"
 			export PGS_SYSTEM_ROOT="$__BO_DIR__/.."
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
 		popd
+
+		format "HEADER" "Turning system"
+
+		pushd "$__BO_DIR__/.."
+			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
+		popd
+
+		format "FOOTER"
 	}
 
 	function signalDone {

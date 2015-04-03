@@ -28,10 +28,20 @@ function init {
 
 	function runDemos {
 		format "HEADER" "Running Demos"
-		pushd "$__BO_DIR__/../node_modules/bash.origin"
-			./run-examples
-		popd
+		if [ "$PGS_SYSTEM_TEST" == "1" ]; then
+			runCliDemos
+		else
+			runWebDemos
+		fi
 		format "FOOTER"
+	}
+
+	function runCliDemos {
+		echo "Run demos in cli mode"
+	}
+
+	function runWebDemos {
+		echo "Run demos in web mode"		
 	}
 
 	function signalDone {

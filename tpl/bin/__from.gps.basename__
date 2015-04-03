@@ -7,6 +7,6 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	BO_run_node "$__BO_DIR__"'/{{$from.system.basename}}.js'
+	BO_run_node "$__BO_DIR__"'/%%BASENAME%%.js'
 }
 init $@

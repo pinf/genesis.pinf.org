@@ -3,7 +3,6 @@
 	"name": "%%BASENAME%%",
 	"config": {
 		"genesis.pinf.org/0": {
-			"extends": %%EXTENDS%%,
 			"uid": "%%UID%%",
 			"basename": "%%BASENAME%%",
 			"label": "%%BASENAME%%",

@@ -1,14 +1,12 @@
-{{$from.system.label}}
-======================
-
-{{$from.system.description}}
+%%BASENAME%%
+============
 
 
 Install
 =======
 
-	git clone https://github.com/codi-sh/codi.sh {{$from.system.basename}}
-	cd {{$from.system.basename}}
+	git clone <uri> %%BASENAME%%
+	cd %%BASENAME%%
 
 	bin/install    # Ends with 'INSTALL DONE' on succcess
 
@@ -18,8 +16,6 @@ Run
 
 	bin/demo       # Ends with 'DEMOS DONE' on succcess
 	bin/test       # Ends with 'TESTS DONE' on succcess
-
-Please [file an issue]({{$from.system.issues.url}}) if you run into an error.
 
 
 Contribute

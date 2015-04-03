@@ -1,3 +1,3 @@
 {
-	"extends": "%%EXTENDS%%"
+	"extends": %%EXTENDS%%
 }

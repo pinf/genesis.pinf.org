@@ -66,7 +66,7 @@ function init {
 	function printWelcome {
 		echo " "
 		echo "|----------->"
-		echo "| Welcome to {{$from.system.label}}! Below is a summary to get you started."
+		echo "| Welcome to %%BASENAME%%! Below is a summary to get you started."
 		echo "|----------->"
 		printHelp
 	}

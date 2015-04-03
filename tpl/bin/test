@@ -29,6 +29,7 @@ function init {
 	function runTests {
 		format "HEADER" "Running Tests"
 		pushd "$__BO_DIR__"
+			export PGS_SYSTEM_TEST="1"
 			# TODO: Add more tests/demos into sequence.
 			./demo
 			# TODO: Ensure demos fail early if any of the demos fail.
