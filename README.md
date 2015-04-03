@@ -46,6 +46,8 @@ Add to `package.json`:
 		"install": "./node_modules/.bin/genesis.pinf.org shadow .pinf"
 	}
 
+Then:
+
 	npm install
 
 	.pinf/bin/boot
