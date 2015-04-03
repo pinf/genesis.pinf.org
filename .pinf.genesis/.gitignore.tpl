@@ -1,4 +1,9 @@
 
+# Common environment dirt
+
+.DS_Store
+
+
 # Created when turning template on boot
 
 /bin/activate
@@ -22,6 +27,11 @@
 /bin/smi
 /node_modules/
 /.pio.cache/
+
+
+# Not needed after boot
+
+/.pinf.genesis/
 
 
 # Created when turning system on boot
