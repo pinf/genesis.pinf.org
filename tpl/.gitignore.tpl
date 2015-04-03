@@ -5,8 +5,8 @@
 /bin/demo
 /bin/install
 /bin/test
-/bin/{{$from.system.basename}}
-/bin/{{$from.system.basename}}.js
+/bin/{{$from.pgs.basename}}
+/bin/{{$from.pgs.basename}}.js
 
 
 # Created when installing on boot
@@ -21,4 +21,5 @@
 # Created when booting self
 
 /.pinf.uid
+/program.rt.json
 

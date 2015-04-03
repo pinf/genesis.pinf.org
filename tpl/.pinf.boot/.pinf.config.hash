@@ -1,0 +1,9 @@
+{
+    "$to": "pgs-boot",
+    "variables": {
+        "UID": "4E1F5F2D-0E65-4FEE-9B9F-EACFA3CF7B11",
+        "EXTENDS": "[\"/genesis.live/open-source/genesis.pinf.org/tpl/*.proto.json\"]",
+        "BASENAME": "tpl"
+    },
+    "$context": "boot"
+}

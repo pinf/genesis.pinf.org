@@ -1,0 +1,16 @@
+{
+	"name": "boot",
+	"boot": {
+		"package": "./package.json"
+	},
+	"config": {
+		"boot/0": {
+			"$to": "pgs-boot",
+			"variables": {
+				"UID": "{{ensureUid()}}",
+				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
+				"BASENAME": "{{deriveBasename()}}"
+			}
+		}
+	}
+}

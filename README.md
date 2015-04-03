@@ -1,5 +1,5 @@
-PINF.Genesis
-============
+PINF.Genesis System (PGS)
+=========================
 
 **PINF.Genesis** is [my](http://christophdorn.com) first *clean* incantation of [PINF](http://pinf.org) with a focus on web software systems and development workspaces.
 

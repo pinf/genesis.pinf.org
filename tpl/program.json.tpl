@@ -5,8 +5,8 @@
 		"genesis.pinf.org/0": {
 			"extends": %%EXTENDS%%,
 			"uid": "%%UID%%",
-			"basename":  "%%BASENAME%%",
-			"label":  "%%BASENAME%%",
+			"basename": "%%BASENAME%%",
+			"label": "%%BASENAME%%",
 			"description": "",
 			"issues.url": "",
 			"version": "0.0.0"

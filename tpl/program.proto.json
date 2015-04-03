@@ -4,18 +4,18 @@
 	},
 	"config": {
 		"genesis.pinf.org/0": {
-			"$to": "genesis-pinf-system",
+			"$to": "pgs",
 		},
 		"github.com/pinf-it/pinf-it-vcs-insight/0": {
-			"$to": "genesis-pinf-system-vcs"
+			"$to": "pgs-vcs"
 		},
 		"github.com/pinf-to/pinf-to-sourcemint/0": {
-			"$to": "genesis-pinf-system-bundle",
+			"$to": "pgs-bundle",
 			"catalog": {
-				"uid": "{{$from.genesis-pinf-system.uid}}",
-				"revision": "{{$from.genesis-pinf-system-vcs.commit}}",
-				"name": "{{$from.genesis-pinf-system.basename}}",
-				"alias": "{{$from.genesis-pinf-system.basename}}"
+				"uid": "{{$from.pgs.uid}}",
+				"revision": "{{$from.pgs-vcs.commit}}",
+				"name": "{{$from.pgs.basename}}",
+				"alias": "{{$from.pgs.basename}}"
 			},
 			"streams": {
 				"master": {
@@ -33,13 +33,13 @@
 			}
 		},
 		"github.com/pinf-to/pinf-to-aws-s3/0": {
-			"$to": "genesis-pinf-system-distribution",
+			"$to": "pgs-distribution",
 			"accessKeyId": "{{env.AWS_ACCESS_KEY}}",
 			"secretAccessKey": "{{env.AWS_SECRET_KEY}}",
 			"distributions": {
 				"pub": {
-					"bucket": "{{$from.genesis-pinf-system.basename}}",
-					"source": "{{$from.genesis-pinf-system-bundle.path}}"
+					"bucket": "{{$from.pgs.basename}}",
+					"source": "{{$from.pgs-bundle.path}}"
 				}
 			}
 		},

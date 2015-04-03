@@ -31,6 +31,7 @@ function init {
 		echo "    reload - Reload the current environment (source bin/activate)"
 		echo "    demo - Runs all demos (bin/demo)"
 		echo "    test - Runs all tests (bin/test)"
+		echo "    clean - Remove everything dynamically generated or fetched"
 		echo " "
 		echo "  Runtimes:"
 		echo " "
@@ -52,6 +53,7 @@ function init {
 		alias home="cd $SYSTEM_ROOT_PATH"
 		alias help='echo "$(printHelp)"'
 		alias reload="source $SYSTEM_ROOT_PATH/bin/activate"
+		alias clean='$SYSTEM_ROOT_PATH/bin/clean'
 		BO_link_node "$__BO_DIR__"
 		BO_link_npm "$__BO_DIR__"
 		BO_link_smi "$__BO_DIR__"
