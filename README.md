@@ -1,7 +1,10 @@
 PINF.Genesis System (PGS)
 =========================
 
-**PINF.Genesis** is [my](http://christophdorn.com) first *clean* incantation of [PINF](http://pinf.org) with a focus on web software systems and development workspaces.
+**PINF.Genesis** is [my](http://christophdorn.com) first *clean* incantation of [PINF](http://pinf.org) with a focus on:
+
+  * Web Software Systems and
+  * Web Software Development Workspaces
 
 To learn more visit [genesis.pinf.org](http://genesis.pinf.org) in a Web Browser.
 
