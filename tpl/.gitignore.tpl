@@ -5,8 +5,14 @@
 /bin/demo
 /bin/install
 /bin/test
-/bin/{{$from.pgs.basename}}
-/bin/{{$from.pgs.basename}}.js
+/bin/%%BASENAME%%
+/bin/%%BASENAME%%.js
+/bin/clean
+/bin/clean.js
+
+/main.js
+/package.json
+/program.json
 
 
 # Created when installing on boot
@@ -18,7 +24,7 @@
 /.pio.cache/
 
 
-# Created when booting self
+# Created when booting
 
 /.pinf.uid
 /program.rt.json

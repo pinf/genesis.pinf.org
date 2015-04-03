@@ -1,10 +1,22 @@
 
+// Bootstrap a PINF.Genesis System (PGS) from the root seed program descriptor.
+
 exports.for = function (API) {
 
 	var exports = {};
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
 		return resolver({
+			deriveRevision: function () {
+				return API.Q.nbind(API.getFileTreeHashFor, API)(__dirname, {
+					ignore: [
+						"/program.rt.json",
+						"/.rt",
+						"/.pinf.boot",
+						"/.gitignore"
+					]
+				});
+			},
 			ensureUid: function () {
 				var uidPath = API.PATH.join(API.getRootPath(), "../.pinf.uid");
 				return API.Q.denodeify(function (callback) {
@@ -32,15 +44,15 @@ exports.for = function (API) {
 					});
 				})();
 			},
-			deriveBasename: function () {
-				return API.PATH.basename(API.PATH.dirname(API.getRootPath()));
+			deriveBasename: function (partiallyResolvedConfig) {
+				return API.Q.denodeify(API.FS.realpath)(partiallyResolvedConfig.systemRoot).then(function (path) {
+					return API.PATH.basename(path);
+				});
 			}
 		});
 	}
 
 	exports.turn = function (resolvedConfig) {
-
-console.log("turn resolvedConfig", resolvedConfig);
 
 		// First we write the root program.json file which seeds the rest of the system.
 
@@ -85,11 +97,14 @@ console.log("turn resolvedConfig", resolvedConfig);
 					var stream = null;
 					stream = API.GULP.src([
 						"**",
+						".*",
 						"!.pinf.*",
 						"!.rt/",
 						"!boot.js",
 						"!package.json",
-						"!program.json"
+						"!program.json",
+						"!.gitignore",
+						"!*.proto.json"
 					], {
 						cwd: fromPath
 					});
@@ -100,15 +115,32 @@ console.log("turn resolvedConfig", resolvedConfig);
 							title: '[pgs-boot]',
 							minimal: true
 						}))
+						.pipe(API.GULP_RENAME(function (path) {
+							if (path.basename === "__from.gps.basename__") {
+								path.basename = resolvedConfig.variables.BASENAME;
+							} else
+							if ((path.basename + path.extname) === "__from.gps.basename__") {
+								path.basename = resolvedConfig.variables.BASENAME;
+								path.extname = "";
+							}
+
+							if (path.extname === ".tpl") {
+								var basename = path.basename.split(".");
+								path.extname = "." + basename.pop();
+								path.basename = basename.join(".");
+							}
+						}))
 //						.pipe(filter)
 						// TODO: Add generic variables here and move to `to.pinf.lib`.
-						.pipe(API.GULP_REPLACE(/%[^%]+%/g, function (matched) {
-							// TODO: Arrive at minimal set of core variables and options to add own.
-							if (matched === "%boot.loader.uri%") {
-								return (relativeBaseUri?relativeBaseUri+"/":"") + "bundles/loader.js";
+						.pipe(API.GULP_REPLACE(/%%[^%]+%%/g, function (matched) {
+							if (matched === "%%UID%%") {
+								return resolvedConfig.variables.UID;
 							} else
-							if (matched === "%boot.bundle.uri%") {
-								return (relativeBaseUri?relativeBaseUri+"/":"") + ("bundles/" + packageDescriptor.main).replace(/\/\.\//, "/");
+							if (matched === "%%EXTENDS%%") {
+								return resolvedConfig.variables.EXTENDS;
+							} else
+							if (matched === "%%BASENAME%%") {
+								return resolvedConfig.variables.BASENAME;
 							}
 							return matched;
 						}))
@@ -127,39 +159,6 @@ console.log("turn resolvedConfig", resolvedConfig);
 		}
 
 		return API.Q.denodeify(copy)(__dirname, API.PATH.dirname(API.getRootPath()));
-
-
-
-/*
-		# First we write the root program.json file which seeds the rest of the system.
-#		sed "s|%%EXTENDS%%|[\"$TPL_PATH\"]|g" "$TPL_PATH/program.json.tpl" > "$TARGET_PATH/program.json"
-#		perl -pi -e "s/\%\%UID\%\%/$SYSTEM_UID/g" "$TARGET_PATH/program.json"
-#		perl -pi -e "s/\%\%BASENAME\%\%/$SYSTEM_BASENAME/g" "$TARGET_PATH/program.json"
-
-
-#		replaceInFile "$TARGET_PATH/program.json" '\%\%UID\%\%' "$SYSTEM_UID"
-#		replaceInFile "$TARGET_PATH/program.json" '\%\%EXTENDS\%\%' "[\"$TPL_PATH/*.proto.json\"]"
-#		replaceInFile "$TARGET_PATH/program.json" '\%\%BASENAME\%\%' "$SYSTEM_BASENAME"
-
-#echo "BASENAME: `BO_run_node --eval 'process.stdout.write(require("'$TARGET_PATH'/program.json").config["genesis.pinf.org/0"].basename);'`"
-
-		# Now we load the root program descriptor and use the variables to seed the root system files.
-#		forceCopyFile "$TPL_PATH/bin/__from.pgs.basename__" "$TARGET_PATH/bin/$SYSTEM_BASENAME"
-#		forceCopyFile "$TPL_PATH/bin/__from.pgs.basename__.js" "$TARGET_PATH/bin/$SYSTEM_BASENAME.js"
-
-#		forceCopyFile "$TPL_PATH/bin/install" "$TARGET_PATH/bin/install"
-#		forceCopyFile "$TPL_PATH/bin/activate" "$TARGET_PATH/bin/activate"
-#		forceCopyFile "$TPL_PATH/bin/demo" "$TARGET_PATH/bin/demo"
-#		forceCopyFile "$TPL_PATH/bin/test" "$TARGET_PATH/bin/test"
-
-
-#		forceCopyFile "$TPL_PATH/.gitignore.tpl" "$TARGET_PATH/.gitignore"
-#		forceCopyFile "$TPL_PATH/main.js" "$TARGET_PATH/main.js"
-#		forceCopyFile "$TPL_PATH/package.json.tpl" "$TARGET_PATH/package.json"
-#		forceCopyFile "$TPL_PATH/README.md.tpl" "$TARGET_PATH/README.md"
-*/
-
-		return API.Q.reject("STOP");
 	}
 
 	exports.spin = function (resolvedConfig) {

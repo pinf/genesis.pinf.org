@@ -28,7 +28,9 @@ function init {
 
 	function runClean {
 		format "HEADER" "Cleaning"
-# TODO: Clean
+		pushd "$__BO_DIR__/.."
+			BO_run_node "$__BO_DIR__/clean.js"
+		popd
 		format "FOOTER"
 	}
 

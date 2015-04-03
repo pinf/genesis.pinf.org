@@ -6,6 +6,7 @@
 	"config": {
 		"boot/0": {
 			"$to": "pgs-boot",
+			"revision": "{{deriveRevision()}}",
 			"systemRoot": "{{env.PGS_SYSTEM_ROOT}}",
 			"variables": {
 				"UID": "{{ensureUid()}}",

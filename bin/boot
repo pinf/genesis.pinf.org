@@ -12,13 +12,17 @@ function init {
 
 	function boot {
 
+#		sed "s|%%EXTENDS%%|[\"$TPL_PATH\"]|g" "$TPL_PATH/program.json.tpl" > "$TARGET_PATH/program.json"
+#		perl -pi -e "s/\%\%UID\%\%/$SYSTEM_UID/g" "$TARGET_PATH/program.json"
+#echo "BASENAME: `BO_run_node --eval 'process.stdout.write(require("'$TARGET_PATH'/program.json").config["genesis.pinf.org/0"].basename);'`"
+
 		# TODO: Detect if booting self or booting another package.
 		bootSelf
 	}
 
 	function bootSelf {
 		pushd "$__BO_DIR__/../tpl"
-			PGS_SYSTEM_ROOT="$__BO_DIR__/.."
+			export PGS_SYSTEM_ROOT="$__BO_DIR__/.."
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
 		popd
 	}
