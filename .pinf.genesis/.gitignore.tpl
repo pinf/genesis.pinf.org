@@ -23,11 +23,6 @@
 /.pio.cache/
 
 
-# Not needed after boot
-
-/.pinf.genesis/
-
-
 # Created when turning system on boot
 
 /.rt/

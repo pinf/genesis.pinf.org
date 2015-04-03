@@ -8,7 +8,6 @@ FS.readFileSync(PATH.join(__dirname, "../.gitignore"), "utf8").split("\n").forEa
 	if (!line) return;
 	if (/^#/.test(line)) return;
 	if (/^\//.test(line)) {
-		if (line === "/.pinf.genesis/") return;
 		commands.push('rm -Rf ' + line.substring(1));
 	}
 });
