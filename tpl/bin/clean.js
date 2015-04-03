@@ -14,7 +14,7 @@ FS.readFileSync(PATH.join(__dirname, "../.gitignore"), "utf8").split("\n").forEa
 
 
 commands.push("git checkout HEAD -- README.md");
-commands.push("git checkout HEAD -- .gitignore");
+commands.push('rm -Rf "./.gitignore"');
 
 
 var cwd = PATH.dirname(__dirname);
