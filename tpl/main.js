@@ -1,8 +1,25 @@
 
 
-exports.main = function () {
+exports.main = function (API) {
 
-	console.log("Called MAIN in main.js for system %%BASENAME%%!");
+	var exports = {};
 
+	exports.resolve = function (resolver, config, previousResolvedConfig) {
+		return resolver({});
+	}
+
+	exports.turn = function (resolvedConfig) {
+
+console.log("TURN main.js for system %%BASENAME%%", resolvedConfig);
+
+	}
+
+	exports.spin = function (resolvedConfig) {
+
+console.log("SPIN main.js for system %%BASENAME%%", resolvedConfig);
+
+	}
+
+	return exports;
 }
 

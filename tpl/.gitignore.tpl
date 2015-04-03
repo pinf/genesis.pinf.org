@@ -24,8 +24,8 @@
 /.pio.cache/
 
 
-# Created when booting
+# Created when turning system on boot
 
-/.pinf.uid
+/.rt/
+/.pinf.*
 /program.rt.json
-

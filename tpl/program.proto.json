@@ -4,7 +4,7 @@
 	},
 	"config": {
 		"genesis.pinf.org/0": {
-			"$to": "pgs",
+			"$to": "pgs"
 		},
 		"github.com/pinf-it/pinf-it-vcs-insight/0": {
 			"$to": "pgs-vcs"
@@ -45,6 +45,6 @@
 		},
 		"github.com/pinf-it/pinf-it-bundler/0": {
 			"target": "browser"
-        }
+		}
 	}
 }

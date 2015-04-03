@@ -9,6 +9,9 @@
 			"description": "",
 			"issues.url": "",
 			"version": "0.0.0"
+		},
+		"%%UID%%/0": {
+			"$to": "%%BASENAME%%"
 		}
 	}
 }

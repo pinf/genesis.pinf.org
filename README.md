@@ -26,10 +26,22 @@ Refer to the generated README.md file at the root of `MySystem` any time you nee
 Hacking on PINF.Genesis
 -----------------------
 
+One-time:
+
 	git clone https://github.com/pinf/genesis.pinf.org.git
 	cd genesis.pinf.org
 
+For **every** change:
+
 	./bin/boot
+
+	source bin/activate
+
+	# Make changes
+
+	clean
+
+	# Commit changes & push
 
 
 License

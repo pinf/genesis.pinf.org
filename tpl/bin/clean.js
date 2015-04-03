@@ -8,13 +8,13 @@ FS.readFileSync(PATH.join(__dirname, "../.gitignore"), "utf8").split("\n").forEa
 	if (!line) return;
 	if (/^#/.test(line)) return;
 	if (/^\//.test(line)) {
-		commands.push('rm -Rf ".' + line + '"');
+		commands.push('rm -Rf ' + line.substring(1));
 	}
 });
 
 
 commands.push("git checkout HEAD -- README.md");
-commands.push('rm -Rf "./.gitignore"');
+commands.push('rm -Rf .gitignore');
 
 
 var cwd = PATH.dirname(__dirname);
