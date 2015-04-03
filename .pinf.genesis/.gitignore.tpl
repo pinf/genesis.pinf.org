@@ -15,16 +15,10 @@
 /bin/clean
 /bin/clean.js
 
-/main.js
-/package.json
-/program.json
-
 
 # Created when installing on boot
 
-/bin/node
-/bin/npm
-/bin/smi
+/bin/
 /node_modules/
 /.pio.cache/
 

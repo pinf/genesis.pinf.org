@@ -8,6 +8,7 @@ FS.readFileSync(PATH.join(__dirname, "../.gitignore"), "utf8").split("\n").forEa
 	if (!line) return;
 	if (/^#/.test(line)) return;
 	if (/^\//.test(line)) {
+		if (line === "/.pinf.genesis/") return;
 		commands.push('rm -Rf ' + line.substring(1));
 	}
 });
@@ -15,6 +16,9 @@ FS.readFileSync(PATH.join(__dirname, "../.gitignore"), "utf8").split("\n").forEa
 
 commands.push("git checkout HEAD -- README.md");
 commands.push('rm -Rf .gitignore');
+commands.push('rm -Rf main.js');
+commands.push('rm -Rf package.json');
+commands.push('rm -Rf program.json');
 
 
 var cwd = PATH.dirname(__dirname);
