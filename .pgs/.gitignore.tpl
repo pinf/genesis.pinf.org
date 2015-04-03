@@ -14,6 +14,7 @@
 /bin/%%BASENAME%%.js
 /bin/clean
 /bin/clean.js
+/.distignore
 
 
 # Created when installing on boot
