@@ -6,6 +6,7 @@
 	"config": {
 		"boot/0": {
 			"$to": "pgs-boot",
+			"systemRoot": "{{env.PGS_SYSTEM_ROOT}}",
 			"variables": {
 				"UID": "{{ensureUid()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",

@@ -126,7 +126,7 @@ console.log("turn resolvedConfig", resolvedConfig);
 			});
 		}
 
-		return API.Q.denodeify(copy)(__dirname, API.getRootPath());
+		return API.Q.denodeify(copy)(__dirname, API.PATH.dirname(API.getRootPath()));
 
 
 
