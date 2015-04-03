@@ -36,14 +36,14 @@ function init {
 
 		format "HEADER" "Turning template"
 
-		pushd "$__BO_DIR__/../tpl"
-			export PGS_SYSTEM_ROOT="$__BO_DIR__/.."
+		pushd "$__BO_DIR__/tpl"
+			export PGS_SYSTEM_ROOT="$__BO_DIR__"
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
 		popd
 
 		format "HEADER" "Turning system"
 
-		pushd "$__BO_DIR__/.."
+		pushd "$__BO_DIR__"
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
 		popd
 

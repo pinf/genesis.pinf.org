@@ -18,11 +18,13 @@ Your own system based on PINF.Genesis
 
 	./node_modules/.bin/genesis.pinf.org init
 
-	./bin/boot
+	./boot
 
 	source bin/activate
 
-	# Make changes
+	# Make changes ...
+
+	test
 
 	clean
 
@@ -50,11 +52,13 @@ Then:
 
 	npm install
 
-	.pinf/bin/boot
+	.pinf/boot
 
 	source .pinf/bin/activate
 
-	# Make changes
+	# Make changes ...
+
+	test
 
 	clean
 
@@ -75,11 +79,13 @@ One-time:
 
 For **every** change:
 
-	./bin/boot
+	./boot
 
 	source bin/activate
 
-	# Make changes
+	# Make changes ...
+
+	test
 
 	clean
 
