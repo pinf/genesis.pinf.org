@@ -11,7 +11,10 @@
 			"version": "0.0.0"
 		},
 		"%%UID%%/0": {
-			"$to": "%%BASENAME%%"
+			"$to": "%%BASENAME%%",
+			"source": {
+				"catalog": "{{$from.pgs-distribution.distributions.pub.url}}/catalog.json"
+			}
 		}
 	}
 }

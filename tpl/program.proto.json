@@ -9,11 +9,14 @@
 		"github.com/pinf-it/pinf-it-vcs-insight/0": {
 			"$to": "pgs-vcs"
 		},
+		"github.com/pinf-it/pinf-it-filetree-insight/0": {
+			"$to": "pgs-filetree"
+		},
 		"github.com/pinf-to/pinf-to-sourcemint/0": {
 			"$to": "pgs-bundle",
 			"catalog": {
 				"uid": "{{$from.pgs.uid}}",
-				"revision": "{{$from.pgs-vcs.commit}}",
+				"revision": "{{$from.pgs-vcs.commit}}-{{$from.pgs-filetree.hash}}",
 				"name": "{{$from.pgs.basename}}",
 				"alias": "{{$from.pgs.basename}}"
 			},
