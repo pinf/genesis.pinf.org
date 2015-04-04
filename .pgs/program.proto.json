@@ -10,7 +10,8 @@
 			"$to": "pgs-vcs"
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
-			"$to": "pgs-filetree"
+			"$to": "pgs-filetree",
+			"watch": true
 		},
 		"github.com/pinf-to/pinf-to-sourcemint/0": {
 			"$to": "pgs-bundle",

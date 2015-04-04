@@ -47,6 +47,12 @@ function init {
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
 		popd
 
+		format "HEADER" "Spinning system"
+
+		pushd "$__BO_DIR__"
+			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto spin -vd
+		popd
+
 		format "FOOTER"
 	}
 
