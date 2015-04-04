@@ -7,6 +7,7 @@
 # Created when turning template on boot
 
 /bin/activate
+/bin/activate.js
 /bin/demo
 /bin/install
 /bin/test

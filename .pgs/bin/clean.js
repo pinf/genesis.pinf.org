@@ -4,7 +4,7 @@ const FS = require("fs");
 const EXEC = require("child_process").exec;
 
 var commands = [];
-FS.readFileSync(PATH.join(__dirname, "../.gitignore"), "utf8").split("\n").forEach(function (line) {
+FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forEach(function (line) {
 	if (!line) return;
 	if (/^#/.test(line)) return;
 	if (/^\//.test(line)) {

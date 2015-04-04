@@ -164,7 +164,7 @@ exports.for = function (API) {
 
 	exports.spin = function (resolvedConfig) {
 
-console.log("spin resolvedConfig", resolvedConfig);
+//console.log("spin resolvedConfig", resolvedConfig);
 
 	}
 
