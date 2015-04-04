@@ -6,7 +6,7 @@
 		"genesis.pinf.org/0": {
 			"$to": "pgs",
 			"programs": {
-				"pgs": {
+				".pgs": {
 					"location": "./.pgs/program.json",
 					"config": {
 						"github.com/pinf/org.pinf.lib/0": {
