@@ -12,5 +12,10 @@
 		"pio.deploy.converter": {
 			"name": "nodejs-lib"
 		}
+	},
+	"layout": {
+		"directories": {
+			"bundles": "./.pinf.program"
+		}
 	}
 }

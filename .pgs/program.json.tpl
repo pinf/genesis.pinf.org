@@ -14,6 +14,9 @@
 			"$to": "%%BASENAME%%",
 			"source": {
 				"catalog": "{{$from.pgs-distribution.distributions.pub.url}}/catalog.json"
+			},
+			"runtime": {
+				"homepage": "{{$from.pgs-browser.homepage}}"
 			}
 		}
 	}
