@@ -7,13 +7,13 @@
 		"boot/0": {
 			"$to": "pgs-boot",
 			"revision": "{{$from.pgs-boot-filetree.hash}}",
-			"systemRoot": "{{env.PGS_SYSTEM_ROOT}}",
+			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
 			"variables": {
 				"UID": "{{ensureUid()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
 				"BASENAME": "{{deriveBasename()}}"
 			},
-			"customSystemFiles": "{{getCustomSystemFiles()}}"
+			"workspaceFiles": "{{getWorkspaceFiles()}}"
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
 			"$to": "pgs-boot-filetree",

@@ -12,7 +12,7 @@ if (runtimeDescriptor["pgs-prompt"]) {
 
 		for (var name in service.variables) {
 			if (typeof service.variables[name].value !== "undefined") {
-				process.stdout.write('export ' + name + '="' + service.variables[name].value + '"\n');
+				process.stdout.write('export ' + name + '=' + service.variables[name].value + "\n");
 			}
 		}
 	}

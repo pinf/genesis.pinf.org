@@ -1,10 +1,14 @@
 
-# Common environment dirt
+##################################################
+# Common environment dirt (discardable)
+##################################################
 
 .DS_Store
 
 
-# Created when turning template on boot
+##################################################
+# Created on PGS Template: Turn (discardable)
+##################################################
 
 /bin/activate
 /bin/activate.js
@@ -18,15 +22,27 @@
 /.distignore
 
 
-# Created when installing on boot
+##################################################
+# Created on PGS: Install (discardable)
+##################################################
 
 /bin/
 /node_modules/
 /.pio.cache/
 
 
-# Created when turning system on boot
+##################################################
+# Created on PGS: Turn (discardable)
+##################################################
 
 /.rt/
 /.pinf.*
 /program.rt.json
+
+
+##################################################
+# Created on PGS: Turn (keep)
+##################################################
+
+!/.pinf.uid
+

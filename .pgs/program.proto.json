@@ -48,9 +48,18 @@
 		"github.com/bash-origin/bash.origin.prompt/0": {
 			"$to": "pgs-prompt",
 			"services": {
+				"pgs": {
+			        "label": "PINF.Genesis System",
+			        "url": "http://genesis.pinf.org",
+					"variables": {
+						"PGS_WORKSPACE_ROOT": {
+							"value": "{{env.PGS_WORKSPACE_ROOT}}"
+						}
+					}
+				},
 				"aws": {
 			        "label": "Amazon Web Services",
-			        "url": "http://aws.amazon.com/",
+			        "url": "http://aws.amazon.com",
 			        "variables": {
 			            "AWS_ACCOUNT_EMAIL": {
 			                "type": "password",

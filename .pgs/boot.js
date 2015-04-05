@@ -7,19 +7,19 @@ exports.for = function (API) {
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
 		return resolver({
-			getCustomSystemFiles: function () {
+			getWorkspaceFiles: function () {
 				if (
 					!previousResolvedConfig ||
-					!previousResolvedConfig.systemRoot
+					!previousResolvedConfig.workspaceRoot
 				) {
 					return {};
 				}
-				return API.Q.nbind(API.getFileTreeInfoFor, API)(previousResolvedConfig.systemRoot, {}).then(function (info) {
+				return API.Q.nbind(API.getFileTreeInfoFor, API)(previousResolvedConfig.workspaceRoot, {}).then(function (info) {
 					return info;
 				});
 			},
-			ensureUid: function () {
-				var uidPath = API.PATH.join(API.getRootPath(), "../.pinf.uid");
+			ensureUid: function (partiallyResolvedConfig) {
+				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, ".pinf.uid");
 				return API.Q.denodeify(function (callback) {
 					return API.FS.exists(uidPath, function (exists) {
 						if (exists) {
@@ -46,7 +46,7 @@ exports.for = function (API) {
 				})();
 			},
 			deriveBasename: function (partiallyResolvedConfig) {
-				return API.Q.denodeify(API.FS.realpath)(partiallyResolvedConfig.systemRoot).then(function (path) {
+				return API.Q.denodeify(API.FS.realpath)(partiallyResolvedConfig.workspaceRoot).then(function (path) {
 					return API.PATH.basename(path);
 				});
 			}
