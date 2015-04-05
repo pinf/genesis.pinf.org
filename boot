@@ -40,6 +40,7 @@ function init {
 			# Seed the PINF.Genesis System
 			export PGS_WORKSPACE_ROOT="$__BO_DIR__"
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
+			export PGS_WORKSPACE_UID="`cat "$__BO_DIR__/.pinf.uid"`"
 		popd
 
 		format "HEADER" "Turning system"

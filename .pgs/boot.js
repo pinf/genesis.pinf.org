@@ -25,6 +25,22 @@ exports.for = function (API) {
 						if (exists) {
 							return API.FS.readFile(uidPath, "utf8", callback);
 						}
+
+						function useUid (uid, callback) {
+							uid = uid.toLowerCase();
+							return API.FS.outputFile(uidPath, uid, "utf8", function (err) {
+								if (err) return callback(err);
+								return callback(null, uid);
+							});
+						}
+
+						if (process.env.PGS_WORKSPACE_UID) {
+							API.console.verbose("Using 'PGS_WORKSPACE_UID' environment variable (" + process.env.PGS_WORKSPACE_UID + ") as system UID!");
+							return useUid(process.env.PGS_WORKSPACE_UID, callback);
+						}
+
+						API.console.verbose("Generating new UID to use as system UID!");
+
 						return API.runCommands([
 							"uuidgen"
 						], function (err, uid) {
@@ -35,12 +51,7 @@ exports.for = function (API) {
 									"($__BO_DIR__/boot) to use an alternative command " +
 									"that is available on your system."));
 							}
-							uid = uid.replace(/[^0-9A-Z-]/g, "").toLowerCase();
-							return API.FS.outputFile(uidPath, uid, "utf8", function (err) {
-								if (err) return callback(err);
-
-								return callback(null, uid);
-							});
+							return useUid(uid.replace(/[^0-9A-Z-]/g, ""), callback);
 						});
 					});
 				})();
