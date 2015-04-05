@@ -12,10 +12,10 @@
 		},
 		"%%UID%%/0": {
 			"$to": "%%BASENAME%%",
-			"source": {
-				"catalog": "{{$from.pgs-distribution.distributions.pub.url}}/catalog.json"
+			"dist": {
+				"catalog": "{{$from.pgs-distribution.distributions.dist.url}}/catalog.json"
 			},
-			"runtime": {
+			"run": {
 				"homepage": "{{$from.pgs-browser.homepage}}"
 			}
 		}

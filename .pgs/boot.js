@@ -7,16 +7,6 @@ exports.for = function (API) {
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
 		return resolver({
-			deriveRevision: function () {
-				return API.Q.nbind(API.getFileTreeHashFor, API)(__dirname, {
-					ignore: [
-						"/program.rt.json",
-						"/.rt",
-						"/.pinf.boot",
-						"/.gitignore"
-					]
-				});
-			},
 			ensureUid: function () {
 				var uidPath = API.PATH.join(API.getRootPath(), "../.pinf.uid");
 				return API.Q.denodeify(function (callback) {

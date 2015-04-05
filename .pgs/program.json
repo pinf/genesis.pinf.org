@@ -6,13 +6,17 @@
 	"config": {
 		"boot/0": {
 			"$to": "pgs-boot",
-			"revision": "{{deriveRevision()}}",
+			"revision": "{{$from.pgs-boot-filetree.hash}}",
 			"systemRoot": "{{env.PGS_SYSTEM_ROOT}}",
 			"variables": {
 				"UID": "{{ensureUid()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
 				"BASENAME": "{{deriveBasename()}}"
 			}
+		},
+		"github.com/pinf-it/pinf-it-filetree-insight/0": {
+			"$to": "pgs-boot-filetree",
+			"watch": true
 		}
 	}
 }

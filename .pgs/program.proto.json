@@ -77,8 +77,9 @@
 			"accessKeyId": "{{$from.pgs-prompt.services.aws.variables.AWS_ACCESS_KEY.value}}",
 			"secretAccessKey": "{{$from.pgs-prompt.services.aws.variables.AWS_SECRET_KEY.value}}",
 			"distributions": {
-				"pub": {
+				"dist": {
 					"bucket": "{{$from.pgs.basename}}",
+					"path": ".dist/",
 					"source": "{{$from.pgs-bundle.path}}"
 				}
 			}
