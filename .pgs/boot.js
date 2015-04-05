@@ -7,6 +7,17 @@ exports.for = function (API) {
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
 		return resolver({
+			getCustomSystemFiles: function () {
+				if (
+					!previousResolvedConfig ||
+					!previousResolvedConfig.systemRoot
+				) {
+					return {};
+				}
+				return API.Q.nbind(API.getFileTreeInfoFor, API)(previousResolvedConfig.systemRoot, {}).then(function (info) {
+					return info;
+				});
+			},
 			ensureUid: function () {
 				var uidPath = API.PATH.join(API.getRootPath(), "../.pinf.uid");
 				return API.Q.denodeify(function (callback) {

@@ -12,7 +12,8 @@
 				"UID": "{{ensureUid()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
 				"BASENAME": "{{deriveBasename()}}"
-			}
+			},
+			"customSystemFiles": "{{getCustomSystemFiles()}}"
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
 			"$to": "pgs-boot-filetree",
