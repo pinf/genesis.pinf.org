@@ -7,12 +7,14 @@ var commands = [];
 FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forEach(function (line) {
 	if (!line) return;
 	if (/^#/.test(line)) return;
+	if (/^!/.test(line)) return;
 	if (/^\//.test(line)) {
 		commands.push('rm -Rf ' + line.substring(1));
 	}
 });
 
 
+// TODO: Only reset if files have not changed!
 commands.push("git checkout HEAD -- README.md");
 commands.push('rm -Rf .gitignore');
 commands.push('rm -Rf main.js');
