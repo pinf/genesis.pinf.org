@@ -99,12 +99,20 @@
 			"bind": "127.0.0.1",
 			"port": "{{$from.pgs-pio.ports.default}}"
 		},
+		"github.com/pinf-to/pinf-to-mozilla-addon/0": {
+			"$to": "pgs-browser-extension",
+			"id": "{{$from.pgs.uid}}@{{$from.pgs.basename}}",
+			"name": "{{$from.pgs.basename}}"
+		},
 		"github.com/pinf-to/pinf-to-mozilla-firefox-profile/0": {
 			"$to": "pgs-browser",
+            "browserVersion": "40.0a1",
+            "browserRelease": "nightly",
 			"homepage": "http://{{$from.pgs-server.bind}}:{{$from.pgs-server.port}}",
 			"extensions": {
-				"firebug@software.joehewitt.com": "https://getfirebug.com/releases/firebug/2.0/firebug-2.0.xpi",
-				"fbtrace@getfirebug.com": "https://getfirebug.com/releases/fbtrace/2.0/fbTrace-2.0b1.xpi"
+				"firebug@software.joehewitt.com": "https://getfirebug.com/releases/firebug/3.0/firebug-3.0.0-alpha.9.xpi",
+				"fbtrace@getfirebug.com": "https://getfirebug.com/releases/fbtrace/3.0/fbtrace-3.0b1.xpi",
+				"{{$from.pgs.uid}}@{{$from.pgs.basename}}": "{{$from.pgs-browser-extension.path}}"
 			},
 			"preferences": {
 				"extensions.firebug.alwaysOpenTraceConsole": true

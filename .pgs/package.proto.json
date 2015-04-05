@@ -17,5 +17,10 @@
 		"directories": {
 			"bundles": "./.pinf.program"
 		}
-	}
+	},
+    "imports": {
+        "globals": {
+            "console": true
+        }
+    }
 }

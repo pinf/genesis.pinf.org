@@ -2,6 +2,10 @@
 
 exports.main = function (API) {
 
+API.console.log("Tes 1");
+
+console.log("Yes from main.js!");
+
 	var exports = {};
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
@@ -22,4 +26,3 @@ console.log("SPIN main.js for system %%BASENAME%%", resolvedConfig);
 
 	return exports;
 }
-

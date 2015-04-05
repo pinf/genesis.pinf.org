@@ -24,7 +24,7 @@ exports.for = function (API) {
 									"($__BO_DIR__/boot) to use an alternative command " +
 									"that is available on your system."));
 							}
-							uid = uid.replace(/[^0-9A-Z-]/g, "");
+							uid = uid.replace(/[^0-9A-Z-]/g, "").toLowerCase();
 							return API.FS.outputFile(uidPath, uid, "utf8", function (err) {
 								if (err) return callback(err);
 
