@@ -19,7 +19,18 @@ exports.for = function (API) {
 				});
 			},
 			ensureUid: function (partiallyResolvedConfig) {
+
 				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, ".pinf.uid");
+
+				// If 'uid' is declared in 'package.json ~ uid' we recover the '.pinf.uid' file.
+				var packageDescriptorPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, "package.json");
+				if (API.FS.existsSync(packageDescriptorPath)) {
+					var packageDescriptor = require(packageDescriptorPath);
+					if (packageDescriptor.uid) {
+						API.FS.outputFileSync(uidPath, packageDescriptor.uid, "utf8");
+					}
+				}
+
 				return API.Q.denodeify(function (callback) {
 					return API.FS.exists(uidPath, function (exists) {
 						if (exists) {

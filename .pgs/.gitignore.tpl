@@ -56,5 +56,9 @@
 # Created on PGS Template: Turn (keep)
 ##################################################
 
-!/.pinf.uid
+!/README.md
+!/.gitignore
+!/main.js
+!/program.json
+!/package.json
 

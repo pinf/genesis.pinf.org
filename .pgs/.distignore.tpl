@@ -1,7 +1,5 @@
 
 @import .gitignore
 
-/.pinf.uid
-/.pgs/
-/boot
 /README.md
+/program.json
