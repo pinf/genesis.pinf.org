@@ -9,6 +9,8 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	if (/^#/.test(line)) return;
 	if (/^!/.test(line)) return;
 	if (/^\//.test(line)) {
+		if (/^\/.pgs\//.test(line)) return;
+		if (/^\/boot/.test(line)) return;
 		commands.push('rm -Rf ' + line.substring(1));
 	}
 });

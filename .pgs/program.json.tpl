@@ -3,6 +3,17 @@
 	"name": "%%BASENAME%%",
 	"config": {
 		"genesis.pinf.org/0": {
+			"$to": "pgs",
+			"programs": {
+				".pgs": {
+					"location": "./.pgs/program.json",
+					"config": {
+						"github.com/pinf/org.pinf.lib/0": {
+							"plugin": "boot"
+						}
+					}
+				}
+			},
 			"uid": "%%UID%%",
 			"basename": "%%BASENAME%%",
 			"label": "%%BASENAME%%",

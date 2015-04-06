@@ -3,19 +3,6 @@
 		"package": "./package.json"
 	},
 	"config": {
-		"genesis.pinf.org/0": {
-			"$to": "pgs",
-			"programs": {
-				".pgs": {
-					"location": "./.pgs/program.json",
-					"config": {
-						"github.com/pinf/org.pinf.lib/0": {
-							"plugin": "boot"
-						}
-					}
-				}
-			}
-		},
 		"github.com/pinf-it/pinf-it-vcs-insight/0": {
 			"$to": "pgs-vcs"
 		},
