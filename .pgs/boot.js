@@ -117,6 +117,7 @@ exports.for = function (API) {
 						"!program.json",
 						"!program.rt.json",
 						"!.gitignore",
+						"!.rsyncignore",
 						"!*.proto.json",
 					], {
 						cwd: fromPath
