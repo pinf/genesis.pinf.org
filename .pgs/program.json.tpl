@@ -2,24 +2,24 @@
 	"extends": %%EXTENDS%%,
 	"name": "%%BASENAME%%",
 	"config": {
-		"genesis.pinf.org/0": {
+		"%%BASENAME%%/0": {
 			"$to": "pgs",
-			"programs": {
-				".pgs": {
-					"location": "./.pgs/program.json",
-					"config": {
-						"github.com/pinf/org.pinf.lib/0": {
-							"plugin": "boot"
-						}
-					}
-				}
-			},
 			"uid": "%%UID%%",
 			"basename": "%%BASENAME%%",
 			"label": "%%BASENAME%%",
 			"description": "",
 			"issues.url": "",
-			"version": "0.0.0"
+			"version": "0.0.0",
+			"programs": {
+				".pgs": {
+					"location": "./.pgs/program.json",
+					"config": {
+						"genesis.pinf.org/0": {
+							"for": "boot"
+						}
+					}
+				}
+			}
 		},
 		"%%UID%%/0": {
 			"$to": "%%BASENAME%%",
