@@ -22,16 +22,20 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 
 
 // TODO: Only reset if files have not changed!
+commands.push('rm -Rf README.md');
 commands.push("git checkout HEAD -- README.md");
-commands.push('rm -Rf .gitignore');
-commands.push('rm -Rf main.js');
-commands.push('rm -Rf program.json');
 
-if (PATH.basename(process.cwd()) === "genesis.pinf.org") {
-	commands.push("git checkout HEAD -- package.json");
-} else {
-	commands.push('rm -Rf package.json');
-}
+commands.push('rm -Rf .gitignore');
+commands.push("git checkout HEAD -- .gitignore");
+
+commands.push('rm -Rf main.js');
+commands.push("git checkout HEAD -- main.js");
+
+commands.push('rm -Rf program.json');
+commands.push("git checkout HEAD -- program.json");
+
+commands.push('rm -Rf package.json');
+commands.push("git checkout HEAD -- package.json");
 
 
 var cwd = PATH.dirname(__dirname);
