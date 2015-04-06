@@ -11,7 +11,11 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	if (/^!/.test(line)) return;
 	if (/^\//.test(line)) {
 		// Don't remove these files if in 'genesis.pinf.org'.
+console.log("PATH.basename(process.cwd())", PATH.basename(process.cwd()))		
 		if (PATH.basename(process.cwd()) !== "genesis.pinf.org") {
+
+console/log("LINE: " + line + " :LINE");
+
 			if (/^\/.pgs\/$/.test(line)) return;
 			if (/^\/boot/.test(line)) return;
 			if (/^\/package\.json/.test(line)) return;
@@ -38,7 +42,7 @@ var cwd = PATH.dirname(__dirname);
 process.stdout.write("Cleaning for directory '" + cwd + "':\n");
 // TODO: Only print output on debug.
 commands.forEach(function (command) {
-	process.stdout.write(command + "\n");
+//	process.stdout.write(command + "\n");
 });
 
 
