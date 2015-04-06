@@ -9,8 +9,12 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	if (/^#/.test(line)) return;
 	if (/^!/.test(line)) return;
 	if (/^\//.test(line)) {
-		if (/^\/.pgs\//.test(line)) return;
-		if (/^\/boot/.test(line)) return;
+		// Don't remove these files if in 'genesis.pinf.org'.
+		if (PATH.basename(process.cwd()) !== "genesis.pinf.org") {
+			if (/^\/.pgs\//.test(line)) return;
+			if (/^\/boot/.test(line)) return;
+			if (/^\/package\.json/.test(line)) return;
+		}
 		commands.push('rm -Rf ' + line.substring(1));
 	}
 });
@@ -20,8 +24,13 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 commands.push("git checkout HEAD -- README.md");
 commands.push('rm -Rf .gitignore');
 commands.push('rm -Rf main.js');
-commands.push('rm -Rf package.json');
 commands.push('rm -Rf program.json');
+
+if (PATH.basename(process.cwd()) === "genesis.pinf.org") {
+	commands.push("git checkout HEAD -- package.json");
+} else {
+	commands.push('rm -Rf package.json');
+}
 
 
 var cwd = PATH.dirname(__dirname);
