@@ -22,6 +22,52 @@ function init {
 		fi
 	}
 
+	function install {
+		format "HEADER" "Installing PINF.Genesis System"
+
+		local TARGET_PATH="`pwd`"
+
+		if [ -f "$TARGET_PATH/boot" ]; then
+			if [ "$1" != "-f" ]; then
+				echo "ERROR: Cannot install. File already exists: $TARGET_PATH/boot"
+				exit 1
+			fi
+		fi
+
+		echo "Ensuring ignore file: $TARGET_PATH/.gitignore"
+		if [ ! -f "$TARGET_PATH/.gitignore" ]; then
+			echo "Create ignore file: $TARGET_PATH/.gitignore"
+			touch "$TARGET_PATH/.gitignore"
+		fi
+		if ! grep -qe "^\/boot$" "$TARGET_PATH/.gitignore"; then
+			echo "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
+			# TODO: Do a cleaner append
+		    echo -e "\n/boot" >> "$TARGET_PATH/.gitignore"
+		fi
+		if ! grep -qe "^\/\.pgs\/$" "$TARGET_PATH/.gitignore"; then
+			echo "Append '/.pgs/' to ignore file: $TARGET_PATH/.gitignore"
+			# TODO: Do a cleaner append
+		    echo -e "\n/.pgs/" >> "$TARGET_PATH/.gitignore"
+		fi
+
+		echo "Copying boot file to: $TARGET_PATH/boot"
+		cp -f "$__BO_DIR__/boot" "$TARGET_PATH/boot"
+		chmod ug+x "$TARGET_PATH/boot"
+
+		echo "Copying PINF.Genesis System to: $TARGET_PATH/.pgs"
+		rsync -a --exclude-from="$__BO_DIR__/.pgs/.rsyncignore" "$__BO_DIR__/.pgs/" "$TARGET_PATH/.pgs/"
+
+		echo "Copy done!"
+
+		echo ""
+
+		echo "  Action: You can now run './boot' to boot the system!"
+
+		echo ""
+
+		format "FOOTER"
+	}
+
 	function boot {
 
 #		sed "s|%%EXTENDS%%|[\"$TPL_PATH\"]|g" "$TPL_PATH/program.json.tpl" > "$TARGET_PATH/program.json"
@@ -63,7 +109,11 @@ function init {
 	}
 
 
-	boot $@
+	if [ "$1" == "install" ]; then
+		install "$2"
+	else
+		boot $@
+	fi
 	signalDone
 }
 init $@

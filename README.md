@@ -48,7 +48,7 @@ Add PINF.Genesis to a package
 Add to `package.json`:
 
 	"scripts": {
-		"install": "./node_modules/.bin/genesis.pinf.org shadow .pinf"
+		"install": "./node_modules/.bin/pgs install"
 	}
 
 Then:
