@@ -128,6 +128,7 @@ exports.for = function (API) {
 							title: '[pgs-boot]',
 							minimal: true
 						}))
+						// TODO: Only replace variables in files ending with '.tpl'.
 						.pipe(API.GULP_RENAME(function (path) {
 							if (path.basename === "__from.gps.basename__") {
 								path.basename = resolvedConfig.variables.BASENAME;
