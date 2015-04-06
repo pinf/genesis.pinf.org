@@ -12,7 +12,7 @@ One-time:
 
 For **every** change:
 
-	./boot
+	./boot [-vd]
 
 	source bin/activate
 

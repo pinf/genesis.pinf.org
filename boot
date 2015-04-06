@@ -29,7 +29,7 @@ function init {
 #echo "BASENAME: `BO_run_node --eval 'process.stdout.write(require("'$TARGET_PATH'/program.json").config["genesis.pinf.org/0"].basename);'`"
 
 		# TODO: Detect if booting self or booting another package.
-		bootSelf
+		bootSelf $@
 	}
 
 	function bootSelf {
@@ -39,20 +39,20 @@ function init {
 		pushd "$__BO_DIR__/.pgs"
 			# Seed the PINF.Genesis System
 			export PGS_WORKSPACE_ROOT="$__BO_DIR__"
-			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
+			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn $@
 			export PGS_WORKSPACE_UID="`cat "$__BO_DIR__/.pinf.uid"`"
 		popd
 
 		format "HEADER" "Turning system"
 
 		pushd "$__BO_DIR__"
-			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn -vd
+			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn $@
 		popd
 
 		format "HEADER" "Spinning system"
 
 		pushd "$__BO_DIR__"
-			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto spin -vd
+			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto spin $@
 		popd
 
 		format "FOOTER"
@@ -63,7 +63,7 @@ function init {
 	}
 
 
-	boot
+	boot $@
 	signalDone
 }
-init @$
+init $@

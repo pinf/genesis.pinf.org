@@ -20,7 +20,8 @@
 	},
     "imports": {
         "globals": {
-            "console": true
+            "console": true,
+            "insight": true
         }
     }
 }

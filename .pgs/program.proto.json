@@ -109,12 +109,19 @@
 		"github.com/pinf-to/pinf-to-browser/0": {
 			"$to": "pgs-server",
 			"bind": "127.0.0.1",
-			"port": "{{$from.pgs-pio.ports.default}}"
+			"port": "{{$from.pgs-pio.ports.default}}",
+			"config": {
+				"sourceHashFile": "{{$from.pgs-filetree.hashFile}}"
+			}
 		},
 		"github.com/pinf-to/pinf-to-mozilla-addon/0": {
 			"$to": "pgs-browser-extension",
 			"id": "{{$from.pgs.uid}}@{{$from.pgs.basename}}",
-			"name": "{{$from.pgs.basename}}"
+			"name": "{{$from.pgs.basename}}",
+			"config": {
+				"label": "{{$from.pgs.label}}",
+				"mainComponentUrl": "http://{{$from.pgs-server.bind}}:{{$from.pgs-server.port}}/bundles/main.js"
+			}
 		},
 		"github.com/pinf-to/pinf-to-mozilla-firefox-profile/0": {
 			"$to": "pgs-browser",
@@ -127,7 +134,8 @@
 				"{{$from.pgs.uid}}@{{$from.pgs.basename}}": "{{$from.pgs-browser-extension.path}}"
 			},
 			"preferences": {
-				"extensions.firebug.alwaysOpenTraceConsole": true
+				"extensions.firebug.alwaysOpenTraceConsole": true,
+				"extensions.firebug.DBG_PGS/HOIST": true
 			}
 		}
 	}
