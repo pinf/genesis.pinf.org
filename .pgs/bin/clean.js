@@ -42,7 +42,7 @@ var cwd = PATH.dirname(__dirname);
 process.stdout.write("Cleaning for directory '" + cwd + "':\n");
 // TODO: Only print output on debug.
 commands.forEach(function (command) {
-//	process.stdout.write(command + "\n");
+	process.stdout.write(command + "\n");
 });
 
 
