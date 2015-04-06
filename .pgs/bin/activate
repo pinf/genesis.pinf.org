@@ -43,6 +43,7 @@ function init {
 		echo "    npm"
 		echo "    smi"
 		echo "    pto"
+		echo "    uuidgen"
 		echo " "
 		echo "  Variables:"
 		echo " "
