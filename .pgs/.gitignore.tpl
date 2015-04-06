@@ -7,8 +7,20 @@
 
 
 ##################################################
+# Created on PGS Template: Install (discardable)
+##################################################
+
+/.pgs/
+/boot
+
+
+##################################################
 # Created on PGS Template: Turn (discardable)
 ##################################################
+
+/.pgs/.pinf.*
+/.pgs/.rt/
+/.pgs/program.rt.json
 
 /bin/activate
 /bin/activate.js

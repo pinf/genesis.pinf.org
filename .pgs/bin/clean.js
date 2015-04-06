@@ -5,13 +5,14 @@ const EXEC = require("child_process").exec;
 
 var commands = [];
 FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forEach(function (line) {
+	line = line.replace(/\s/g, "");
 	if (!line) return;
 	if (/^#/.test(line)) return;
 	if (/^!/.test(line)) return;
 	if (/^\//.test(line)) {
 		// Don't remove these files if in 'genesis.pinf.org'.
 		if (PATH.basename(process.cwd()) !== "genesis.pinf.org") {
-			if (/^\/.pgs\//.test(line)) return;
+			if (/^\/.pgs\/$/.test(line)) return;
 			if (/^\/boot/.test(line)) return;
 			if (/^\/package\.json/.test(line)) return;
 		}
