@@ -8,7 +8,11 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	line = line.replace(/\s/g, "");
 	if (!line) return;
 	if (/^#/.test(line)) return;
-	if (/^!/.test(line)) return;
+	if (/^!\//.test(line)) {
+		commands.push('rm -Rf ' + line.substring(2));
+		commands.push("git checkout HEAD -- " + line.substring(2));
+		return;
+	}
 	if (/^\//.test(line)) {
 		// Don't remove these files if in 'genesis.pinf.org'.
 		if (PATH.basename(process.cwd()) === "genesis.pinf.org") {
@@ -19,23 +23,6 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 		commands.push('rm -Rf ' + line.substring(1));
 	}
 });
-
-
-// TODO: Only reset if files have not changed!
-commands.push('rm -Rf README.md');
-commands.push("git checkout HEAD -- README.md");
-
-commands.push('rm -Rf .gitignore');
-commands.push("git checkout HEAD -- .gitignore");
-
-commands.push('rm -Rf main.js');
-commands.push("git checkout HEAD -- main.js");
-
-commands.push('rm -Rf program.json');
-commands.push("git checkout HEAD -- program.json");
-
-commands.push('rm -Rf package.json');
-commands.push("git checkout HEAD -- package.json");
 
 
 var cwd = PATH.dirname(__dirname);
