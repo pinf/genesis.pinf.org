@@ -20,9 +20,9 @@ exports.for = function (API) {
 			},
 			ensureUid: function (partiallyResolvedConfig) {
 
-				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, ".pinf.uid");
+				var uidPath = API.PATH.join(partiallyResolvedConfig.pinfRoot, "uid");
 
-				// If 'uid' is declared in 'package.json ~ uid' we recover the '.pinf.uid' file.
+				// If 'uid' is declared in 'package.json ~ uid' we recover the '.pinf/uid' file.
 				var packageDescriptorPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, "package.json");
 				if (API.FS.existsSync(packageDescriptorPath)) {
 					var packageDescriptor = require(packageDescriptorPath);
@@ -121,7 +121,7 @@ exports.for = function (API) {
 					stream = API.GULP.src([
 						"**",
 						".*",
-						"!.pinf.*",
+						"!.pinf/",
 						"!.rt/",
 						"!boot.js",
 						"!package.json",
@@ -184,7 +184,15 @@ exports.for = function (API) {
 			});
 		}
 
-		return API.Q.denodeify(copy)(__dirname, API.PATH.dirname(API.getRootPath()));
+		return API.Q.denodeify(copy)(__dirname, API.PATH.dirname(API.getRootPath())).then(function () {
+
+			if (!API.FS.existsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.pinf))) {
+				API.FS.mkdirsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.pinf));
+			}
+			if (!API.FS.existsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.packages))) {
+				API.FS.mkdirsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.packages));
+			}
+		});
 	}
 
 	exports.spin = function (resolvedConfig) {

@@ -8,12 +8,23 @@
 			"$to": "pgs-boot",
 			"revision": "{{$from.pgs-boot-filetree.hash}}",
 			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
+			"directories": {
+				"pinf": "{{env.PGS_PINF_DIR}}",
+				"packages": "{{env.PGS_PACKAGES_DIR}}"
+			},
+			"pinfRoot": "{env.PGS_PINF_ROOT}}",
 			"variables": {
 				"UID": "{{ensureUid()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
 				"BASENAME": "{{deriveBasename()}}"
 			},
-			"workspaceFiles": "{{getWorkspaceFiles()}}"
+			"workspaceFiles": "{{getWorkspaceFiles()}}",
+			"workspaceFilesVariables": {
+				".gitignore": {
+					"%%CUSTOMRULES%%": ""
+				}
+			},
+			"@mirror": ["{{env.PGS_WORKSPACE_ROOT}}/pinf.json"]
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
 			"$to": "pgs-boot-filetree",

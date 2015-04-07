@@ -1,5 +1,5 @@
 {
-	"extends": %%EXTENDS%%,
+	"$extends": %%EXTENDS%%,
 	"name": "%%BASENAME%%",
 	"config": {
 		"%%BASENAME%%/0": {

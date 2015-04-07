@@ -85,8 +85,10 @@ function init {
 		pushd "$__BO_DIR__/.pgs"
 			# Seed the PINF.Genesis System
 			export PGS_WORKSPACE_ROOT="$__BO_DIR__"
+			export PGS_PINF_DIR=".pinf"
+			export PGS_PACKAGES_DIR=".packages"
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn $@
-			export PGS_WORKSPACE_UID="`cat "$__BO_DIR__/.pinf.uid"`"
+			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_ROOT/uid"`"
 		popd
 
 		format "HEADER" "Turning system"

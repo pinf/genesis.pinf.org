@@ -18,7 +18,7 @@
 # Created on PGS Template: Turn (discardable)
 ##################################################
 
-/.pgs/.pinf.*
+/.pgs/.pinf/
 /.pgs/.rt/
 /.pgs/program.rt.json
 
@@ -47,7 +47,7 @@
 ##################################################
 
 /.rt/
-/.pinf.*
+/.pinf/
 /program.rt.json
 /node_modules/
 
@@ -61,4 +61,11 @@
 !/main.js
 !/program.json
 !/package.json
+
+
+##################################################
+# Custom rules
+##################################################
+
+%%CUSTOMRULES%%
 

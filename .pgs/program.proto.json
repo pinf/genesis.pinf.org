@@ -44,6 +44,12 @@
 						},
 						"PGS_WORKSPACE_ROOT": {
 							"value": "{{env.PGS_WORKSPACE_ROOT}}"
+						},
+						"PGS_PINF_DIR": {
+							"value": "{{env.PGS_PINF_DIR}}"
+						},
+						"PGS_PACKAGES_DIR": {
+							"value": "{{env.PGS_PACKAGES_DIR}}"
 						}
 					}
 				},
