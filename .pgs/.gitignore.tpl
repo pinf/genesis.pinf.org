@@ -63,6 +63,10 @@
 !/package.json
 
 
+# Mark the end of all files that will be cleaned
+#@STOP_CLEAN
+
+
 ##################################################
 # Custom rules
 ##################################################

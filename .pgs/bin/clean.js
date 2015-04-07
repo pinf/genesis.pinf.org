@@ -3,10 +3,21 @@ const PATH = require("path");
 const FS = require("fs");
 const EXEC = require("child_process").exec;
 
+
+// TODO: Based on ignore rules of each program, remove all temporary assets
+//       for each nested in-tree program (skip symlinked programs).
+
+
 var commands = [];
+var stop = false;
 FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forEach(function (line) {
+	if (stop) return;
 	line = line.replace(/\s/g, "");
 	if (!line) return;
+	if (line === "#@STOP_CLEAN") {
+		stop = true;
+		return;
+	}
 	if (/^#/.test(line)) return;
 	if (/^!\//.test(line)) {
 		commands.push('rm -Rf ' + line.substring(2));

@@ -15,7 +15,7 @@
 	},
 	"layout": {
 		"directories": {
-			"bundles": "./.pinf.program"
+			"bundles": "./.pinf/program"
 		}
 	},
     "imports": {

@@ -21,9 +21,12 @@
 			"workspaceFilesVariables": {
 				".gitignore": {
 					"%%CUSTOMRULES%%": ""
+				},
+				".distignore": {
+					"%%CUSTOMRULES%%": ""
 				}
 			},
-			"@mirror": ["{{env.PGS_WORKSPACE_ROOT}}/pinf.json"]
+			"!@translocate": "{{env.PGS_WORKSPACE_ROOT}}/pinf.json"
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
 			"$to": "pgs-boot-filetree",

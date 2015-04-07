@@ -1,4 +1,4 @@
 {
-	"$extends": %%EXTENDS%%,
+	"@extends": %%EXTENDS%%,
 	"uid": "%%UID%%"
 }

@@ -134,6 +134,7 @@ exports.for = function (API) {
 						cwd: fromPath
 					});
 
+					var lastPath = null;
 					stream
 						.pipe(API.GULP_PLUMBER())
 						.pipe(API.GULP_DEBUG({
@@ -155,6 +156,8 @@ exports.for = function (API) {
 								path.extname = "." + basename.pop();
 								path.basename = basename.join(".");
 							}
+
+							lastPath = path.basename + path.extname;
 						}))
 //						.pipe(filter)
 						// TODO: Add generic variables here and move to `to.pinf.lib`.
@@ -167,6 +170,13 @@ exports.for = function (API) {
 							} else
 							if (matched === "%%BASENAME%%") {
 								return resolvedConfig.workspaceVariables.BASENAME;
+							} else
+							if (
+								resolvedConfig.workspaceFilesVariables &&
+								resolvedConfig.workspaceFilesVariables[lastPath] &&
+								typeof resolvedConfig.workspaceFilesVariables[lastPath][matched] !== "undefined"
+							) {
+								return resolvedConfig.workspaceFilesVariables[lastPath][matched];
 							}
 							return matched;
 						}))
