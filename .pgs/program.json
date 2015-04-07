@@ -1,10 +1,11 @@
 {
-	"name": "boot",
+	"uid": "expand.genesis.pinf.org",
 	"boot": {
+		"config": "expand.genesis.pinf.org/0",
 		"package": "./package.json"
 	},
 	"config": {
-		"boot/0": {
+		"expand.genesis.pinf.org/0": {
 			"$to": "pgs-boot",
 			"revision": "{{$from.pgs-boot-filetree.hash}}",
 			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
@@ -14,8 +15,10 @@
 			},
 			"workspaceVariables": {
 				"UID": "{{ensureUid()}}",
-				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
-				"BASENAME": "{{deriveBasename()}}"
+				"BASENAME": "{{deriveBasename()}}",
+				"EXTENDS": "[\"{{env.PGS_WORKSPACE_ROOT}}/{{env.PGS_PACKAGES_DIR}}/github.com~devcomp~devcomp.org~0~source/*.proto.json\"]",
+				"OVERLAYS": "[\"!{{env.PGS_WORKSPACE_ROOT}}/PINF.json\"]",
+				"PGSPROG": "{{__DIRNAME__}}"
 			},
 			"workspaceFiles": "{{getWorkspaceFiles()}}",
 			"workspaceFilesVariables": {
@@ -26,7 +29,7 @@
 					"%%CUSTOMRULES%%": ""
 				}
 			},
-			"!@translocate": "{{env.PGS_WORKSPACE_ROOT}}/pinf.json"
+			"@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
 			"$to": "pgs-boot-filetree",

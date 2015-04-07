@@ -1,6 +1,4 @@
 {
-  "uid": "boot",
-  "name": "boot",
-  "version": "0.0.0",
-  "main": "boot.js"
+	"uid": "expand.genesis.pinf.org",
+    "main": "pgs.js"
 }

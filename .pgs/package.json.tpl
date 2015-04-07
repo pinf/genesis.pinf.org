@@ -1,4 +1,0 @@
-{
-	"@extends": %%EXTENDS%%,
-	"uid": "%%UID%%"
-}
