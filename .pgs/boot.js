@@ -20,7 +20,7 @@ exports.for = function (API) {
 			},
 			ensureUid: function (partiallyResolvedConfig) {
 
-				var uidPath = API.PATH.join(partiallyResolvedConfig.pinfRoot, "uid");
+				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, partiallyResolvedConfig.directories.pinf, "uid");
 
 				// If 'uid' is declared in 'package.json ~ uid' we recover the '.pinf/uid' file.
 				var packageDescriptorPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, "package.json");
@@ -143,10 +143,10 @@ exports.for = function (API) {
 						// TODO: Only replace variables in files ending with '.tpl'.
 						.pipe(API.GULP_RENAME(function (path) {
 							if (path.basename === "__from.gps.basename__") {
-								path.basename = resolvedConfig.variables.BASENAME;
+								path.basename = resolvedConfig.workspaceVariables.BASENAME;
 							} else
 							if ((path.basename + path.extname) === "__from.gps.basename__") {
-								path.basename = resolvedConfig.variables.BASENAME;
+								path.basename = resolvedConfig.workspaceVariables.BASENAME;
 								path.extname = "";
 							}
 
@@ -160,13 +160,13 @@ exports.for = function (API) {
 						// TODO: Add generic variables here and move to `to.pinf.lib`.
 						.pipe(API.GULP_REPLACE(/%%[^%]+%%/g, function (matched) {
 							if (matched === "%%UID%%") {
-								return resolvedConfig.variables.UID;
+								return resolvedConfig.workspaceVariables.UID;
 							} else
 							if (matched === "%%EXTENDS%%") {
-								return resolvedConfig.variables.EXTENDS;
+								return resolvedConfig.workspaceVariables.EXTENDS;
 							} else
 							if (matched === "%%BASENAME%%") {
-								return resolvedConfig.variables.BASENAME;
+								return resolvedConfig.workspaceVariables.BASENAME;
 							}
 							return matched;
 						}))

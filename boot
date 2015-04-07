@@ -88,7 +88,7 @@ function init {
 			export PGS_PINF_DIR=".pinf"
 			export PGS_PACKAGES_DIR=".packages"
 			BO_callPlugin "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto turn $@
-			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_ROOT/uid"`"
+			export PGS_WORKSPACE_UID="`cat "$PGS_WORKSPACE_ROOT/$PGS_PINF_DIR/uid"`"
 		popd
 
 		format "HEADER" "Turning system"

@@ -12,8 +12,7 @@
 				"pinf": "{{env.PGS_PINF_DIR}}",
 				"packages": "{{env.PGS_PACKAGES_DIR}}"
 			},
-			"pinfRoot": "{env.PGS_PINF_ROOT}}",
-			"variables": {
+			"workspaceVariables": {
 				"UID": "{{ensureUid()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
 				"BASENAME": "{{deriveBasename()}}"
