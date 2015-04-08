@@ -1,24 +1,27 @@
 {
 	"uid": "expand.genesis.pinf.org",
 	"boot": {
-		"config": "expand.genesis.pinf.org/0",
+		"config": "expand/0",
 		"package": "./package.json"
 	},
-	"config": {
+	"config": {		
+		"expand/0": {
+			"$to": "pgs-expanded",
+			"revision": "{{$from.pgs-expand-filetree.hash}}"
+		},
 		"expand.genesis.pinf.org/0": {
-			"$to": "pgs-boot",
-			"revision": "{{$from.pgs-boot-filetree.hash}}",
+			"$to": "pgs-expand",
 			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
 			"directories": {
-				"pinf": "{{env.PGS_PINF_DIR}}",
-				"packages": "{{env.PGS_PACKAGES_DIR}}"
+				"pinf": "{{env.PGS_PINF_DIRPATH}}",
+				"packages": "{{env.PGS_PACKAGES_DIRPATH}}"
 			},
 			"workspaceVariables": {
 				"UID": "{{ensureUid()}}",
 				"BASENAME": "{{deriveBasename()}}",
-				"EXTENDS": "[\"{{env.PGS_WORKSPACE_ROOT}}/{{env.PGS_PACKAGES_DIR}}/github.com~devcomp~devcomp.org~0~source/*.proto.json\"]",
+				"EXTENDS": "[\"{{env.PGS_PACKAGES_DIRPATH}}/github.com~devcomp~devcomp.org~0~source/*.proto.json\"]",
 				"OVERLAYS": "[\"!{{env.PGS_WORKSPACE_ROOT}}/PINF.json\"]",
-				"PGSPROG": "{{__DIRNAME__}}"
+				"PGSPROG": "{{__FILENAME__}}"
 			},
 			"workspaceFiles": "{{getWorkspaceFiles()}}",
 			"workspaceFilesVariables": {
@@ -31,8 +34,19 @@
 			},
 			"@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
 		},
+		"github.com/sourcemint/smt-copy/0": {
+			"$to": "pgs-expand-copy",
+			"fromPath": "{{__DIRNAME__}}/vortex",
+			"toPath": "{{$from.pgs-expand.workspaceRoot}}",
+			"ignore": {
+				"git": false,
+				"dist": false
+			},
+			"variables": "{{$from.pgs-expand.workspaceVariables}}"
+		},		
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
-			"$to": "pgs-boot-filetree",
+			"$to": "pgs-expand-filetree",
+			"path": "{{$from.pgs-expand-copy.toPath}}",
 			"watch": true
 		}
 	}

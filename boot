@@ -17,11 +17,13 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
+
 	# Seed the PINF.Genesis System
-	export PGS_PINF_DIR=".pinf"
-	export PGS_PACKAGES_DIR=".packages"
 	export PGS_WORKSPACE_ROOT="$__BO_DIR__"
-	export BO_PACKAGES_DIR="$PGS_WORKSPACE_ROOT/$PGS_PACKAGES_DIR"
+	export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
+	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.packages"
+	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
+
 
 	if [ -f "$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0~source/bash.origin" ]; then
 		# Use OUR Bash.Origin script from now on (even to handle the install if the previously
@@ -34,7 +36,7 @@ function init {
 
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "$__BO_DIR__" $@
 
-	pgsExpand
-#	pgsSpin
+	pgsExpand $@
+#	pgsSpin $@
 }
 init $@

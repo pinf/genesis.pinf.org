@@ -1,0 +1,8 @@
+{
+	"@extends": %%EXTENDS%%,
+	"uid": "%%UID%%",
+	"boot": {
+		"package": "./package.json"
+	},
+	"@overlays": %%OVERLAYS%%
+}

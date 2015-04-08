@@ -1,0 +1,4 @@
+{
+	"@extends": %%EXTENDS%%,
+	"uid": "%%UID%%"
+}
