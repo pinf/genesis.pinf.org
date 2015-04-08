@@ -4,18 +4,22 @@
 Usage
 -----
 
-One-time:
+### One-time
 
 	git clone <uri> %%BASENAME%%
 	cd %%BASENAME%%
 
-For **every** change:
+### Run system
 
 	./boot [-vd]
 
+Upon `boot` a system will be initialized and running ready for exploration using your default browser which should have been opened.
+
+### Make changes
+
 	source bin/activate
 
-	# Make changes ...
+	# make changes ...
 
 	test
 
@@ -23,9 +27,7 @@ For **every** change:
 
 	# Commit changes & push
 
-Upon `boot` a system will be initialized and running ready for exploration using your default browser which should have been opened.
-
-Upon `activation` a command-line environment is loaded from which projects may be manipulated for the purpose of development. Once activated, the prompt will change and more commands are available. Run `help` for more information.
+Upon `activation` a command-line environment is loaded from which the system may be manipulated for the purpose of development. Once activated, the prompt will change and more commands are available. Run `help` for more information.
 
 
 License

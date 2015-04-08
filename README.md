@@ -12,87 +12,55 @@ To learn more visit [genesis.pinf.org](http://genesis.pinf.org) in a Web Browser
 Your own system based on PINF.Genesis
 -------------------------------------
 
+### Create System
+
 	mkdir MySystem
 	cd MySystem
 
 	echo "{}" > package.json
 
+### Add genesis.pinf.org as dependency
+
 	npm install --save genesis.pinf.org
+
+### Initialize System
 
 	./node_modules/.bin/genesis.pinf.org init
 
-	./boot
-
-	source bin/activate
-
-	# Make changes ...
-
-	test
-
-	clean
-
-	# Commit changes & push
-
-Upon `boot` a system will be initialized and running ready for exploration using your default browser which should have been opened.
-
-Refer to the generated README.md file at the root of `MySystem` any time you need to refresh your memory on how to boot or interact with the system.
+Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MySystem` to continue.
 
 
 Add PINF.Genesis to a package
 -----------------------------
 
+### Add genesis.pinf.org as dependency
+
 	cd MyPackage
 
 	npm install --save genesis.pinf.org
 
-Add to `package.json`:
+### Trigger System Initialization on install by adding to `package.json`
 
 	"scripts": {
 		"install": "./node_modules/.bin/genesis.pinf.org install"
 	}
 
-Then:
+### Initialize System
 
 	npm install
 
-	.pinf/boot
-
-	source .pinf/bin/activate
-
-	# Make changes ...
-
-	test
-
-	clean
-
-	# Commit changes & push
-
-Upon `boot` a system will be initialized and running your package ready for exploration using your default browser which should have been opened.
-
-Refer to the generated README.md file at the root of `.pinf` any time you need to refresh your memory on how to boot or interact with the system.
+Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MyPackage` to continue.
 
 
 Hacking on PINF.Genesis
 -----------------------
 
-One-time:
+### Clone System
 
 	git clone https://github.com/pinf/genesis.pinf.org.git
 	cd genesis.pinf.org
 
-For **every** change:
-
-	./boot
-
-	source bin/activate
-
-	# Make changes ...
-
-	test
-
-	clean
-
-	# Commit changes & push
+Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MyPackage` to continue.
 
 
 License
