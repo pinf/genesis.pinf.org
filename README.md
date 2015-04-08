@@ -12,18 +12,18 @@ To learn more visit [genesis.pinf.org](http://genesis.pinf.org) in a Web Browser
 Your own system based on PINF.Genesis
 -------------------------------------
 
-### Create System
+#### Create System
 
 	mkdir MySystem
 	cd MySystem
 
 	echo "{}" > package.json
 
-### Add genesis.pinf.org as dependency
+#### Add genesis.pinf.org as dependency
 
 	npm install --save genesis.pinf.org
 
-### Initialize System
+#### Initialize System
 
 	./node_modules/.bin/genesis.pinf.org init
 
@@ -33,19 +33,19 @@ Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org
 Add PINF.Genesis to a package
 -----------------------------
 
-### Add genesis.pinf.org as dependency
+#### Add genesis.pinf.org as dependency
 
 	cd MyPackage
 
 	npm install --save genesis.pinf.org
 
-### Trigger System Initialization on install by adding to `package.json`
+#### Trigger System Initialization on install by adding to `package.json`
 
 	"scripts": {
 		"install": "./node_modules/.bin/genesis.pinf.org install"
 	}
 
-### Initialize System
+#### Initialize System
 
 	npm install
 
@@ -55,7 +55,7 @@ Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org
 Hacking on PINF.Genesis
 -----------------------
 
-### Clone System
+#### Clone System
 
 	git clone https://github.com/pinf/genesis.pinf.org.git
 	cd genesis.pinf.org

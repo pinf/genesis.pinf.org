@@ -4,18 +4,18 @@
 Usage
 -----
 
-### One-time
+#### One-time
 
 	git clone <uri> %%BASENAME%%
 	cd %%BASENAME%%
 
-### Run system
+#### Run system
 
 	./boot [-vd]
 
 Upon `boot` a system will be initialized and running ready for exploration using your default browser which should have been opened.
 
-### Make changes
+#### Make changes
 
 	source bin/activate
 
