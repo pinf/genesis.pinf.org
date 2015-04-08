@@ -82,6 +82,10 @@ function init {
 		echo "ERROR: 'PGS_WORKSPACE_ROOT' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
 		exit 1
 	fi
+	if [ -z "$PGS_WORKSPACE_PINF_DIRPATH" ]; then
+		echo "ERROR: 'PGS_WORKSPACE_PINF_DIRPATH' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
+		exit 1
+	fi
 	if [ -z "$BO_PACKAGES_DIR" ]; then
 		echo "ERROR: 'BO_PACKAGES_DIR' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
 		exit 1
@@ -98,7 +102,7 @@ function init {
 		pushd "$PGS_DIR"
 			export PGS_PINF_DIRPATH="$PGS_DIR/.pinf"
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto turn $@
-			export PGS_WORKSPACE_UID="`cat "$PREVIOUS_PGS_PINF_DIRPATH/uid"`"			
+			export PGS_WORKSPACE_UID="`cat "$PREVIOUS_PGS_PINF_DIRPATH/uid"`"
 		popd
 
 		export PGS_PINF_DIRPATH="$PREVIOUS_PGS_PINF_DIRPATH"

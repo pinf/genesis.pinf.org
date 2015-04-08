@@ -21,6 +21,7 @@ function init {
 	# Seed the PINF.Genesis System
 	export PGS_WORKSPACE_ROOT="$__BO_DIR__"
 	export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
+	export PGS_WORKSPACE_PINF_DIRPATH="$PGS_PINF_DIRPATH"
 	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.packages"
 	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
 

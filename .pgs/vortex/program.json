@@ -4,5 +4,12 @@
 	"boot": {
 		"package": "./package.json"
 	},
+	"config": {
+		"expand.genesis.pinf.org/0": {
+			"programs": {
+				".pgs": "%%PGSPROG%%"
+			}
+		}
+	},
 	"@overlays": %%OVERLAYS%%
 }

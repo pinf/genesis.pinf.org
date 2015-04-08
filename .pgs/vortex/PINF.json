@@ -1,13 +1,4 @@
 {
 	"config": {
-		"expand.genesis.pinf.org/0": {
-			"workspaceVariables": {
-				"UID": "%%UID%%",
-				"BASENAME": "%%BASENAME%%"
-			},
-			"programs": {
-				".pgs": "%%PGSPROG%%"
-			}
-		}
 	}
 }

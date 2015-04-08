@@ -6,6 +6,7 @@ exports.for = function (API) {
 	var exports = {};
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
+
 		return resolver({
 			getWorkspaceFiles: function () {
 				if (
@@ -20,34 +21,47 @@ exports.for = function (API) {
 			},
 			ensureUid: function (partiallyResolvedConfig) {
 
-				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, partiallyResolvedConfig.directories.pinf, "uid");
+				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceVariables.PGS_WORKSPACE_PINF_DIRPATH, "uid");
 
-				// If 'uid' is declared in 'package.json ~ uid' we recover the '.pinf/uid' file.
+				// Recover the '.pinf/uid' file from various sources
+
+				function recoverAndReturn (uid) {
+					API.FS.outputFileSync(uidPath, uid, "utf8");
+					return uid;
+				}
+
+				// 1) 'program.json ~ uid'
+				// TODO: Use generic program descriptor loader.
+				var programDescriptorPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, "program.json");
+				if (API.FS.existsSync(programDescriptorPath)) {
+					var programDescriptor = require(programDescriptorPath);
+					if (programDescriptor.uid) {
+						API.console.verbose("Using 'uid' (" + programDescriptor.uid + ") from program descriptor '" + programDescriptorPath + "' as system UID!");
+						return recoverAndReturn(programDescriptor.uid);
+					}
+				}
+
+				// 2) 'package.json ~ uid'
+				// TODO: Use generic package descriptor loader.
 				var packageDescriptorPath = API.PATH.join(partiallyResolvedConfig.workspaceRoot, "package.json");
 				if (API.FS.existsSync(packageDescriptorPath)) {
 					var packageDescriptor = require(packageDescriptorPath);
 					if (packageDescriptor.uid) {
-						API.FS.outputFileSync(uidPath, packageDescriptor.uid, "utf8");
+						API.console.verbose("Using 'uid' (" + packageDescriptor.uid + ") from package descriptor '" + packageDescriptorPath + "' as system UID!");
+						return recoverAndReturn(packageDescriptor.uid);
 					}
+				}
+
+				// 3) 'PGS_WORKSPACE_UID' environment variable
+				if (process.env.PGS_WORKSPACE_UID) {
+					API.console.verbose("Using 'PGS_WORKSPACE_UID' environment variable (" + process.env.PGS_WORKSPACE_UID + ") as system UID!");
+					return recoverAndReturn(process.env.PGS_WORKSPACE_UID);
 				}
 
 				return API.Q.denodeify(function (callback) {
 					return API.FS.exists(uidPath, function (exists) {
 						if (exists) {
 							return API.FS.readFile(uidPath, "utf8", callback);
-						}
-
-						function useUid (uid, callback) {
-							uid = uid.toLowerCase();
-							return API.FS.outputFile(uidPath, uid, "utf8", function (err) {
-								if (err) return callback(err);
-								return callback(null, uid);
-							});
-						}
-
-						if (process.env.PGS_WORKSPACE_UID) {
-							API.console.verbose("Using 'PGS_WORKSPACE_UID' environment variable (" + process.env.PGS_WORKSPACE_UID + ") as system UID!");
-							return useUid(process.env.PGS_WORKSPACE_UID, callback);
 						}
 
 						API.console.verbose("Generating new UID to use as system UID!");
@@ -62,7 +76,9 @@ exports.for = function (API) {
 									"($__BO_DIR__/boot) to use an alternative command " +
 									"that is available on your system."));
 							}
-							return useUid(uid.replace(/[^0-9A-Z-]/g, ""), callback);
+							return recoverAndReturn(uid.replace(/[^0-9A-Z-]/g, "")).then(function () {
+								return callback(null);
+							}).fail(callback);
 						});
 					});
 				})();
