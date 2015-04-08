@@ -29,7 +29,7 @@ function init {
 		# Use OUR Bash.Origin script from now on (even to handle the install if the previously
 		# installed version supports delegation).
 		export BO_ROOT_SCRIPT_PATH="$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0~source/bash.origin"
-		"$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0~source/bash.origin" BO install -f > /dev/null
+		"$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0~source/bash.origin" BO install > /dev/null
 	fi
 	. "$BO_ROOT_SCRIPT_PATH"
 
@@ -37,6 +37,6 @@ function init {
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "$__BO_DIR__" $@
 
 	pgsExpand $@
-#	pgsSpin $@
+	pgsSpin $@
 }
 init $@

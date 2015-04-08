@@ -75,150 +75,17 @@ exports.for = function (API) {
 		});
 	}
 
+/*
 	exports.turn = function (resolvedConfig) {
-return;
-//throw new Error("STOP TURN ON PGS!");
-
-		// First we write the root program.json file which seeds the rest of the system.
-
-		function copy (fromPath, toPath, callback) {
-
-			API.console.debug("Copying and transforming fileset", fromPath, "to", toPath, "...");
-
-			var domain = require('domain').create();
-			domain.on('error', function(err) {
-				// The error won't crash the process, but what it does is worse!
-				// Though we've prevented abrupt process restarting, we are leaking
-				// resources like crazy if this ever happens.
-				// This is no better than process.on('uncaughtException')!
-				console.error("UNHANDLED DOMAIN ERROR:", err.stack, new Error().stack);
-				process.exit(1);
-			});
-			domain.run(function() {
-
-				try {
-
-					var destinationStream = null;
-
-					destinationStream = API.GULP.dest(API.PATH.dirname(toPath));
-
-					destinationStream.once("error", function (err) {
-						return callback(err);
-					});
-
-					destinationStream.once("end", function () {
-
-						API.console.debug("... done");
-
-						return callback();
-					});
-
-					var filter = API.GULP_FILTER([
-						'index.html',
-						'**/index.html'
-					]);
-
-					// TODO: Respect gitignore by making pinf walker into gulp plugin. Use pinf-package-insight to load ignore rules.
-					var stream = null;
-					stream = API.GULP.src([
-						"**",
-						".*",
-						"!.pinf/",
-						"!.rt/",
-						"!boot.js",
-						"!pgs.sh",
-						"!package.json",
-						"!program.json",
-						"!program.rt.json",
-						"!.gitignore",
-						"!.rsyncignore",
-						"!*.proto.json",
-					], {
-						cwd: fromPath
-					});
-
-					var lastPath = null;
-					stream
-						.pipe(API.GULP_PLUMBER())
-						.pipe(API.GULP_DEBUG({
-							title: '[pgs-boot]',
-							minimal: true
-						}))
-						// TODO: Only replace variables in files ending with '.tpl'.
-						.pipe(API.GULP_RENAME(function (path) {
-							if (path.basename === "__from.gps.basename__") {
-								path.basename = resolvedConfig.workspaceVariables.BASENAME;
-							} else
-							if ((path.basename + path.extname) === "__from.gps.basename__") {
-								path.basename = resolvedConfig.workspaceVariables.BASENAME;
-								path.extname = "";
-							}
-
-							if (path.extname === ".tpl") {
-								var basename = path.basename.split(".");
-								path.extname = "." + basename.pop();
-								path.basename = basename.join(".");
-							}
-
-							lastPath = path.basename + path.extname;
-						}))
-//						.pipe(filter)
-						// TODO: Add generic variables here and move to `to.pinf.lib`.
-						.pipe(API.GULP_REPLACE(/%%[^%]+%%/g, function (matched) {
-							if (matched === "%%UID%%") {
-								return resolvedConfig.workspaceVariables.UID;
-							} else
-							if (matched === "%%EXTENDS%%") {
-								return resolvedConfig.workspaceVariables.EXTENDS;
-							} else
-							if (matched === "%%OVERLAYS%%") {
-								return resolvedConfig.workspaceVariables.OVERLAYS;
-							} else
-							if (matched === "%%BASENAME%%") {
-								return resolvedConfig.workspaceVariables.BASENAME;
-							} else
-							if (matched === "%%PGSPROG%%") {
-								return resolvedConfig.workspaceVariables.PGSPROG;
-							} else
-							if (
-								resolvedConfig.workspaceFilesVariables &&
-								resolvedConfig.workspaceFilesVariables[lastPath] &&
-								typeof resolvedConfig.workspaceFilesVariables[lastPath][matched] !== "undefined"
-							) {
-								return resolvedConfig.workspaceFilesVariables[lastPath][matched];
-							}
-							return matched;
-						}))
-//						.pipe(filter.restore())											
-						.pipe(destinationStream);
-
-					return stream.once("error", function (err) {
-						err.message += " (while running gulp)";
-						err.stack += "\n(while running gulp)";
-						return callback(err);
-					});
-				} catch (err) {
-					return callback(err);
-				}
-			});
+		if (
+			resolvedConfig.workspaceFilesVariables &&
+			resolvedConfig.workspaceFilesVariables[lastPath] &&
+			typeof resolvedConfig.workspaceFilesVariables[lastPath][matched] !== "undefined"
+		) {
+			return resolvedConfig.workspaceFilesVariables[lastPath][matched];
 		}
-
-		return API.Q.denodeify(copy)(__dirname, API.PATH.dirname(API.getRootPath())).then(function () {
-
-			if (!API.FS.existsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.pinf))) {
-				API.FS.mkdirsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.pinf));
-			}
-			if (!API.FS.existsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.packages))) {
-				API.FS.mkdirsSync(API.PATH.join(resolvedConfig.workspaceRoot, resolvedConfig.directories.packages));
-			}
-		});
 	}
-
-	exports.spin = function (resolvedConfig) {
-
-//console.log("spin resolvedConfig", resolvedConfig);
-
-	}
+*/
 
 	return exports;
 }

@@ -25,7 +25,7 @@ Your own system based on PINF.Genesis
 
 #### Initialize System
 
-	./node_modules/.bin/genesis.pinf.org init
+	./node_modules/.bin/genesis.pinf.org install
 
 Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MySystem` to continue.
 

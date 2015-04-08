@@ -112,10 +112,10 @@ function init {
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto turn $@
 		popd
 
-		format "HEADER" "Spinning system"
-		pushd "$PGS_WORKSPACE_ROOT"
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto spin $@
-		popd
+#		format "HEADER" "Spinning system"
+#		pushd "$PGS_WORKSPACE_ROOT"
+#			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto spin $@
+#		popd
 
 		format "FOOTER"
 	}
