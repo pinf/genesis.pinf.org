@@ -38,7 +38,8 @@
 !/main.js
 !/program.json
 !/package.json
-
+!/%%BASENAME%%.inf
+!/%%BASENAME%%.inf.js
 
 
 # Mark the end of all files that will be cleaned
