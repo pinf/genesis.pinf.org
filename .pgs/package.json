@@ -11,6 +11,7 @@
     	"../.packages/github.com~pinf-to~pinf-to-mozilla-addon~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-mozilla-addon",
     	"../.packages/github.com~pinf-to~pinf-to-aws-s3~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-aws-s3",
     	"../.packages/github.com~pinf-to~pinf-to-sourcemint~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-sourcemint",
+    	"../.packages/github.com~pinf-to~pinf-to-pio~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-pio",
 
     	"../.packages/github.com~pinf-it~pinf-it-bundler~0~source": "/genesis/os.inception/services/2-it.pinf/pinf-it-bundler",
     	"../.packages/github.com~pinf-it~pinf-it-filetree-insight~0~source": "/genesis/os.inception/services/2-it.pinf/pinf-it-filetree-insight",
