@@ -57,5 +57,5 @@
 # Custom rules (keep on clean)
 ##################################################
 
-%%CUSTOMRULES%%
+%%__EXISTING__%%
 

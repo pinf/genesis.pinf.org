@@ -23,17 +23,20 @@ function init {
 
 		local TARGET_PATH="$1"
 
-		if [ -f "$TARGET_PATH/boot" ]; then
-			if [ "$1" != "-f" ]; then
-				echo "ERROR: Cannot install. File already exists: $TARGET_PATH/boot"
-				exit 1
-			fi
-		fi
-
 		echo "Ensuring ignore file: $TARGET_PATH/.gitignore"
 		if [ ! -f "$TARGET_PATH/.gitignore" ]; then
 			echo "Create ignore file: $TARGET_PATH/.gitignore"
 			touch "$TARGET_PATH/.gitignore"
+		fi
+		if ! grep -qe "^\/node_modules\/$" "$TARGET_PATH/.gitignore"; then
+			echo "Append '/node_modules/' to ignore file: $TARGET_PATH/.gitignore"
+			# TODO: Do a cleaner append
+		    echo -e "\n/node_modules/" >> "$TARGET_PATH/.gitignore"
+		fi
+		if ! grep -qe "^\/.packages\/$" "$TARGET_PATH/.gitignore"; then
+			echo "Append '/.packages/' to ignore file: $TARGET_PATH/.gitignore"
+			# TODO: Do a cleaner append
+		    echo -e "\n/.packages/" >> "$TARGET_PATH/.gitignore"
 		fi
 		if ! grep -qe "^\/boot$" "$TARGET_PATH/.gitignore"; then
 			echo "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
@@ -47,11 +50,11 @@ function init {
 		fi
 
 		echo "Copying boot file to: $TARGET_PATH/boot"
-		cp -f "$__BO_DIR__/boot" "$TARGET_PATH/boot"
+		cp -f "$__BO_DIR__/../boot" "$TARGET_PATH/boot"
 		chmod ug+x "$TARGET_PATH/boot"
 
 		echo "Copying PINF.Genesis System to: $TARGET_PATH/.pgs"
-		rsync -a --exclude-from="$__BO_DIR__/.pgs/.rsyncignore" "$__BO_DIR__/.pgs/" "$TARGET_PATH/.pgs/"
+		rsync -a --exclude-from="$__BO_DIR__/.rsyncignore" "$__BO_DIR__/" "$TARGET_PATH/.pgs/"
 
 		echo "Copy done!"
 
@@ -66,6 +69,7 @@ function init {
 
 	if [ "$1" == "install" ]; then		
 		install "`pwd`" ${*:2}
+		return;
 	fi
 
 	# The rest is used when sourcing into a boot file. See '../boot'.

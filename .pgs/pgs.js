@@ -76,7 +76,7 @@ exports.for = function (API) {
 									"($__BO_DIR__/boot) to use an alternative command " +
 									"that is available on your system."));
 							}
-							return recoverAndReturn(uid.replace(/[^0-9A-Z-]/g, "")).then(function () {
+							return API.Q.when(recoverAndReturn(uid.replace(/[^0-9A-Z-]/g, ""))).then(function () {
 								return callback(null);
 							}).fail(callback);
 						});

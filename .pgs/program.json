@@ -29,15 +29,7 @@
 				"PGS_PACKAGES_DIRPATH": "{{env.PGS_PACKAGES_DIRPATH}}",
 				"BO_PACKAGES_DIR": "{{env.BO_PACKAGES_DIR}}"
 			},
-			"workspaceFiles": "{{getWorkspaceFiles()}}",
-			"workspaceFilesVariables": {
-				".gitignore": {
-					"%%CUSTOMRULES%%": ""
-				},
-				".distignore": {
-					"%%CUSTOMRULES%%": ""
-				}
-			}
+			"workspaceFiles": "{{getWorkspaceFiles()}}"
 		},
 		"github.com/sourcemint/smt-copy/0": {
 			"$to": "pgs-expand-copy",
@@ -47,8 +39,20 @@
 				"git": false,
 				"dist": false
 			},
-			"variables": "{{$from.pgs-expand.workspaceVariables}}"
-		},		
+			"variables": "{{$from.pgs-expand.workspaceVariables}}",
+			"onExists": {
+				"json": "merge",
+				"md": "skip",
+				"gitignore": {
+					"action": "wrap",
+					"anchor": "%%__EXISTING__%%"
+				},
+				"distignore": {
+					"action": "wrap",
+					"anchor": "%%__EXISTING__%%"
+				}
+			}
+		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
 			"$to": "pgs-expand-filetree",
 			"path": "{{$from.pgs-expand-copy.toPath}}",
