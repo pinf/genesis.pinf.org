@@ -21,7 +21,7 @@
 
     	"../.packages/github.com~sourcemint~smt-copy~0~source": "/genesis/os.inception/services/0-sm/smt-copy",
 
-    	"../.packages/github.com~devcomp~devcomp.org~0~source": "/genesis/devcomp/services/devcomp/devcomp.org"
+    	"../.packages/github.com~devcomp~devcomp.org~0~source": "/genesis.live/open-source/devcomp.org"
     },
     "config": {
     	"smi.cli": {
