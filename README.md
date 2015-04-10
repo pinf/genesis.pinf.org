@@ -21,7 +21,7 @@ The diagram below illustrates the *core of PGS* by showing the
 
 as implemented by [DeveloperCompanion](http://devcomp.org). **DeveloperCompanion** is the **REFERENCE IMPLEMENTATION** of how I would build a system using PGS and doubles as *100% open and hackable dev system that can be used for collaborative realtime distributed system development*.
 
-![PGS Overview Diagram](https://github.com/pinf/genesis.pinf.org/blob/cleanup/.pgs/docs/2015-03%20-%20Overview.jpg)
+![PGS Overview Diagram](https://raw.githubusercontent.com/pinf/genesis.pinf.org/cleanup/.pgs/docs/2015-03%20-%20Overview.jpg)
 
 
 Your own system based on PINF.Genesis
