@@ -1,0 +1,11 @@
+{
+	"boot": {
+		"config": "pgs-vortex-default/0"
+	},
+	"config": {
+		"pgs-vortex-default/0": {
+			"$impl": "",
+			"$to": "pgs-vortex-default"
+		}
+	}
+}

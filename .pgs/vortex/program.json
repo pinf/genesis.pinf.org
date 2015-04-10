@@ -1,9 +1,6 @@
 {
 	"@extends": %%EXTENDS%%,
 	"uid": "%%UID%%",
-	"boot": {
-		"package": "./package.json"
-	},
 	"config": {
 		"genesis.pinf.org/0": {
 			"$impl": null,
