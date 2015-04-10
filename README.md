@@ -1,12 +1,27 @@
+**Status: DEV**
+
 PINF.Genesis System (PGS)
 =========================
 
-**PINF.Genesis** is [my](http://christophdorn.com) first *clean* incantation of [PINF](http://pinf.org) with a focus on:
+[PINF.Genesis](http://genesis.pinf.org) is [my](http://christophdorn.com) first *constantly improving* incantation of [PINF](http://pinf.org) with a focus on:
 
   * Web Software Systems and
   * Web Software Development Workspaces
 
-To learn more visit [genesis.pinf.org](http://genesis.pinf.org) in a Web Browser.
+[PINF](http://pinf.org) is an abstract **Virtual Holographic Nodal Platform** discovered over more than 15 years of trial and error. **PINF.Genesis** is my first publicly consumable iteration of the implementation of the virtual PINF system.
+
+Overview
+--------
+
+The diagram below illustrates the *core of PGS* by showing the
+
+  1) Boot sequence originally initiated by Human User
+  2) Data and interaction spaces managed by system
+  3) **System-wide Event Loop** capturing **ALL** modifications to system
+
+as implemented by [DeveloperCompanion](http://devcomp.org). **DeveloperCompanion** is the **REFERENCE IMPLEMENTATION** of how I would build a system using PGS and doubles as *100% open and hackable dev system that can be used for collaborative realtime distributed system development*.
+
+
 
 
 Your own system based on PINF.Genesis

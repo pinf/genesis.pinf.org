@@ -99,6 +99,8 @@ function init {
 
 	function pgsExpand {
 
+		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
+
 		format "HEADER" "Expanding PINF.Genesis System"
 
 		local PREVIOUS_PGS_PINF_DIRPATH="$PGS_PINF_DIRPATH"
@@ -113,6 +115,8 @@ function init {
 	}
 
 	function pgsSpin {
+
+		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
 
 		# TODO: Remove this once turning happens automatically on first spin.
 		format "HEADER" "Turning system"
