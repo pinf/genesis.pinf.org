@@ -23,6 +23,11 @@ as implemented by [DeveloperCompanion](http://devcomp.org). **DeveloperCompanion
 
 ![PGS Overview Diagram](https://raw.githubusercontent.com/pinf/genesis.pinf.org/cleanup/.pgs/docs/2015-03%20-%20Overview.jpg)
 
+Current Requirements:
+
+  * OSX
+  * NodeJS 10
+
 
 Your own system based on PINF.Genesis
 -------------------------------------

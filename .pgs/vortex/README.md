@@ -4,6 +4,11 @@
 Usage
 -----
 
+Requirements:
+
+  * OSX
+  * NodeJS 10
+
 #### One-time
 
 	git clone <uri> %%BASENAME%%
