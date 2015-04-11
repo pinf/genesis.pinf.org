@@ -37,7 +37,13 @@ function init {
 
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "$__BO_DIR__" $@
 
+	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand $@
-	pgsSpin $@
+
+	if [ "$PGS_BOOT_TO" == "turn" ]; then
+		pgsTurn $@
+	else
+		pgsSpin $@
+	fi
 }
 init $@

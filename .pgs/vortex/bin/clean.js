@@ -47,3 +47,12 @@ commands.forEach(function (command) {
 EXEC(commands.join("; "), {
 	cwd: cwd
 });
+
+
+if (
+	FS.existsSync(PATH.join(cwd, "PINF.json")) &&
+	FS.readFileSync(PATH.join(cwd, "PINF.json"), "utf8") === "{}"
+) {
+	FS.unlinkSync(PATH.join(cwd, "PINF.json"));
+}
+

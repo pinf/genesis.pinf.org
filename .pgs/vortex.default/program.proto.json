@@ -1,10 +1,11 @@
 {
 	"boot": {
-		"config": "pgs-vortex-default/0"
+		"config": "pgs-vortex-default/0",
+		"package": "./package.json"
 	},
 	"config": {
 		"pgs-vortex-default/0": {
-			"$impl": "",
+			"$impl": "{{$from.pgs.workspaceRoot}}",
 			"$to": "pgs-vortex-default"
 		}
 	}
