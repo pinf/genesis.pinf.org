@@ -20,13 +20,13 @@ function init {
 
 			"../../.pgs/pgs.sh" install ${*:2}
 
-			export PGS_WORKSPACE_UID="uid-$EXAMPLE_NAME"
-			export PGS_BOOT_TO="turn"
-			"./boot" ${*:2} > ".result/actual.log" 2>&1
-
 			if [ ! -d ".result" ]; then
 				mkdir ".result"
 			fi
+
+			export PGS_WORKSPACE_UID="uid-$EXAMPLE_NAME"
+			export PGS_BOOT_TO="turn"
+			"./boot" ${*:2} > ".result/actual.log" 2>&1
 
 			cp -f "program.rt.json" ".result/actual.json"
 
