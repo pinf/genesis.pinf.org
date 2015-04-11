@@ -14,32 +14,31 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
+	BO_checkVerbose "VERBOSE" "$@"
+
 	function format {
-		if [ "$1" == "HEADER" ]; then
+		if [ "$1" != "1" ]; then
+			return;
+		fi
+		if [ "$2" == "HEADER" ]; then
 			echo "##################################################";
-			echo "# $2";
+			echo "# $3";
 			echo "##################################################";
 		fi
-		if [ "$1" == "FOOTER" ]; then
+		if [ "$2" == "FOOTER" ]; then
 			echo "##################################################";
 			echo ""
 		fi
 	}
 
 	function runClean {
-		format "HEADER" "Cleaning"
+		format "$VERBOSE" "HEADER" "Cleaning"
 		pushd "$__BO_DIR__/.."
-			BO_run_node "$__BO_DIR__/clean.js"
+			BO_run_node "$__BO_DIR__/clean.js" $@
 		popd
-		format "FOOTER"
+		format "$VERBOSE" "FOOTER"
 	}
 
-	function signalDone {
-		echo "CLEANING DONE"
-	}
-
-
-	runClean
-	signalDone
+	runClean $@
 }
-init
+init $@

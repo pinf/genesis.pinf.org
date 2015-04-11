@@ -4,6 +4,9 @@ const FS = require("fs");
 const EXEC = require("child_process").exec;
 
 
+const VERBOSE = /(-\w*v|-\w*d)/.test(process.argv[2] || "");
+
+
 // TODO: Based on ignore rules of each program, remove all temporary assets
 //       for each nested in-tree program (skip symlinked programs).
 
@@ -37,12 +40,13 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 
 
 var cwd = PATH.dirname(__dirname);
-process.stdout.write("Cleaning for directory '" + cwd + "':\n");
-// TODO: Only print output on debug.
-commands.forEach(function (command) {
-	process.stdout.write(command + "\n");
-});
 
+if (VERBOSE) {
+	process.stdout.write("Cleaning for directory '" + cwd + "':\n");
+	commands.forEach(function (command) {
+		process.stdout.write(command + "\n");
+	});
+}
 
 EXEC(commands.join("; "), {
 	cwd: cwd

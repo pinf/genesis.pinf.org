@@ -30,12 +30,7 @@ function init {
 		format "FOOTER"
 	}
 
-	function signalDone {
-		echo "INSTALL DONE"
-	}
-
 
 	install
-	signalDone
 }
 init
