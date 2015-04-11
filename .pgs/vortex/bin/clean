@@ -33,9 +33,9 @@ function init {
 
 	function runClean {
 		format "$VERBOSE" "HEADER" "Cleaning"
-		pushd "$__BO_DIR__/.."
+		pushd "$__BO_DIR__/.." > /dev/null
 			BO_run_node "$__BO_DIR__/clean.js" $@
-		popd
+		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
 	}
 

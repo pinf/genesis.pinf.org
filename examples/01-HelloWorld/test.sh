@@ -11,6 +11,7 @@ function init {
 			ln -s "../../.packages" "$__BO_DIR__/.packages"
 		fi
 		"$__BO_DIR__/../../.pgs/pgs.sh" install $@
+		export PGS_WORKSPACE_UID="test-uid"
 		export PGS_BOOT_TO="turn"
 		"$__BO_DIR__/boot" $@
 		cp -f "$__BO_DIR__/program.rt.json" "$__BO_DIR__/result.json"

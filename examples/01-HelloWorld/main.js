@@ -2,17 +2,17 @@
 
 exports.main = function (API) {
 
-	API.insight.debug("Hello World Booted!");
+	console.log("main()");
 
 	var exports = {};
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
 
-		API.insight.debug("Hello World - resolve()", resolver, config, previousResolvedConfig);
+		console.log("resolve()");
 
 		return resolver({}).then(function (resolvedConfig) {
 
-			API.insight.debug("Hello World - resolve() - resolvedConfig", resolvedConfig);
+			console.log("resolved");
 
 			return resolvedConfig;
 		});
@@ -20,15 +20,17 @@ exports.main = function (API) {
 
 	exports.turn = function (resolvedConfig) {
 
-		API.insight.debug("Hello World - turn()", resolvedConfig);
+		console.log("turn()");
 
 	}
 
 	exports.spin = function (resolvedConfig) {
 
-		API.insight.debug("Hello World - spin()", resolvedConfig);
+		console.log("spin()");
 
 	}
+
+	console.log("initialized");
 
 	return exports;
 }
