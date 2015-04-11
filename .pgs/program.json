@@ -42,6 +42,7 @@
 			"variables": "{{$from.pgs-expand.workspaceVariables}}",
 			"onExists": {
 				"json": "merge",
+				"js": "skip",
 				"md": "skip",
 				"gitignore": {
 					"action": "wrap",
