@@ -11,6 +11,7 @@
 			"revision": "{{$from.pgs-expand-filetree.hash}}"
 		},
 		"expand.genesis.pinf.org/0": {
+			"$impl": "{{__DIRNAME__}}/pgs.js",
 			"$to": "pgs-expand",
 			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
 			"directories": {

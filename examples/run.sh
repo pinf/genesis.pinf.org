@@ -20,11 +20,13 @@ function init {
 
 			"../../.pgs/pgs.sh" install ${*:2}
 
+			local FIRST_RUN="0"
 			if [ ! -d ".result" ]; then
+				FIRST_RUN="1"
 				mkdir ".result"
 			fi
 
-			export PGS_WORKSPACE_UID="uid-$EXAMPLE_NAME"
+			export PGS_WORKSPACE_UID="UID-$EXAMPLE_NAME"
 			export PGS_BOOT_TO="turn"
 			"./boot" ${*:2} > ".result/actual.log" 2>&1
 
@@ -33,6 +35,7 @@ function init {
 			# TODO: Display this much better
 
 			if [ ! -f ".result/expected.log" ]; then
+				FIRST_RUN="1"
 				cp ".result/actual.log" ".result/expected.log"
 			fi
 			diff -Naur ".result/expected.log" ".result/actual.log" > /dev/null
@@ -45,6 +48,7 @@ function init {
 			fi
 
 			if [ ! -f ".result/expected.json" ]; then
+				FIRST_RUN="1"
 				cp ".result/actual.json" ".result/expected.json"
 			fi
 			diff -Naur ".result/expected.json" ".result/actual.json" > /dev/null
@@ -56,8 +60,15 @@ function init {
 				echo "##############################"
 			fi
 
-			"$EXAMPLE_DIR/bin/clean" ${*:2}
-			rm "$EXAMPLE_DIR/.packages"
+			if [ "$DIFFERENT" == "0" ]; then
+				"$EXAMPLE_DIR/bin/clean" ${*:2}
+				rm "$EXAMPLE_DIR/.packages"
+			fi
+
+			if [ "$FIRST_RUN" == "1" ]; then
+				cat ".result/actual.log"
+			fi
+
 		popd > /dev/null
 
 		if [ "$DIFFERENT" == "1" ]; then
