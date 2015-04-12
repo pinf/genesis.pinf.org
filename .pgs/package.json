@@ -18,6 +18,8 @@
 
     	"../.packages/github.com~pinf~org.pinf.lib~0~source": "/genesis/os.inception/services/2-org.pinf/org.pinf.lib",
 
+        "../.packages/github.com~pinf~org.pinf.genesis.lib~0~source": "/genesis/os.inception/services/2-org.pinf/org.pinf.genesis.lib",
+
     	"../.packages/github.com~sourcemint~smt-copy~0~source": "/genesis/os.inception/services/0-sm/smt-copy",
 
     	"../.packages/github.com~devcomp~devcomp.org~0~source": "/genesis.live/open-source/devcomp.org"
