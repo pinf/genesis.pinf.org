@@ -6,12 +6,11 @@
 	},
 	"config": {		
 		"expand/0": {
-			"$impl": null,
 			"$to": "pgs-expanded",
 			"revision": "{{$from.pgs-expand-filetree.hash}}"
 		},
 		"expand.genesis.pinf.org/0": {
-			"$impl": "{{__DIRNAME__}}/pgs.js",
+			"$impl": "{{__DIRNAME__}}/pgs-expand.js",
 			"$to": "pgs-expand",
 			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
 			"directories": {
@@ -23,7 +22,7 @@
 				"BASENAME": "{{deriveBasename()}}",
 				"EXTENDS": "[\"{{__DIRNAME__}}/vortex.default/*.proto.json\"]",
 				"OVERLAYS": "[\"{{env.PGS_WORKSPACE_ROOT}}/PINF.json\"]",
-				"PGSPROG": "{{__FILENAME__}}",
+				"PGS_DIRPATH": "{{env.PGS_DIRPATH}}",
 				"PGS_WORKSPACE_ROOT": "{{env.PGS_WORKSPACE_ROOT}}",
 				"PGS_WORKSPACE_PINF_DIRPATH": "{{env.PGS_WORKSPACE_PINF_DIRPATH}}",
 				"PGS_PINF_DIRPATH": "{{env.PGS_PINF_DIRPATH}}",

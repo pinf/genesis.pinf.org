@@ -3,6 +3,12 @@
 		"config": "pgs-vortex-default/0"
 	},
 	"config": {
+		"genesis.pinf.org/0": {
+			"$impl": "{{__DIRNAME__}}/../pgs-run.js",
+			"programs": {
+				".pgs": "{{env.PGS_DIRPATH}}/program.json"
+			}
+		},
 		"pgs-vortex-default/0": {
 			"$impl": "{{$from.pgs.workspaceRoot}}/vortex.js",
 			"$to": "pgs-vortex-default"

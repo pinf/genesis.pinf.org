@@ -139,6 +139,7 @@ function init {
 			fi
 
 			if [ "$FIRST_RUN" == "1" ]; then
+				format "1" "HEADER" "First run output"
 				cat ".result/actual.log"
 			fi
 
@@ -180,6 +181,7 @@ function init {
 		echo "ERROR: 'BO_PACKAGES_DIR' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
+	export PGS_DIRPATH="$PGS_DIR"
 
 	function pgsExpand {
 		BO_checkVerbose "VERBOSE" "$@"
@@ -195,7 +197,7 @@ function init {
 		export PGS_PINF_DIRPATH="$PREVIOUS_PGS_PINF_DIRPATH"
 	}
 
-	function pgsTurn {
+	function pgsTurn {		
 		BO_checkVerbose "VERBOSE" "$@"
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
 		# TODO: Remove this once turning happens automatically on first spin.

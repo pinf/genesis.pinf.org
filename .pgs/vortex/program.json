@@ -3,16 +3,10 @@
 	"uid": "%%UID%%",
 	"config": {
 		"genesis.pinf.org/0": {
-			"$impl": null,
 			"$to": "pgs",
 			"uid": "%%UID%%",
 			"basename": "%%BASENAME%%",
 			"workspaceRoot": "%%PGS_WORKSPACE_ROOT%%"
-		},
-		"pio.pinf.io/0": {
-			"programs": {
-				".pgs": "%%PGSPROG%%"
-			}
 		}
 	},
 	"@overlays": %%OVERLAYS%%

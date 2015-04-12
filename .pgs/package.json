@@ -1,6 +1,5 @@
 {
 	"uid": "expand.genesis.pinf.org",
-    "main": "pgs.js",
     "mappings": {
     	"../.packages/github.com~bash-origin~bash.origin~0~source": "/genesis.live/open-source/codi.sh/node_modules/bash.origin",
     	"../.packages/github.com~bash-origin~bash.origin.pinf~0~source": "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf",
