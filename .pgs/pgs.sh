@@ -4,7 +4,7 @@
 function init {
 	eval BO_SELF_BASH_SOURCE="$BO_READ_SELF_BASH_SOURCE"
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
-	local __BO_DIR__="$___TMP___"
+	PGS_DIR="$___TMP___"
 
 	function format {
 		if [ "$1" != "1" ]; then
@@ -62,15 +62,91 @@ function init {
 		fi
 
 		log "$VERBOSE" "Copying boot file to: $TARGET_PATH/boot"
-		cp -f "$__BO_DIR__/../boot" "$TARGET_PATH/boot"
+		cp -f "$PGS_DIR/../boot" "$TARGET_PATH/boot"
 		chmod ug+x "$TARGET_PATH/boot"
 
 		log "$VERBOSE" "Copying PINF.Genesis System to: $TARGET_PATH/.pgs"
-		rsync -a --exclude-from="$__BO_DIR__/.rsyncignore" "$__BO_DIR__/" "$TARGET_PATH/.pgs/"
+		rsync -a --exclude-from="$PGS_DIR/.rsyncignore" "$PGS_DIR/" "$TARGET_PATH/.pgs/"
 
 		log "$VERBOSE" "Copy done!"
 
 		log "$VERBOSE" "Action: You can now run './boot' to boot the system!"
+
+		format "$VERBOSE" "FOOTER"
+	}
+
+	function runExample {
+
+		BO_checkVerbose "VERBOSE" "$@"
+
+		local EXAMPLE_DIR="$1"
+		local EXAMPLE_NAME="$(basename "$EXAMPLE_DIR")"
+
+		format "$VERBOSE" "HEADER" "Run example $EXAMPLE_NAME"
+
+		local DIFFERENT="0"
+
+		pushd "$EXAMPLE_DIR" > /dev/null
+			if [ ! -e ".packages" ]; then
+				ln -s "../../.packages" ".packages"
+			fi
+
+			install "$EXAMPLE_DIR" ${*:2}
+
+			local FIRST_RUN="0"
+			if [ ! -d ".result" ]; then
+				FIRST_RUN="1"
+				mkdir ".result"
+			fi
+
+			export PGS_WORKSPACE_UID="UID-$EXAMPLE_NAME"
+			export PGS_BOOT_TO="turn"
+			"./boot" ${*:2} > ".result/actual.log" 2>&1
+
+			cp -f "program.rt.json" ".result/actual.json"
+
+			# TODO: Display this much better
+
+			if [ ! -f ".result/expected.log" ]; then
+				FIRST_RUN="1"
+				cp ".result/actual.log" ".result/expected.log"
+			fi
+			diff -Naur ".result/expected.log" ".result/actual.log" > /dev/null
+			if [ $? -eq 1 ]; then
+				DIFFERENT="1"
+				echo "Output has changed!"
+				echo "##############################"
+				diff -Naur ".result/expected.log" ".result/actual.log"
+				echo "##############################"
+			fi
+
+			if [ ! -f ".result/expected.json" ]; then
+				FIRST_RUN="1"
+				cp ".result/actual.json" ".result/expected.json"
+			fi
+			diff -Naur ".result/expected.json" ".result/actual.json" > /dev/null
+			if [ $? -eq 1 ]; then
+				DIFFERENT="1"
+				echo "Runtime config has changed!"
+				echo "##############################"
+				diff -Naur ".result/expected.json" ".result/actual.json"
+				echo "##############################"
+			fi
+
+			if [ "$DIFFERENT" == "0" ]; then
+				"$EXAMPLE_DIR/bin/clean" ${*:2}
+				rm ".packages"
+			fi
+
+			if [ "$FIRST_RUN" == "1" ]; then
+				cat ".result/actual.log"
+			fi
+
+		popd > /dev/null
+
+		if [ "$DIFFERENT" == "1" ]; then
+			exit 1
+		fi;
 
 		format "$VERBOSE" "FOOTER"
 	}
@@ -81,29 +157,29 @@ function init {
 	fi
 
 	# The rest is used when sourcing into a boot file. See '../boot'.
-
+	if [ "$1" != "boot" ]; then		
+		return;
+	fi
 	if [ -z "$PGS_PINF_DIRPATH" ]; then
-		echo "ERROR: 'PGS_PINF_DIRPATH' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
+		echo "ERROR: 'PGS_PINF_DIRPATH' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
 	if [ -z "$PGS_PACKAGES_DIRPATH" ]; then
-		echo "ERROR: 'PGS_PACKAGES_DIRPATH' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
+		echo "ERROR: 'PGS_PACKAGES_DIRPATH' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
 	if [ -z "$PGS_WORKSPACE_ROOT" ]; then
-		echo "ERROR: 'PGS_WORKSPACE_ROOT' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
+		echo "ERROR: 'PGS_WORKSPACE_ROOT' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
 	if [ -z "$PGS_WORKSPACE_PINF_DIRPATH" ]; then
-		echo "ERROR: 'PGS_WORKSPACE_PINF_DIRPATH' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
+		echo "ERROR: 'PGS_WORKSPACE_PINF_DIRPATH' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
 	if [ -z "$BO_PACKAGES_DIR" ]; then
-		echo "ERROR: 'BO_PACKAGES_DIR' environment variable is not set (file: $__BO_DIR__/pgs.sh)!"
+		echo "ERROR: 'BO_PACKAGES_DIR' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
-
-	PGS_DIR="$__BO_DIR__"
 
 	function pgsExpand {
 		BO_checkVerbose "VERBOSE" "$@"
