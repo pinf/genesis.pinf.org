@@ -35,7 +35,7 @@
 
 !/README.md
 !/.gitignore
-!/main.js
+!/vortex.js
 !/program.json
 !/package.json
 !/%%BASENAME%%.inf
