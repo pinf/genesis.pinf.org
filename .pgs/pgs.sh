@@ -101,48 +101,55 @@ function init {
 
 			export PGS_WORKSPACE_UID="UID-$EXAMPLE_NAME"
 			export PGS_BOOT_TO="turn"
-			"./boot" ${*:2} > ".result/actual.log" 2>&1
 
-			cp -f "program.rt.json" ".result/actual.json"
+			if [ "$VERBOSE" == "1" ]; then
 
-			# TODO: Display this much better
+				"./boot" ${*:2}
 
-			if [ ! -f ".result/expected.log" ]; then
-				FIRST_RUN="1"
-				cp ".result/actual.log" ".result/expected.log"
+			else
+
+				"./boot" ${*:2} > ".result/actual.log" 2>&1
+
+				cp -f "program.rt.json" ".result/actual.json"
+
+				# TODO: Display this much better
+
+				if [ ! -f ".result/expected.log" ]; then
+					FIRST_RUN="1"
+					cp ".result/actual.log" ".result/expected.log"
+				fi
+				diff -Naur ".result/expected.log" ".result/actual.log" > /dev/null
+				if [ $? -eq 1 ]; then
+					DIFFERENT="1"
+					echo "Output has changed!"
+					echo "##############################"
+					diff -Naur ".result/expected.log" ".result/actual.log"
+					echo "##############################"
+				fi
+
+				if [ ! -f ".result/expected.json" ]; then
+					FIRST_RUN="1"
+					cp ".result/actual.json" ".result/expected.json"
+				fi
+				diff -Naur ".result/expected.json" ".result/actual.json" > /dev/null
+				if [ $? -eq 1 ]; then
+					DIFFERENT="1"
+					echo "Runtime config has changed!"
+					echo "##############################"
+					diff -Naur ".result/expected.json" ".result/actual.json"
+					echo "##############################"
+				fi
+
+				if [ "$DIFFERENT" == "0" ]; then
+					"$EXAMPLE_DIR/bin/clean" ${*:2}
+					rm ".packages"
+				fi
+
+				if [ "$FIRST_RUN" == "1" ]; then
+					format "1" "HEADER" "First run output"
+					cat ".result/actual.log"
+				fi
 			fi
-			diff -Naur ".result/expected.log" ".result/actual.log" > /dev/null
-			if [ $? -eq 1 ]; then
-				DIFFERENT="1"
-				echo "Output has changed!"
-				echo "##############################"
-				diff -Naur ".result/expected.log" ".result/actual.log"
-				echo "##############################"
-			fi
-
-			if [ ! -f ".result/expected.json" ]; then
-				FIRST_RUN="1"
-				cp ".result/actual.json" ".result/expected.json"
-			fi
-			diff -Naur ".result/expected.json" ".result/actual.json" > /dev/null
-			if [ $? -eq 1 ]; then
-				DIFFERENT="1"
-				echo "Runtime config has changed!"
-				echo "##############################"
-				diff -Naur ".result/expected.json" ".result/actual.json"
-				echo "##############################"
-			fi
-
-			if [ "$DIFFERENT" == "0" ]; then
-				"$EXAMPLE_DIR/bin/clean" ${*:2}
-				rm ".packages"
-			fi
-
-			if [ "$FIRST_RUN" == "1" ]; then
-				format "1" "HEADER" "First run output"
-				cat ".result/actual.log"
-			fi
-
 		popd > /dev/null
 
 		if [ "$DIFFERENT" == "1" ]; then

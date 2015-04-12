@@ -20,7 +20,7 @@
 			"workspaceVariables": {
 				"UID": "{{ensureUid()}}",
 				"BASENAME": "{{deriveBasename()}}",
-				"EXTENDS": "[\"{{__DIRNAME__}}/vortex.default/*.proto.json\"]",
+				"EXTENDS": "{\"vortex.default\": \"{{__DIRNAME__}}/vortex.default/*.proto.json\"}",
 				"OVERLAYS": "[\"{{env.PGS_WORKSPACE_ROOT}}/PINF.json\"]",
 				"PGS_DIRPATH": "{{env.PGS_DIRPATH}}",
 				"PGS_WORKSPACE_ROOT": "{{env.PGS_WORKSPACE_ROOT}}",
@@ -29,7 +29,8 @@
 				"PGS_PACKAGES_DIRPATH": "{{env.PGS_PACKAGES_DIRPATH}}",
 				"BO_PACKAGES_DIR": "{{env.BO_PACKAGES_DIR}}"
 			},
-			"workspaceFiles": "{{getWorkspaceFiles()}}"
+			"workspaceFiles": "{{getWorkspaceFiles()}}",
+			"@translocate": "{{__DIRNAME__}}/../PINF.json"
 		},
 		"github.com/sourcemint/smt-copy/0": {
 			"$to": "pgs-expand-copy",
