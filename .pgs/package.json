@@ -1,9 +1,9 @@
 {
 	"uid": "expand.genesis.pinf.org",
     "mappings": {
-    	"../.packages/github.com~bash-origin~bash.origin~0~source": "/genesis.live/open-source/codi.sh/node_modules/bash.origin",
-    	"../.packages/github.com~bash-origin~bash.origin.pinf~0~source": "/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf",
-    	"../.packages/github.com~bash-origin~bash.origin.prompt~0~source": "/genesis.live/open-source/codi.sh/node_modules/bash.origin.prompt",
+    	"../.packages/github.com~bash-origin~bash.origin~0~source": "/genesis/os.inception/services/0-bo/bash.origin",
+    	"../.packages/github.com~bash-origin~bash.origin.pinf~0~source": "/genesis/os.inception/services/0-bo/bash.origin.pinf",
+    	"../.packages/github.com~bash-origin~bash.origin.prompt~0~source": "/genesis/os.inception/services/0-bo/bash.origin.prompt",
 
     	"../.packages/github.com~pinf-to~pinf-to-browser~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-browser",
     	"../.packages/github.com~pinf-to~pinf-to-mozilla-firefox-profile~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-mozilla-firefox-profile",
