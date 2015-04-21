@@ -3,5 +3,11 @@
 	"version": "0.1.1",
 	"bin": {
 		"genesis.pinf.org": "./.pgs/pgs.sh"
+	},
+	"dependencies": {
+		"smi.cli": "0.x"
+   	},
+   	"scripts": {
+		"install": "cd .pgs ; ../node_modules/.bin/smi install"
 	}
 }
