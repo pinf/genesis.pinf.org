@@ -34,7 +34,7 @@ Your own system based on PINF.Genesis
 
 	./node_modules/.bin/genesis.pinf.org install
 
-Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MySystem` to continue.
+Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) at the root of `MySystem` to continue.
 
 
 Add PINF.Genesis to a package
@@ -56,7 +56,7 @@ Add PINF.Genesis to a package
 
 	npm install
 
-Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MyPackage` to continue.
+Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) at the root of `MyPackage` to continue.
 
 
 Hacking on PINF.Genesis
@@ -67,7 +67,7 @@ Hacking on PINF.Genesis
 	git clone https://github.com/pinf/genesis.pinf.org.git
 	cd genesis.pinf.org
 
-Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/tree/cleanup/.pgs/vortex) at the root of `MyPackage` to continue.
+Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) at the root of `MyPackage` to continue.
 
 
 License
