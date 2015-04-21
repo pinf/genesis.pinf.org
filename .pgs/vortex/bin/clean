@@ -1,8 +1,12 @@
 #!/bin/bash
 # Source https://github.com/cadorn/bash.origin
 if [ ! -f "$HOME/.bash.origin" ]; then
-	# TODO: Alternatively use `wget`
-	curl "https://raw.githubusercontent.com/bash-origin/bash.origin/master/bash.origin?t=$(date +%s)" | BO="install" sh
+	if [ -f "bin/install" ]; then
+		bin/install
+	else
+		echo "ERROR: Run 'bin/install' first to install 'bash.origin'!"
+		exit 1;
+	fi
 fi
 . "$HOME/.bash.origin"
 function init {
@@ -10,32 +14,31 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
+	BO_checkVerbose "VERBOSE" "$@"
+
 	function format {
-		if [ "$1" == "HEADER" ]; then
+		if [ "$1" != "1" ]; then
+			return;
+		fi
+		if [ "$2" == "HEADER" ]; then
 			echo "##################################################";
-			echo "# $2";
+			echo "# $3";
 			echo "##################################################";
 		fi
-		if [ "$1" == "FOOTER" ]; then
+		if [ "$2" == "FOOTER" ]; then
 			echo "##################################################";
 			echo ""
 		fi
 	}
 
-	function install {
-		format "HEADER" "Installing"
-		pushd "$__BO_DIR__"
-			BO_run_npm install
-		popd
-		format "FOOTER"
+	function runClean {
+		format "$VERBOSE" "HEADER" "Cleaning"
+		pushd "$__BO_DIR__/.." > /dev/null
+			BO_run_node "$__BO_DIR__/clean.js" $@
+		popd > /dev/null
+		format "$VERBOSE" "FOOTER"
 	}
 
-	function signalDone {
-		echo "INSTALL DONE"
-	}
-
-
-	install
-	signalDone
+	runClean $@
 }
-init
+init $@

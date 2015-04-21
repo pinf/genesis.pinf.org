@@ -1,0 +1,5 @@
+{
+    "@extends": [
+        "../../.packages/github.com~devcomp~devcomp.org~0~source/PINF.proto.json"
+    ]
+}

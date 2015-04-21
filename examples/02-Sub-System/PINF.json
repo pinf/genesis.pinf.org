@@ -1,0 +1,10 @@
+{
+    "config": {
+        "pgs-vortex-default/0": {
+            "varsFromSubProgram": {
+                "workspaceRoot": "{{$from.pgs.programs['.pgs'].getRuntimeConfigFor(pgs-expand).workspaceRoot}}",
+                "workspaceVariables": "{{$from.pgs.programs['.pgs'].getRuntimeConfigFor(pgs-expand).workspaceVariables}}"
+            }
+        }
+    }
+}

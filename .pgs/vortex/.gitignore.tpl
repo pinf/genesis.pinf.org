@@ -1,13 +1,15 @@
 
 ##################################################
-# Common environment dirt (discardable)
+# Common environment dirt (remove on clean)
 ##################################################
 
 .DS_Store
+/.pio.cache/
+/.rt/
 
 
 ##################################################
-# Created on PGS Template: Install (discardable)
+# Created on PGS Install (remove on clean)
 ##################################################
 
 /.pgs/
@@ -15,52 +17,29 @@
 
 
 ##################################################
-# Created on PGS Template: Turn (discardable)
+# Created on PGS Expand (remove on clean)
 ##################################################
 
 /.pgs/.pinf/
-/.pgs/.rt/
 /.pgs/program.rt.json
-
-/bin/activate
-/bin/activate.js
-/bin/demo
-/bin/install
-/bin/test
-/bin/%%BASENAME%%
-/bin/%%BASENAME%%.js
-/bin/clean
-/bin/clean.js
-/.distignore
-
-
-##################################################
-# Created on PGS: Install (discardable)
-##################################################
-
 /bin/
-/.pio.cache/
-
-
-##################################################
-# Created on PGS: Turn (discardable)
-##################################################
-
-/.rt/
 /.pinf/
 /program.rt.json
-/node_modules/
 
 
 ##################################################
-# Created on PGS Template: Turn (keep)
+# Created on PGS Expand (reset on clean)
 ##################################################
 
 !/README.md
 !/.gitignore
-!/main.js
+!/.distignore
+!/.cleanignore
+!/vortex.js
 !/program.json
 !/package.json
+!/%%BASENAME%%.inf
+!/%%BASENAME%%.inf.js
 
 
 # Mark the end of all files that will be cleaned
@@ -68,8 +47,16 @@
 
 
 ##################################################
-# Custom rules
+# Created on PGS Install (keep on clean)
 ##################################################
 
-%%CUSTOMRULES%%
+/.packages
+/node_modules/
+
+
+##################################################
+# Custom rules (keep on clean)
+##################################################
+
+%%__EXISTING__%%
 

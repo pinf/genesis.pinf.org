@@ -1,6 +1,8 @@
 
 
-exports.main = function (API) {
+exports.for = function (API) {
+
+	API.insight.debug("PINF.Genesis Vortex Booted!");
 
 	var exports = {};
 
@@ -30,5 +32,4 @@ exports.main = function (API) {
 
 	return exports;
 }
-
 

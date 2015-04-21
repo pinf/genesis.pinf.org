@@ -1,0 +1,13 @@
+{
+	"@extends": %%EXTENDS%%,
+	"uid": "%%UID%%",
+	"config": {
+		"genesis.pinf.org/0": {
+			"$to": "pgs",
+			"uid": "%%UID%%",
+			"basename": "%%BASENAME%%",
+			"workspaceRoot": "%%PGS_WORKSPACE_ROOT%%"
+		}
+	},
+	"@overlays": %%OVERLAYS%%
+}

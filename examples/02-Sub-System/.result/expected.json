@@ -1,0 +1,35 @@
+{
+    "pgs": {
+        "$impl": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pgs/vortex.default/../pgs-run.js",
+        "programs": {
+            ".pgs": {
+                "location": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pgs/program.json"
+            }
+        },
+        "$to": "pgs",
+        "uid": "UID-02-Sub-System",
+        "basename": "02-Sub-System",
+        "workspaceRoot": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System",
+        "$context": "genesis.pinf.org/0"
+    },
+    "pgs-vortex-default": {
+        "$impl": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/vortex.js",
+        "$to": "pgs-vortex-default",
+        "varsFromSubProgram": {
+            "workspaceRoot": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System",
+            "workspaceVariables": {
+                "UID": "UID-02-Sub-System",
+                "BASENAME": "02-Sub-System",
+                "EXTENDS": "[\"/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pgs/vortex.default/*.proto.json\"]",
+                "OVERLAYS": "[\"/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/PINF.json\"]",
+                "PGS_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pgs",
+                "PGS_WORKSPACE_ROOT": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System",
+                "PGS_WORKSPACE_PINF_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pinf",
+                "PGS_PINF_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pinf",
+                "PGS_PACKAGES_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.packages",
+                "BO_PACKAGES_DIR": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.packages"
+            }
+        },
+        "$context": "pgs-vortex-default/0"
+    }
+}

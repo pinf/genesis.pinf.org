@@ -1,35 +1,67 @@
 {
-	"name": "boot",
+	"uid": "expand.genesis.pinf.org",
 	"boot": {
+		"config": "expand/0",
 		"package": "./package.json"
 	},
-	"config": {
-		"boot/0": {
-			"$to": "pgs-boot",
-			"revision": "{{$from.pgs-boot-filetree.hash}}",
+	"config": {		
+		"expand/0": {
+			"$to": "pgs-expanded",
+			"revision": "{{$from.pgs-expand-filetree.hash}}"
+		},
+		"expand.genesis.pinf.org/0": {
+			"$impl": "{{__DIRNAME__}}/pgs-expand.js",
+			"$to": "pgs-expand",
 			"workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}",
 			"directories": {
-				"pinf": "{{env.PGS_PINF_DIR}}",
-				"packages": "{{env.PGS_PACKAGES_DIR}}"
+				"pinf": "{{env.PGS_PINF_DIRPATH}}",
+				"packages": "{{env.PGS_PACKAGES_DIRPATH}}"
 			},
 			"workspaceVariables": {
 				"UID": "{{ensureUid()}}",
-				"EXTENDS": "[\"{{__DIRNAME__}}/*.proto.json\"]",
-				"BASENAME": "{{deriveBasename()}}"
+				"BASENAME": "{{deriveBasename()}}",
+				"EXTENDS": "{\"vortex.default\": \"{{__DIRNAME__}}/vortex.default/*.proto.json\"}",
+				"OVERLAYS": "[\"{{env.PGS_WORKSPACE_ROOT}}/PINF.json\"]",
+				"PGS_DIRPATH": "{{env.PGS_DIRPATH}}",
+				"PGS_WORKSPACE_ROOT": "{{env.PGS_WORKSPACE_ROOT}}",
+				"PGS_WORKSPACE_PINF_DIRPATH": "{{env.PGS_WORKSPACE_PINF_DIRPATH}}",
+				"PGS_PINF_DIRPATH": "{{env.PGS_PINF_DIRPATH}}",
+				"PGS_PACKAGES_DIRPATH": "{{env.PGS_PACKAGES_DIRPATH}}",
+				"BO_PACKAGES_DIR": "{{env.BO_PACKAGES_DIR}}"
 			},
 			"workspaceFiles": "{{getWorkspaceFiles()}}",
-			"workspaceFilesVariables": {
-				".gitignore": {
-					"%%CUSTOMRULES%%": ""
-				},
-				".distignore": {
-					"%%CUSTOMRULES%%": ""
-				}
+			"@translocate": "{{__DIRNAME__}}/../PINF.json"
+		},
+		"github.com/sourcemint/smt-copy/0": {
+			"$to": "pgs-expand-copy",
+			"fromPath": "{{__DIRNAME__}}/vortex",
+			"toPath": "{{$from.pgs-expand.workspaceRoot}}",
+			"ignore": {
+				"git": false,
+				"dist": false
 			},
-			"!@translocate": "{{env.PGS_WORKSPACE_ROOT}}/pinf.json"
+			"variables": "{{$from.pgs-expand.workspaceVariables}}",
+			"onExists": {
+				"json": "merge",
+				"js": "skip",
+				"md": "skip",
+				"gitignore": {
+					"action": "wrap",
+					"anchor": "%%__EXISTING__%%"
+				},
+				"distignore": {
+					"action": "wrap",
+					"anchor": "%%__EXISTING__%%"
+				},
+				"cleanignore": {
+					"action": "wrap",
+					"anchor": "%%__EXISTING__%%"
+				}
+			}
 		},
 		"github.com/pinf-it/pinf-it-filetree-insight/0": {
-			"$to": "pgs-boot-filetree",
+			"$to": "pgs-expand-filetree",
+			"path": "{{$from.pgs-expand-copy.toPath}}",
 			"watch": true
 		}
 	}

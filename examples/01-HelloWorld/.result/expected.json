@@ -1,0 +1,15 @@
+{
+    "pgs": {
+        "$impl": null,
+        "$to": "pgs",
+        "uid": "UID-01-HelloWorld",
+        "basename": "01-HelloWorld",
+        "workspaceRoot": "/genesis.live/open-source/genesis.pinf.org/examples/01-HelloWorld",
+        "$context": "genesis.pinf.org/0"
+    },
+    "pgs-vortex-default": {
+        "$impl": "/genesis.live/open-source/genesis.pinf.org/examples/01-HelloWorld/vortex.js",
+        "$to": "pgs-vortex-default",
+        "$context": "pgs-vortex-default/0"
+    }
+}
