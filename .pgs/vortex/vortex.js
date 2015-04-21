@@ -1,6 +1,6 @@
 
 
-exports.main = function (API) {
+exports.for = function (API) {
 
 	API.insight.debug("PINF.Genesis Vortex Booted!");
 

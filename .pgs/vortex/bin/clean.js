@@ -10,6 +10,18 @@ const VERBOSE = /(-\w*v|-\w*d)/.test(process.argv[2] || "");
 // TODO: Based on ignore rules of each program, remove all temporary assets
 //       for each nested in-tree program (skip symlinked programs).
 
+function getCleanIgnoreRule () {
+	var path = PATH.join(process.cwd(), ".cleanignore");
+	if (!FS.existsSync(path)) {
+		return {};
+	}
+	return FS.readFileSync(path, "utf8").split("\n").map(function(rule) {
+		return rule.replace(/\s/g, "");
+	});
+}
+
+var cleanIgnoreRules = getCleanIgnoreRule();
+
 
 var commands = [];
 var stop = false;
@@ -22,6 +34,7 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 		return;
 	}
 	if (/^#/.test(line)) return;
+	if (cleanIgnoreRules.indexOf(line) > -1) return;
 	if (/^!\//.test(line)) {
 		commands.push('rm -Rf ' + line.substring(2));
 		commands.push("git checkout HEAD -- " + line.substring(2));

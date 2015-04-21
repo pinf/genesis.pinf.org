@@ -52,6 +52,10 @@
 				"distignore": {
 					"action": "wrap",
 					"anchor": "%%__EXISTING__%%"
+				},
+				"cleanignore": {
+					"action": "wrap",
+					"anchor": "%%__EXISTING__%%"
 				}
 			}
 		},

@@ -4,11 +4,12 @@ const PATH = require("path");
 
 var runtimeDescriptor = require(PATH.join(process.cwd(), "program.rt.json"));
 
-if (runtimeDescriptor["pgs-prompt"]) {
+// TODO: Match based on info mapped by "pgs-vortex-prompt" at $aspects = [ "jsonld contect uri", {} ]
+if (runtimeDescriptor["pgs-vortex-prompt"]) {
 
-	for (var serviceId in runtimeDescriptor["pgs-prompt"].services) {
+	for (var serviceId in runtimeDescriptor["pgs-vortex-prompt"].services) {
 
-		var service = runtimeDescriptor["pgs-prompt"].services[serviceId];
+		var service = runtimeDescriptor["pgs-vortex-prompt"].services[serviceId];
 
 		for (var name in service.variables) {
 			if (typeof service.variables[name].value !== "undefined") {

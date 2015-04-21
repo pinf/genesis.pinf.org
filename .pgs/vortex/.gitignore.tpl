@@ -6,7 +6,6 @@
 .DS_Store
 /.pio.cache/
 /.rt/
-/node_modules/
 
 
 ##################################################
@@ -23,7 +22,6 @@
 
 /.pgs/.pinf/
 /.pgs/program.rt.json
-/.distignore
 /bin/
 /.pinf/
 /program.rt.json
@@ -35,6 +33,8 @@
 
 !/README.md
 !/.gitignore
+!/.distignore
+!/.cleanignore
 !/vortex.js
 !/program.json
 !/package.json
@@ -51,6 +51,7 @@
 ##################################################
 
 /.packages
+/node_modules/
 
 
 ##################################################

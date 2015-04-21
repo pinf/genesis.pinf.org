@@ -11,7 +11,37 @@
 		},
 		"pgs-vortex-default/0": {
 			"$impl": "{{$from.pgs.workspaceRoot}}/vortex.js",
-			"$to": "pgs-vortex-default"
+			"$to": "pgs-vortex-default",
+			"rootPath": "{{$from.pgs-vortex-prompt.services.pgs.variables.PGS_WORKSPACE_ROOT}}"
+		},
+		"github.com/bash-origin/bash.origin.prompt/0": {
+			"$to": "pgs-vortex-prompt",
+			"services": {
+				"pgs": {
+			        "label": "PINF.Genesis System",
+			        "url": "http://genesis.pinf.org",
+					"variables": {
+						"PGS_WORKSPACE_UID": {
+							"value": "{{env.PGS_WORKSPACE_UID}}"
+						},
+						"PGS_WORKSPACE_ROOT": {
+							"value": "{{env.PGS_WORKSPACE_ROOT}}"
+						},
+						"PGS_PINF_DIRPATH": {
+							"value": "{{env.PGS_PINF_DIRPATH}}"
+						},
+						"PGS_WORKSPACE_PINF_DIRPATH": {
+							"value": "{{env.PGS_WORKSPACE_PINF_DIRPATH}}"
+						},
+						"PGS_PACKAGES_DIRPATH": {
+							"value": "{{env.PGS_PACKAGES_DIRPATH}}"
+						},
+						"BO_PACKAGES_DIR": {
+							"value": "{{env.BO_PACKAGES_DIR}}"
+						}
+					}
+				}
+			}
 		}
 	}
 }
