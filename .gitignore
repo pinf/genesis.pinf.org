@@ -1,3 +1,4 @@
+/.pio.cache/
 /.packages/
 /node_modules/
 /examples/*/.result/actual.*
