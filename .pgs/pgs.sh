@@ -224,23 +224,33 @@ function init {
 		pushd "$PGS_DIR/.." > /dev/null
 		if [ -f ".gitmodules" ]; then
 			if [ ! -f ".gitmodules.initialized" ]; then
-				echo "Init submodules ..."
-				git submodule update --init --recursive --rebase
-				echo "... submodules init done"
+				BO_log "$VERBOSE" "Init submodules ..."
+#				git submodule update --init --recursive --rebase
+				BO_log "$VERBOSE" "... submodules init done"
 				touch ".gitmodules.initialized"
 			else
-				echo "Skip init submodules. Already initialized."
+				BO_log "$VERBOSE" "Skip init submodules. Already initialized."
 			fi
+		fi
+		if [ ! -f ".installed" ]; then
+			BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
+			if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
+				BO_log "$VERBOSE" "Install smi ..."
+				pushd "$SMI_BASE_PATH" > /dev/null
+					BO_run_npm install --production
+					touch "$SMI_BASE_PATH/.installed"
+				popd > /dev/null
+				BO_log "$VERBOSE" "... smi install done"
+			fi
+			pushd "$PGS_DIR" > /dev/null
+				BO_run_smi install $@
+				touch ".installed"
+			popd > /dev/null
 		fi
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
-
-echo "ensure provisioned"
-
-exit 1		
-
 	}
 
-	ensureProvisioned
+	ensureProvisioned $@
 }
 init $@
