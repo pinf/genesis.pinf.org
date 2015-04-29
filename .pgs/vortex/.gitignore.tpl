@@ -14,7 +14,6 @@
 
 /.pgs/
 /boot
-/.gitmodules.initialized
 
 
 ##################################################
@@ -53,6 +52,8 @@
 
 /.deps
 /node_modules/
+/.gitmodules.initialized
+/.installed
 
 
 ##################################################
