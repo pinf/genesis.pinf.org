@@ -22,15 +22,16 @@ function init {
 	export PGS_WORKSPACE_ROOT="$__BO_DIR__"
 	export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
 	export PGS_WORKSPACE_PINF_DIRPATH="$PGS_PINF_DIRPATH"
-	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.packages"
+	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.deps"
 	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
+	export BO_SYSTEM_CACHE_DIR="$BO_PACKAGES_DIR"
 
 
 	if [ -f "$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0/source/vcs/master/bash.origin" ]; then
 		# Use OUR Bash.Origin script from now on (even to handle the install if the previously
 		# installed version supports delegation).
 		export BO_ROOT_SCRIPT_PATH="$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0/source/vcs/master/bash.origin"
-		"$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0/source/vcs/master/bash.origin" BO install > /dev/null
+		"$BO_ROOT_SCRIPT_PATH" BO install > /dev/null
 	fi
 	. "$BO_ROOT_SCRIPT_PATH"
 

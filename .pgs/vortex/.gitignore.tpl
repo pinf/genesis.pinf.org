@@ -14,6 +14,7 @@
 
 /.pgs/
 /boot
+/.gitmodules.initialized
 
 
 ##################################################
@@ -50,7 +51,7 @@
 # Created on PGS Install (keep on clean)
 ##################################################
 
-/.packages
+/.deps
 /node_modules/
 
 
