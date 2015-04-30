@@ -1,3 +1,5 @@
 /.pio.cache/
 /node_modules/
 /examples/*/.result/actual.*
+/.gitmodules.initialized
+/.installed
