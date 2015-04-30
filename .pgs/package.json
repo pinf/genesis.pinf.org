@@ -51,7 +51,7 @@
     },
     "config": {
     	"smi.cli": {
-	        "latestOnly": true,
+	        "latestOnly": false,
             "packagesDirectory": "../node_modules"
 	    }
     }
