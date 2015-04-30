@@ -135,8 +135,7 @@ function init {
 
 				if [ "$DIFFERENT" == "0" ]; then
 					"$EXAMPLE_DIR/bin/clean" ${*:2}
-					rm ".deps"
-					rm -Rf "node_modules"
+					rm -Rf ".deps" "node_modules" ".installed"
 				fi
 
 				if [ "$FIRST_RUN" == "1" ]; then
