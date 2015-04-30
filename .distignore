@@ -1,4 +1,4 @@
 /.pio.cache/
-/.deps/
+/.deps
 /node_modules/
 /examples/

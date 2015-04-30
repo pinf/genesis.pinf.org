@@ -20,9 +20,9 @@ function init {
 	export PGS_BOOT_TO=""
 
 
-#	runExample "$__BO_DIR__/01-HelloWorld" $@
+	runExample "$__BO_DIR__/01-HelloWorld" $@
 #	runExample "$__BO_DIR__/02-Sub-System" $@
-	runExample "$__BO_DIR__/03-DeveloperCompanion" $@
+#	runExample "$__BO_DIR__/03-DeveloperCompanion" $@
 
 }
 init $@

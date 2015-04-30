@@ -135,7 +135,7 @@ function init {
 
 				if [ "$DIFFERENT" == "0" ]; then
 					"$EXAMPLE_DIR/bin/clean" ${*:2}
-					rm ".packages"
+					rm ".deps"
 				fi
 
 				if [ "$FIRST_RUN" == "1" ]; then
