@@ -1,4 +1,3 @@
 /.pio.cache/
 /node_modules/
 /examples/*/.result/actual.*
-/PINF.json
