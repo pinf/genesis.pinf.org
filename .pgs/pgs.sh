@@ -85,6 +85,7 @@ function init {
 			fi
 
 			install "$EXAMPLE_DIR" ${*:2}
+			touch ".pgs/.provisioned"
 
 			local FIRST_RUN="0"
 			if [ ! -d ".result" ]; then
@@ -135,7 +136,7 @@ function init {
 
 				if [ "$DIFFERENT" == "0" ]; then
 					"$EXAMPLE_DIR/bin/clean" ${*:2}
-					rm -Rf ".deps" "node_modules" ".installed"
+					rm -Rf ".deps" "node_modules"
 				fi
 
 				if [ "$FIRST_RUN" == "1" ]; then
@@ -221,33 +222,38 @@ function init {
 	function ensureProvisioned {
 		BO_checkVerbose "VERBOSE" "$@"
 		format "$VERBOSE" "HEADER" "Provisioning base system"
-		pushd "$PGS_DIR/.." > /dev/null
-		if [ -f ".gitmodules" ]; then
-			if [ ! -f ".gitmodules.initialized" ]; then
-				BO_log "$VERBOSE" "Init submodules ..."
-#				git submodule update --init --recursive --rebase
-				BO_log "$VERBOSE" "... submodules init done"
-				touch ".gitmodules.initialized"
-			else
-				BO_log "$VERBOSE" "Skip init submodules. Already initialized."
+		if [ -e "$PGS_DIR/.provisioned" ]; then
+			BO_log "$VERBOSE" "Skip provision. Already provisioned."
+		else
+			pushd "$PGS_DIR/.." > /dev/null
+			if [ -f ".gitmodules" ]; then
+				if [ ! -f ".gitmodules.initialized" ]; then
+					BO_log "$VERBOSE" "Init submodules ..."
+	#				git submodule update --init --recursive --rebase
+					BO_log "$VERBOSE" "... submodules init done"
+					touch ".gitmodules.initialized"
+				else
+					BO_log "$VERBOSE" "Skip init submodules. Already initialized."
+				fi
 			fi
-		fi
-		if [ ! -f ".installed" ]; then
-			BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
-			if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
-				BO_log "$VERBOSE" "Install smi ..."
-				pushd "$SMI_BASE_PATH" > /dev/null
-					BO_run_npm install --production $@
-					touch "$SMI_BASE_PATH/.installed"
+			if [ ! -f ".installed" ]; then
+				BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
+				if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
+					BO_log "$VERBOSE" "Install smi ..."
+					pushd "$SMI_BASE_PATH" > /dev/null
+						BO_run_npm install --production $@
+						touch "$SMI_BASE_PATH/.installed"
+					popd > /dev/null
+					BO_log "$VERBOSE" "... smi install done"
+				fi
+				pushd "$PGS_DIR" > /dev/null
+					BO_run_smi install $@
 				popd > /dev/null
-				BO_log "$VERBOSE" "... smi install done"
+				touch ".installed"
 			fi
-			pushd "$PGS_DIR" > /dev/null
-				BO_run_smi install $@
 			popd > /dev/null
-			touch ".installed"
+			touch "$PGS_DIR/.provisioned"
 		fi
-		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
 	}
 
