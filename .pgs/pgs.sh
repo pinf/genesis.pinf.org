@@ -38,20 +38,20 @@ function init {
 			# TODO: Do a cleaner append
 		    echo -e "\n/node_modules/" >> "$TARGET_PATH/.gitignore"
 		fi
-		if ! grep -qe "^\/.deps\/$" "$TARGET_PATH/.gitignore"; then
-			BO_log "$VERBOSE" "Append '/.deps/' to ignore file: $TARGET_PATH/.gitignore"
+		if ! grep -qe "^\/.deps$" "$TARGET_PATH/.gitignore"; then
+			BO_log "$VERBOSE" "Append '/.deps' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
-		    echo -e "\n/.deps/" >> "$TARGET_PATH/.gitignore"
+		    echo -e "\n/.deps" >> "$TARGET_PATH/.gitignore"
 		fi
 		if ! grep -qe "^\/boot$" "$TARGET_PATH/.gitignore"; then
 			BO_log "$VERBOSE" "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
 		    echo -e "\n/boot" >> "$TARGET_PATH/.gitignore"
 		fi
-		if ! grep -qe "^\/\.pgs\/$" "$TARGET_PATH/.gitignore"; then
-			BO_log "$VERBOSE" "Append '/.pgs/' to ignore file: $TARGET_PATH/.gitignore"
+		if ! grep -qe "^\/\.pgs$" "$TARGET_PATH/.gitignore"; then
+			BO_log "$VERBOSE" "Append '/.pgs' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
-		    echo -e "\n/.pgs/" >> "$TARGET_PATH/.gitignore"
+		    echo -e "\n/.pgs" >> "$TARGET_PATH/.gitignore"
 		fi
 
 		BO_log "$VERBOSE" "Copying boot file to: $TARGET_PATH/boot"

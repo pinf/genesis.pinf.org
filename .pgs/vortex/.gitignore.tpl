@@ -12,7 +12,7 @@
 # Created on PGS Install (remove on clean)
 ##################################################
 
-/.pgs/
+/.pgs
 /boot
 
 
