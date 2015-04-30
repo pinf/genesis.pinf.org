@@ -85,7 +85,6 @@ function init {
 			fi
 
 			install "$EXAMPLE_DIR" ${*:2}
-			touch ".pgs/.provisioned"
 
 			local FIRST_RUN="0"
 			if [ ! -d ".result" ]; then
