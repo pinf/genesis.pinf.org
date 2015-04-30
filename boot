@@ -36,7 +36,7 @@ function init {
 	. "$BO_ROOT_SCRIPT_PATH"
 
 
-	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
+	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot" $@
 
 	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand $@

@@ -237,15 +237,15 @@ function init {
 			if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
 				BO_log "$VERBOSE" "Install smi ..."
 				pushd "$SMI_BASE_PATH" > /dev/null
-					BO_run_npm install --production
+					BO_run_npm install --production $@
 					touch "$SMI_BASE_PATH/.installed"
 				popd > /dev/null
 				BO_log "$VERBOSE" "... smi install done"
 			fi
 			pushd "$PGS_DIR" > /dev/null
 				BO_run_smi install $@
-				touch ".installed"
 			popd > /dev/null
+			touch ".installed"
 		fi
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"

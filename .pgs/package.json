@@ -1,20 +1,58 @@
 {
 	"uid": "expand.genesis.pinf.org",
     "mappings": {
-    	"../node_modules/bash.origin": "../.deps/github.com~bash-origin~bash.origin~0/source/vcs/master",
-    	"../node_modules/bash.origin.pinf": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/vcs/master",
-    	"../node_modules/bash.origin.prompt": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master",
-        "../node_modules/pinf-it-filetree-insight": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master",
-        "../node_modules/pto-for-npm": "../.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master",
-        "../node_modules/to.pinf.lib": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master",
-        "../node_modules/org.pinf.genesis.lib": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master",
-        "../node_modules/org.pinf.lib": "../.deps/github.com~pinf~org.pinf.lib~0/source/vcs/master",
-        "../node_modules/smi": "../.deps/github.com~sourcemint~smi~0/source/vcs/master",
-        "../node_modules/smt-copy": "../.deps/github.com~sourcemint~smt-copy~0/source/vcs/master"
+    	"bash.origin": {
+            "location": "../.deps/github.com~bash-origin~bash.origin~0/source/vcs/master",
+            "install": true
+        },
+    	"bash.origin.pinf": {
+            "location": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/vcs/master",
+            "install": true
+        },
+    	"bash.origin.prompt": {
+            "location": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master",
+            "install": true
+        },
+        "pinf-it-filetree-insight": {
+            "location": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master",
+            "install": true
+        },
+        "pto-for-npm": {
+            "depends": [
+                "to.pinf.lib"
+            ],
+            "location": "../.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master",
+            "install": true
+        },
+        "to.pinf.lib": {
+            "depends": [
+                "bash.origin",
+                "org.pinf.lib"
+            ],
+            "location": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master",
+            "install": true
+        },
+        "org.pinf.genesis.lib": {
+            "location": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master",
+            "install": true
+        },
+        "org.pinf.lib": {
+            "depends": [
+                "bash.origin"
+            ],
+            "location": "../.deps/github.com~pinf~org.pinf.lib~0/source/vcs/master",
+            "install": true
+        },
+        "smi": "../.deps/github.com~sourcemint~smi~0/source/vcs/master",
+        "smt-copy": {
+            "location": "../.deps/github.com~sourcemint~smt-copy~0/source/vcs/master",
+            "install": true
+        }
     },
     "config": {
     	"smi.cli": {
-	        "latestOnly": true
+	        "latestOnly": true,
+            "packagesDirectory": "../node_modules"
 	    }
     }
 }
