@@ -1,33 +1,58 @@
 {
 	"uid": "expand.genesis.pinf.org",
     "mappings": {
-    	"../.packages/github.com~bash-origin~bash.origin~0~source": "/genesis/os.inception/services/0-bo/bash.origin",
-    	"../.packages/github.com~bash-origin~bash.origin.pinf~0~source": "/genesis/os.inception/services/0-bo/bash.origin.pinf",
-    	"../.packages/github.com~bash-origin~bash.origin.prompt~0~source": "/genesis/os.inception/services/0-bo/bash.origin.prompt",
-
-    	"../.packages/github.com~pinf-to~pinf-to-browser~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-browser",
-    	"../.packages/github.com~pinf-to~pinf-to-mozilla-firefox-profile~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-mozilla-firefox-profile",
-    	"../.packages/github.com~pinf-to~pinf-to-mozilla-addon~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-mozilla-addon",
-    	"../.packages/github.com~pinf-to~pinf-to-aws-s3~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-aws-s3",
-    	"../.packages/github.com~pinf-to~pinf-to-sourcemint~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-sourcemint",
-    	"../.packages/github.com~pinf-to~pinf-to-pio~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-pio",
-        "../.packages/github.com~pinf-to~pinf-to-docker~0~source": "/genesis/os.inception/services/2-to.pinf/pinf-to-docker",
-
-    	"../.packages/github.com~pinf-it~pinf-it-bundler~0~source": "/genesis/os.inception/services/2-it.pinf/pinf-it-bundler",
-    	"../.packages/github.com~pinf-it~pinf-it-filetree-insight~0~source": "/genesis/os.inception/services/2-it.pinf/pinf-it-filetree-insight",
-    	"../.packages/github.com~pinf-it~pinf-it-vcs-insight~0~source": "/genesis/os.inception/services/2-it.pinf/pinf-it-vcs-insight",
-
-    	"../.packages/github.com~pinf~org.pinf.lib~0~source": "/genesis/os.inception/services/2-org.pinf/org.pinf.lib",
-
-        "../.packages/github.com~pinf~org.pinf.genesis.lib~0~source": "/genesis/os.inception/services/2-org.pinf/org.pinf.genesis.lib",
-
-    	"../.packages/github.com~sourcemint~smt-copy~0~source": "/genesis/os.inception/services/0-sm/smt-copy",
-
-    	"../.packages/github.com~devcomp~devcomp.org~0~source": "/genesis.live/open-source/devcomp.org"
+    	"bash.origin": {
+            "location": "../.deps/github.com~bash-origin~bash.origin~0/source/vcs/master",
+            "install": true
+        },
+    	"bash.origin.pinf": {
+            "location": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/vcs/master",
+            "install": true
+        },
+    	"bash.origin.prompt": {
+            "location": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master",
+            "install": true
+        },
+        "pinf-it-filetree-insight": {
+            "location": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master",
+            "install": true
+        },
+        "pto-for-npm": {
+            "depends": [
+                "to.pinf.lib"
+            ],
+            "location": "../.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master",
+            "install": true
+        },
+        "to.pinf.lib": {
+            "depends": [
+                "bash.origin",
+                "org.pinf.lib"
+            ],
+            "location": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master",
+            "install": true
+        },
+        "org.pinf.genesis.lib": {
+            "location": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master",
+            "install": true
+        },
+        "org.pinf.lib": {
+            "depends": [
+                "bash.origin"
+            ],
+            "location": "../.deps/github.com~pinf~org.pinf.lib~0/source/vcs/master",
+            "install": true
+        },
+        "smi": "../.deps/github.com~sourcemint~smi~0/source/vcs/master",
+        "smt-copy": {
+            "location": "../.deps/github.com~sourcemint~smt-copy~0/source/vcs/master",
+            "install": true
+        }
     },
     "config": {
     	"smi.cli": {
-	        "latestOnly": true
+	        "latestOnly": false,
+            "packagesDirectory": "../node_modules"
 	    }
     }
 }

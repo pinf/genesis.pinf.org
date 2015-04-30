@@ -30,7 +30,7 @@
 				"BO_PACKAGES_DIR": "{{env.BO_PACKAGES_DIR}}"
 			},
 			"workspaceFiles": "{{getWorkspaceFiles()}}",
-			"@translocate": "{{__DIRNAME__}}/../PINF.json"
+			"@translocate": "!{{__DIRNAME__}}/../PINF.json"
 		},
 		"github.com/sourcemint/smt-copy/0": {
 			"$to": "pgs-expand-copy",

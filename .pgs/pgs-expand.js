@@ -85,7 +85,10 @@ exports.for = function (API) {
 			},
 			deriveBasename: function (partiallyResolvedConfig) {
 				return API.Q.denodeify(API.FS.realpath)(partiallyResolvedConfig.workspaceRoot).then(function (path) {
-					return API.PATH.basename(path);
+					var basename = API.PATH.basename(path);
+					// Remove numbered prefix as numbers are for local organization only.
+					basename = basename.replace(/^\d+-/, "");
+					return basename;
 				});
 			}
 		});

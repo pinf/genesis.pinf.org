@@ -1,5 +1,5 @@
 /.pio.cache/
-/.packages/
 /node_modules/
 /examples/*/.result/actual.*
-/PINF.json
+/.gitmodules.initialized
+/.installed

@@ -1,15 +1,53 @@
 {
     "pgs": {
-        "$impl": null,
+        "$impl": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.pgs/vortex.default/../pgs-run.js",
+        "programs": {
+            ".pgs": {
+                "location": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.pgs/program.json"
+            }
+        },
         "$to": "pgs",
         "uid": "UID-01-HelloWorld",
-        "basename": "01-HelloWorld",
-        "workspaceRoot": "/genesis.live/open-source/genesis.pinf.org/examples/01-HelloWorld",
+        "basename": "HelloWorld",
+        "workspaceRoot": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld",
         "$context": "genesis.pinf.org/0"
     },
+    "pgs-vortex-prompt": {
+        "$to": "pgs-vortex-prompt",
+        "services": {
+            "pgs": {
+                "label": "PINF.Genesis System",
+                "url": "http://genesis.pinf.org",
+                "variables": {
+                    "PGS_WORKSPACE_UID": {
+                        "value": "UID-01-HelloWorld"
+                    },
+                    "PGS_WORKSPACE_ROOT": {
+                        "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld"
+                    },
+                    "PGS_PINF_DIRPATH": {
+                        "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.pinf"
+                    },
+                    "PGS_WORKSPACE_PINF_DIRPATH": {
+                        "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.pinf"
+                    },
+                    "PGS_PACKAGES_DIRPATH": {
+                        "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.deps"
+                    },
+                    "BO_PACKAGES_DIR": {
+                        "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.deps"
+                    }
+                }
+            }
+        },
+        "$context": "github.com/bash-origin/bash.origin.prompt/0"
+    },
     "pgs-vortex-default": {
-        "$impl": "/genesis.live/open-source/genesis.pinf.org/examples/01-HelloWorld/vortex.js",
+        "$impl": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/vortex.js",
         "$to": "pgs-vortex-default",
+        "rootPath": {
+            "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld"
+        },
         "$context": "pgs-vortex-default/0"
     }
 }

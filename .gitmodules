@@ -1,0 +1,30 @@
+[submodule ".deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master"]
+	path = .deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master
+	url = git@github.com:bash-origin/bash.origin.prompt.git
+[submodule ".deps/github.com~bash-origin~bash.origin~0/source/vcs/master"]
+	path = .deps/github.com~bash-origin~bash.origin~0/source/vcs/master
+	url = git@github.com:bash-origin/bash.origin.git
+[submodule ".deps/github.com~bash-origin~bash.origin.pinf~0/source/vcs/master"]
+	path = .deps/github.com~bash-origin~bash.origin.pinf~0/source/vcs/master
+	url = git@github.com:bash-origin/bash.origin.pinf.git
+[submodule ".deps/github.com~sourcemint~smt-copy~0/source/vcs/master"]
+	path = .deps/github.com~sourcemint~smt-copy~0/source/vcs/master
+	url = git@github.com:sourcemint/smt-copy.git
+[submodule ".deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master"]
+	path = .deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master
+	url = git@github.com:pinf/org.pinf.genesis.lib.git
+[submodule ".deps/github.com~pinf~org.pinf.lib~0/source/vcs/master"]
+	path = .deps/github.com~pinf~org.pinf.lib~0/source/vcs/master
+	url = git@github.com:pinf/org.pinf.lib.git
+[submodule ".deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master"]
+	path = .deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master
+	url = git@github.com:pinf-it/pinf-it-filetree-insight.git
+[submodule ".deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master"]
+	path = .deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master
+	url = git@github.com:pinf-to/pto-for-npm.git
+[submodule ".deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master"]
+	path = .deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master
+	url = git@github.com:pinf-to/to.pinf.lib.git
+[submodule ".deps/github.com~sourcemint~smi~0/source/vcs/master"]
+	path = .deps/github.com~sourcemint~smi~0/source/vcs/master
+	url = git@github.com:sourcemint/smi.git

@@ -21,13 +21,6 @@ function init {
 		fi
 	}
 
-	function log {
-		if [ "$1" != "1" ]; then
-			return;
-		fi
-		echo ${*:2}
-	}
-
 	function install {
 		BO_checkVerbose "VERBOSE" "$@"
 
@@ -35,42 +28,42 @@ function init {
 
 		local TARGET_PATH="$1"
 
-		log "$VERBOSE" "Ensuring ignore file: $TARGET_PATH/.gitignore"
+		BO_log "$VERBOSE" "Ensuring ignore file: $TARGET_PATH/.gitignore"
 		if [ ! -f "$TARGET_PATH/.gitignore" ]; then
-			log "$VERBOSE" "Create ignore file: $TARGET_PATH/.gitignore"
+			BO_log "$VERBOSE" "Create ignore file: $TARGET_PATH/.gitignore"
 			touch "$TARGET_PATH/.gitignore"
 		fi
 		if ! grep -qe "^\/node_modules\/$" "$TARGET_PATH/.gitignore"; then
-			log "$VERBOSE" "Append '/node_modules/' to ignore file: $TARGET_PATH/.gitignore"
+			BO_log "$VERBOSE" "Append '/node_modules/' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
 		    echo -e "\n/node_modules/" >> "$TARGET_PATH/.gitignore"
 		fi
-		if ! grep -qe "^\/.packages\/$" "$TARGET_PATH/.gitignore"; then
-			log "$VERBOSE" "Append '/.packages/' to ignore file: $TARGET_PATH/.gitignore"
+		if ! grep -qe "^\/.deps$" "$TARGET_PATH/.gitignore"; then
+			BO_log "$VERBOSE" "Append '/.deps' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
-		    echo -e "\n/.packages/" >> "$TARGET_PATH/.gitignore"
+		    echo -e "\n/.deps" >> "$TARGET_PATH/.gitignore"
 		fi
 		if ! grep -qe "^\/boot$" "$TARGET_PATH/.gitignore"; then
-			log "$VERBOSE" "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
+			BO_log "$VERBOSE" "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
 		    echo -e "\n/boot" >> "$TARGET_PATH/.gitignore"
 		fi
-		if ! grep -qe "^\/\.pgs\/$" "$TARGET_PATH/.gitignore"; then
-			log "$VERBOSE" "Append '/.pgs/' to ignore file: $TARGET_PATH/.gitignore"
+		if ! grep -qe "^\/\.pgs$" "$TARGET_PATH/.gitignore"; then
+			BO_log "$VERBOSE" "Append '/.pgs' to ignore file: $TARGET_PATH/.gitignore"
 			# TODO: Do a cleaner append
-		    echo -e "\n/.pgs/" >> "$TARGET_PATH/.gitignore"
+		    echo -e "\n/.pgs" >> "$TARGET_PATH/.gitignore"
 		fi
 
-		log "$VERBOSE" "Copying boot file to: $TARGET_PATH/boot"
+		BO_log "$VERBOSE" "Copying boot file to: $TARGET_PATH/boot"
 		cp -f "$PGS_DIR/../boot" "$TARGET_PATH/boot"
 		chmod ug+x "$TARGET_PATH/boot"
 
-		log "$VERBOSE" "Copying PINF.Genesis System to: $TARGET_PATH/.pgs"
+		BO_log "$VERBOSE" "Copying PINF.Genesis System to: $TARGET_PATH/.pgs"
 		rsync -a --exclude-from="$PGS_DIR/.rsyncignore" "$PGS_DIR/" "$TARGET_PATH/.pgs/"
 
-		log "$VERBOSE" "Copy done!"
+		BO_log "$VERBOSE" "Copy done!"
 
-		log "$VERBOSE" "Action: You can now run './boot' to boot the system!"
+		BO_log "$VERBOSE" "Action: You can now run './boot' to boot the system!"
 
 		format "$VERBOSE" "FOOTER"
 	}
@@ -87,8 +80,8 @@ function init {
 		local DIFFERENT="0"
 
 		pushd "$EXAMPLE_DIR" > /dev/null
-			if [ ! -e ".packages" ]; then
-				ln -s "../../.packages" ".packages"
+			if [ ! -e ".deps" ]; then
+				ln -s "../../.deps" ".deps"
 			fi
 
 			install "$EXAMPLE_DIR" ${*:2}
@@ -142,7 +135,7 @@ function init {
 
 				if [ "$DIFFERENT" == "0" ]; then
 					"$EXAMPLE_DIR/bin/clean" ${*:2}
-					rm ".packages"
+					rm -Rf ".deps" "node_modules" ".installed"
 				fi
 
 				if [ "$FIRST_RUN" == "1" ]; then
@@ -197,7 +190,7 @@ function init {
 		format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_DIRPATH="$PGS_DIR/.pinf"
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto turn $@
+			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/vcs/master/bash.origin.pinf" pto turn $@
 			export PGS_WORKSPACE_UID="`cat "$PREVIOUS_PGS_PINF_DIRPATH/uid"`"
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
@@ -210,7 +203,7 @@ function init {
 		# TODO: Remove this once turning happens automatically on first spin.
 		format "$VERBOSE" "HEADER" "Turning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto turn $@
+			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/vcs/master/bash.origin.pinf" pto turn $@
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
 	}
@@ -220,9 +213,44 @@ function init {
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
 		format "$VERBOSE" "HEADER" "Spinning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0~source/bash.origin.pinf" pto spin $@
+			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/vcs/master/bash.origin.pinf" pto spin $@
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
 	}
+
+	function ensureProvisioned {
+		BO_checkVerbose "VERBOSE" "$@"
+		format "$VERBOSE" "HEADER" "Provisioning base system"
+		pushd "$PGS_DIR/.." > /dev/null
+		if [ -f ".gitmodules" ]; then
+			if [ ! -f ".gitmodules.initialized" ]; then
+				BO_log "$VERBOSE" "Init submodules ..."
+#				git submodule update --init --recursive --rebase
+				BO_log "$VERBOSE" "... submodules init done"
+				touch ".gitmodules.initialized"
+			else
+				BO_log "$VERBOSE" "Skip init submodules. Already initialized."
+			fi
+		fi
+		if [ ! -f ".installed" ]; then
+			BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
+			if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
+				BO_log "$VERBOSE" "Install smi ..."
+				pushd "$SMI_BASE_PATH" > /dev/null
+					BO_run_npm install --production $@
+					touch "$SMI_BASE_PATH/.installed"
+				popd > /dev/null
+				BO_log "$VERBOSE" "... smi install done"
+			fi
+			pushd "$PGS_DIR" > /dev/null
+				BO_run_smi install $@
+			popd > /dev/null
+			touch ".installed"
+		fi
+		popd > /dev/null
+		format "$VERBOSE" "FOOTER"
+	}
+
+	ensureProvisioned $@
 }
 init $@

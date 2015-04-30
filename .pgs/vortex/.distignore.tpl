@@ -2,6 +2,7 @@
 @import .gitignore
 
 /.gitignore
+/.installed
 /README.md
 /program.json
 
