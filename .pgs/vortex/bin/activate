@@ -1,24 +1,19 @@
 #!/bin/bash
 # Source https://github.com/cadorn/bash.origin
-if [ ! -f "$HOME/.bash.origin" ]; then
-	if [ -f "bin/install" ]; then
-		bin/install
-	else
-		echo "ERROR: Run 'bin/install' first to install 'bash.origin'!"
-		exit 1;
-	fi
-fi
 . "$HOME/.bash.origin"
 function init {
 	eval BO_SELF_BASH_SOURCE="$BO_READ_SELF_BASH_SOURCE"
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
+	. "$__BO_DIR__/../boot" activate
+
 	SYSTEM_ROOT_PATH="$( dirname $__BO_DIR__ )"
 	SYSTEM_NAME="$( basename $SYSTEM_ROOT_PATH )"
 
 	function customizePrompt {
-		BO_callPlugin "bash.origin.prompt" setPrompt "workspace" "$SYSTEM_ROOT_PATH"
+		# TODO: Get version from variable.
+		BO_callPlugin "bash.origin.prompt@0.1.1" setPrompt "workspace" "$SYSTEM_ROOT_PATH"
 	}
 
 	# TODO: Read pre-generated help file or generate from metadata if not found.
@@ -26,19 +21,22 @@ function init {
 		echo " "
 		echo "  Global commands:"
 		echo " "
+		# TODO: Feed this dynamically
 		echo "    help - Shows this help"
 		echo "    home - Changes directories back to the root of the system ($SYSTEM_ROOT_PATH)"
 		echo "    reload - Reload the current environment (source bin/activate)"
 		echo "    demo - Runs all demos (bin/demo)"
 		echo "    test - Runs all tests (bin/test)"
-		echo "    clean - Remove everything dynamically generated or fetched"
+		echo "    clean - Remove everything dynamically generated and fetched"
 		echo " "
 		echo "  Runtimes:"
 		echo " "
+		# TODO: Feed this dynamically
 		echo "    node"
 		echo " "
 		echo "  Tools:"
 		echo " "
+		# TODO: Feed this dynamically
 		echo "    nvm"
 		echo "    npm"
 		echo "    smi"
@@ -47,7 +45,18 @@ function init {
 		echo " "
 		echo "  Variables:"
 		echo " "
-		echo "    PATH: $PATH"
+		# TODO: Feed this dynamically
+		echo "    PATH:"
+		for path in ${PATH//:/ }; do
+		    echo "      $path"
+		done
+		echo "    PGS_WORKSPACE_ROOT: $PGS_WORKSPACE_ROOT"
+		echo "    PGS_PINF_DIRPATH: $PGS_PINF_DIRPATH"
+		echo "    PGS_WORKSPACE_PINF_DIRPATH: $PGS_WORKSPACE_PINF_DIRPATH"
+		echo "    PGS_PACKAGES_DIRPATH: $PGS_PACKAGES_DIRPATH"
+		echo "    BO_PACKAGES_DIR: $BO_PACKAGES_DIR"
+		echo "    BO_SYSTEM_CACHE_DIR: $BO_SYSTEM_CACHE_DIR"
+		echo "    BO_ROOT_SCRIPT_PATH: $BO_ROOT_SCRIPT_PATH"
 		echo " "
 	}
 
@@ -63,7 +72,10 @@ function init {
 	}
 
 	function modifyCommandPath {
-		export PATH="$__BO_DIR__:$PATH"
+		# Always ensure our bin dir is at the top!
+		BO_strip_PATH "$__BO_DIR__"
+		BO_dedupe_PATH
+		BO_prepend_PATH "$__BO_DIR__"
 	}
 
 	function loadEnvironmentVariables {

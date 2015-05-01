@@ -38,8 +38,16 @@ function init {
 
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot" $@
 
+	if [ "$1" == "activate" ]; then
+		return 0
+	fi
+
 	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand $@
+
+	if [ "$1" == "expand" ]; then
+		return 0
+	fi
 
 	if [ "$1" == "turn" ]; then
 		pgsTurn ${*:2}
