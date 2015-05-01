@@ -13,6 +13,7 @@
 ##################################################
 
 /.pgs
+/.pgs/.provisioned
 /boot
 # TODO: The following should be cached in a central system asset cache.
 /node_modules/
