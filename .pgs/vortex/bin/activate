@@ -67,10 +67,10 @@ function init {
 	}
 
 	function loadEnvironmentVariables {
-		pushd "$__BO_DIR__/.."
+		pushd "$__BO_DIR__/.." > /dev/null
 			local RESULT=`BO_run_node "$__BO_DIR__/activate.js"`
 			$RESULT
-		popd
+		popd > /dev/null
 	}
 
 	function printWelcome {
