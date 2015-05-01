@@ -19,6 +19,7 @@
         },
         "pto-for-npm": {
             "depends": [
+                "bash.origin",
                 "to.pinf.lib"
             ],
             "location": "../.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master",
@@ -27,12 +28,16 @@
         "to.pinf.lib": {
             "depends": [
                 "bash.origin",
-                "org.pinf.lib"
+                "org.pinf.genesis.lib"
             ],
             "location": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master",
             "install": true
         },
         "org.pinf.genesis.lib": {
+            "depends": [
+                "bash.origin",
+                "org.pinf.lib"
+            ],
             "location": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master",
             "install": true
         },
