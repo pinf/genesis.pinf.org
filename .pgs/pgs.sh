@@ -250,7 +250,11 @@ function init {
 					BO_log "$VERBOSE" "... smi install done"
 				fi
 				pushd "$PGS_DIR" > /dev/null
-					BO_run_smi install $@
+				 	if [ "$VERBOSE" == "1" ]; then
+						BO_run_smi install -v
+				 	else
+						BO_run_smi install > /dev/null
+				 	fi
 				popd > /dev/null
 				touch ".installed"
 			fi
