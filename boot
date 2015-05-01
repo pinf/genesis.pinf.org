@@ -41,10 +41,14 @@ function init {
 	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand $@
 
-	if [ "$PGS_BOOT_TO" == "turn" ]; then
-		pgsTurn $@
+	if [ "$1" == "turn" ]; then
+		pgsTurn ${*:2}
 	else
-		pgsSpin $@
+		if [ "$PGS_BOOT_TO" == "turn" ]; then
+			pgsTurn $@
+		else
+			pgsSpin $@
+		fi
 	fi
 }
 init $@
