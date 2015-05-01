@@ -228,7 +228,7 @@ function init {
 			if [ -f ".gitmodules" ]; then
 				if [ ! -f ".gitmodules.initialized" ]; then
 					BO_log "$VERBOSE" "Init submodules ..."
-	#				git submodule update --init --recursive --rebase
+					git submodule update --init --recursive --rebase
 					BO_log "$VERBOSE" "... submodules init done"
 					touch ".gitmodules.initialized"
 				else
@@ -240,7 +240,11 @@ function init {
 				if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
 					BO_log "$VERBOSE" "Install smi ..."
 					pushd "$SMI_BASE_PATH" > /dev/null
-						BO_run_npm install --production $@
+					 	if [ "$VERBOSE" == "1" ]; then
+							BO_run_npm install --production
+					 	else
+							BO_run_npm install --production > /dev/null
+					 	fi
 						touch "$SMI_BASE_PATH/.installed"
 					popd > /dev/null
 					BO_log "$VERBOSE" "... smi install done"
@@ -256,6 +260,6 @@ function init {
 		format "$VERBOSE" "FOOTER"
 	}
 
-	ensureProvisioned $@
+	ensureProvisioned ${*:2}
 }
 init $@

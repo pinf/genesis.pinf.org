@@ -36,7 +36,13 @@ function init {
 	. "$BO_ROOT_SCRIPT_PATH"
 
 
-	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot" $@
+ 	BO_checkVerbose "VERBOSE" "$@"
+ 	if [ "$VERBOSE" == "1" ]; then
+		BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot" -v
+ 	else
+		BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
+ 	fi
+
 
 	if [ "$1" == "activate" ]; then
 		return 0
