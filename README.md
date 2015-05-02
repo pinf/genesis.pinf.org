@@ -61,8 +61,8 @@ Contribute to PINF.Genesis
 Refer to [README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) to continue.
 
 
-License
-=======
+Legal
+=====
 
-[UNLICENSE](http://unlicense.org/)
+[UNLICENSE](http://unlicense.org/) by [Christoph Dorn](http://christophdorn.com)
 
