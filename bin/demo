@@ -6,6 +6,6 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
-	echo "DEMO"
+	"$__BO_DIR__/../examples/run.sh"
 }
 init $@

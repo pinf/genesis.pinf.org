@@ -6,6 +6,24 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	local __BO_DIR__="$___TMP___"
 
-echo "test harness"
+	. "$__BO_DIR__/../boot" activate
+
+	BO_checkVerbose "VERBOSE" "$@"
+
+	function runDemos {
+		format "$VERBOSE" "HEADER" "Running Tests"
+		if [ -e "$PGS_WORKSPACE_ROOT/bin/test" ]; then
+			BO_ensure_executable "$PGS_WORKSPACE_ROOT/bin/test"
+			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+				"bin/test"
+				# TODO: Export test result
+			popd > /dev/null
+		else
+			echo "ERROR: No '$PGS_WORKSPACE_ROOT/bin/test' script found!"
+		fi
+		format "$VERBOSE" "FOOTER"
+	}
+
+	runDemos
 }
 init $@
