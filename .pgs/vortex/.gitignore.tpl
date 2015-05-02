@@ -18,14 +18,14 @@
 /boot
 # TODO: The following should be cached in a central system asset cache.
 /node_modules/
-/.deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master/node_modules/
-/.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master/node_modules/
-/.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master/node_modules/
-/.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master/.installed
-/.deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master/node_modules/
-/.deps/github.com~pinf~org.pinf.lib~0/source/vcs/master/node_modules/
-/.deps/github.com~sourcemint~smi~0/source/vcs/master/node_modules/
-/.deps/github.com~sourcemint~smi~0/source/vcs/master/.installed
+/.deps/github.com~bash-origin~bash.origin.prompt~0/source/installed/master/node_modules/
+/.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/installed/master/node_modules/
+/.deps/github.com~pinf-to~pto-for-npm~0/source/installed/master/node_modules/
+/.deps/github.com~pinf-to~pto-for-npm~0/source/installed/master/.installed
+/.deps/github.com~pinf-to~to.pinf.lib~0/source/installed/master/node_modules/
+/.deps/github.com~pinf~org.pinf.lib~0/source/installed/master/node_modules/
+/.deps/github.com~sourcemint~smi~0/source/installed/master/node_modules/
+/.deps/github.com~sourcemint~smi~0/source/installed/master/.installed
 
 
 ##################################################

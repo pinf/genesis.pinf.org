@@ -2,19 +2,19 @@
 	"uid": "expand.genesis.pinf.org",
     "mappings": {
     	"bash.origin": {
-            "location": "../.deps/github.com~bash-origin~bash.origin~0/source/vcs/master",
+            "location": "../.deps/github.com~bash-origin~bash.origin~0/source/installed/master",
             "install": true
         },
     	"bash.origin.pinf": {
-            "location": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/vcs/master",
+            "location": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/installed/master",
             "install": true
         },
     	"bash.origin.prompt": {
-            "location": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/vcs/master",
+            "location": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/installed/master",
             "install": true
         },
         "pinf-it-filetree-insight": {
-            "location": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/vcs/master",
+            "location": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/installed/master",
             "install": true
         },
         "pto-for-npm": {
@@ -22,7 +22,7 @@
                 "bash.origin",
                 "to.pinf.lib"
             ],
-            "location": "../.deps/github.com~pinf-to~pto-for-npm~0/source/vcs/master",
+            "location": "../.deps/github.com~pinf-to~pto-for-npm~0/source/installed/master",
             "install": true
         },
         "to.pinf.lib": {
@@ -30,7 +30,7 @@
                 "bash.origin",
                 "org.pinf.genesis.lib"
             ],
-            "location": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/vcs/master",
+            "location": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/installed/master",
             "install": true
         },
         "org.pinf.genesis.lib": {
@@ -38,19 +38,19 @@
                 "bash.origin",
                 "org.pinf.lib"
             ],
-            "location": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/vcs/master",
+            "location": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/installed/master",
             "install": true
         },
         "org.pinf.lib": {
             "depends": [
                 "bash.origin"
             ],
-            "location": "../.deps/github.com~pinf~org.pinf.lib~0/source/vcs/master",
+            "location": "../.deps/github.com~pinf~org.pinf.lib~0/source/installed/master",
             "install": true
         },
-        "smi": "../.deps/github.com~sourcemint~smi~0/source/vcs/master",
+        "smi": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
         "smt-copy": {
-            "location": "../.deps/github.com~sourcemint~smt-copy~0/source/vcs/master",
+            "location": "../.deps/github.com~sourcemint~smt-copy~0/source/installed/master",
             "install": true
         }
     },

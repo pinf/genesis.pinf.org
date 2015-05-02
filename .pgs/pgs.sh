@@ -190,7 +190,7 @@ function init {
 		format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_DIRPATH="$PGS_DIR/.pinf"
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/vcs/master/bash.origin.pinf" pto turn $@
+			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
 			export PGS_WORKSPACE_UID="`cat "$PREVIOUS_PGS_PINF_DIRPATH/uid"`"
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
@@ -203,7 +203,7 @@ function init {
 		# TODO: Remove this once turning happens automatically on first spin.
 		format "$VERBOSE" "HEADER" "Turning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/vcs/master/bash.origin.pinf" pto turn $@
+			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
 	}
@@ -213,7 +213,7 @@ function init {
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
 		format "$VERBOSE" "HEADER" "Spinning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/vcs/master/bash.origin.pinf" pto spin $@
+			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto spin $@
 		popd > /dev/null
 		format "$VERBOSE" "FOOTER"
 	}
