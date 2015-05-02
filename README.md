@@ -10,7 +10,7 @@ PINF.Genesis System (PGS)
 
 [PINF](http://pinf.org) is an abstract **Virtual Holographic Nodal Platform** discovered over more than 15 years of trial and error. **PINF.Genesis** is my first publicly consumable iteration of the implementation of the virtual PINF system.
 
-Current Requirements:
+Requirements:
 
   * OSX
   * NodeJS 10
