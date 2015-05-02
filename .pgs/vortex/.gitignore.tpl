@@ -34,6 +34,9 @@
 
 /.pgs/.pinf/
 /.pgs/program.rt.json
+/bin/node
+/bin/npm
+/bin/smi
 /bin/activate
 /bin/activate.js
 /bin/clean
