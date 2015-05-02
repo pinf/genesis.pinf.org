@@ -1,0 +1,28 @@
+#!/bin/bash
+# Source https://github.com/cadorn/bash.origin
+. "$HOME/.bash.origin"
+function init {
+	eval BO_SELF_BASH_SOURCE="$BO_READ_SELF_BASH_SOURCE"
+	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
+	local __BO_DIR__="$___TMP___"
+
+	. "$__BO_DIR__/../boot" activate
+
+	BO_checkVerbose "VERBOSE" "$@"
+
+	function runDemos {
+		format "$VERBOSE" "HEADER" "Running Demos"
+		if [ -e "$PGS_WORKSPACE_ROOT/bin/demo" ]; then
+			BO_ensure_executable "$PGS_WORKSPACE_ROOT/bin/demo"
+			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+				"bin/demo"
+			popd > /dev/null
+		else
+			echo "ERROR: No '$PGS_WORKSPACE_ROOT/bin/demo' script found!"
+		fi
+		format "$VERBOSE" "FOOTER"
+	}
+
+	runDemos
+}
+init $@
