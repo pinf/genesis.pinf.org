@@ -23,6 +23,11 @@ function getCleanIgnoreRule () {
 var cleanIgnoreRules = getCleanIgnoreRule();
 
 
+var ignorePrefixes = [
+	[new RegExp("^\\/\\.deps"), FS.lstatSync(PATH.join(process.cwd(), ".deps")).isSymbolicLink()]
+];
+
+
 var commands = [];
 var stop = false;
 FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forEach(function (line) {
@@ -35,6 +40,14 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	}
 	if (/^#/.test(line)) return;
 	if (cleanIgnoreRules.indexOf(line) > -1) return;
+	for (var i = 0; i < ignorePrefixes.length ; i++) {
+		if (
+			ignorePrefixes[i][1] === true &&
+			ignorePrefixes[i][0].test(line)
+		) {
+			return;
+		}
+	}
 	if (/^!\//.test(line)) {
 		commands.push('rm -Rf ' + line.substring(2));
 		commands.push("git checkout HEAD -- " + line.substring(2));
