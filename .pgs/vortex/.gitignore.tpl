@@ -34,7 +34,12 @@
 
 /.pgs/.pinf/
 /.pgs/program.rt.json
-/bin/
+/bin/activate
+/bin/activate.js
+/bin/clean
+/bin/clean.js
+/bin/demo.harness
+/bin/test.harness
 /.pinf/
 /program.rt.json
 
