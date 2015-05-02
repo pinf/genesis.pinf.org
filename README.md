@@ -16,58 +16,49 @@ Current Requirements:
   * NodeJS 10
 
 
-Your own system based on PINF.Genesis
--------------------------------------
+Use PINF.Genesis
+================
 
-#### Create System
+	cd YourNodeJSPackage
 
-	mkdir MySystem
-	cd MySystem
+Setup
+-----
 
-	echo "{}" > package.json
-
-#### Add genesis.pinf.org as dependency
+#### Add 'genesis.pinf.org' as dependency
 
 	npm install --save genesis.pinf.org
 
-#### Initialize System
-
-	./node_modules/.bin/genesis.pinf.org install
-
-Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) at the root of `MySystem` to continue.
-
-
-Add PINF.Genesis to a package
------------------------------
-
-#### Add genesis.pinf.org as dependency
-
-	cd MyPackage
-
-	npm install --save genesis.pinf.org
-
-#### Trigger System Initialization on install by adding to `package.json`
+#### Trigger Initialization on install by adding to 'package.json'
 
 	"scripts": {
-		"install": "./node_modules/.bin/genesis.pinf.org install"
+		"install": "./node_modules/.bin/genesis.pinf.org install -v"
 	}
 
-#### Initialize System
+Use
+---
+
+#### Install [Development Workspace](http://genesis.pinf.org)
 
 	npm install
 
-Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) at the root of `MyPackage` to continue.
+#### Initialize Workspace
+
+	./boot turn -v
+
+#### Use Workspace
+
+Upon workspace initialization above, the `YourNodeJSPackage/README.md` file will be updated with [more instructions](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md).
 
 
-Hacking on PINF.Genesis
------------------------
+Contribute to PINF.Genesis
+==========================
 
 #### Clone System
 
 	git clone https://github.com/pinf/genesis.pinf.org.git
 	cd genesis.pinf.org
 
-Refer to the [generated README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) at the root of `MyPackage` to continue.
+Refer to [README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) to continue.
 
 
 License
