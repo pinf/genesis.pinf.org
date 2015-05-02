@@ -7,7 +7,6 @@ Usage
 Requirements:
 
   * OSX
-  * NodeJS 10
 
 #### One-time
 
