@@ -5,3 +5,9 @@
 /.gitmodules.initialized
 /.installed
 /.gitmodules
+
+
+/.cleanignore
+/.distignore
+/.gitignore
+/bin/
