@@ -3,7 +3,7 @@
 
 /.gitignore
 /.installed
-/README.md
+/WORKSPACE.md
 /program.json
 
 

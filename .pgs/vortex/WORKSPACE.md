@@ -7,13 +7,16 @@ Usage
 Requirements:
 
   * OSX
+  * NodeJS 10
 
-#### One-time
+#### Install [Development Workspace](http://genesis.pinf.org)
 
 	git clone <uri> %%BASENAME%%
 	cd %%BASENAME%%
 
-#### Run system
+	npm install
+
+#### Run Workspace
 
 	./boot [-vd]
 
@@ -34,10 +37,7 @@ Upon `boot` a system will be initialized and running ready for exploration using
 Upon `activation` a command-line environment is loaded from which the system may be manipulated for the purpose of development. Once activated, the prompt will change and more commands are available. Run `help` for more information.
 
 
-License
-=======
+Provenance
+==========
 
-This system is a clone of [genesis.pinf.org](http://genesis.pinf.org).
-
-[UNLICENSE](http://unlicense.org/)
-
+The **Development Workspace** is a clone of [genesis.pinf.org](http://genesis.pinf.org) with original source logic [UNLICENSED](http://unlicense.org/) by [Christoph Dorn](http://christophdorn.com).

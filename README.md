@@ -47,7 +47,7 @@ Use
 
 #### Use Workspace
 
-Upon workspace initialization above, the `YourNodeJSPackage/README.md` file will be updated with [more instructions](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md).
+Upon workspace initialization above, [more instructions](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/WORKSPACE.md) will be available at `YourNodeJSPackage/WORKSPACE.md`.
 
 
 Contribute to PINF.Genesis
@@ -58,11 +58,17 @@ Contribute to PINF.Genesis
 	git clone https://github.com/pinf/genesis.pinf.org.git
 	cd genesis.pinf.org
 
-Refer to [README.md file](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/README.md) to continue.
+#### Initialize Workspace
+
+	./boot turn -v
+
+#### Use Workspace
+
+Upon workspace initialization above, [more instructions](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/WORKSPACE.md) will be available at `WORKSPACE.md`.
 
 
-Legal
-=====
+Provenance
+==========
 
-[UNLICENSE](http://unlicense.org/) by [Christoph Dorn](http://christophdorn.com)
+Original source logic [UNLICENSED](http://unlicense.org/) by [Christoph Dorn](http://christophdorn.com).
 

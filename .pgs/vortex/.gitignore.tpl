@@ -51,7 +51,7 @@
 # Created on PGS Expand (reset on clean)
 ##################################################
 
-!/README.md
+!/WORKSPACE.md
 !/.gitignore
 !/.distignore
 !/.cleanignore
