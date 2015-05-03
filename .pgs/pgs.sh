@@ -235,17 +235,29 @@ function init {
 			git clone --depth 1 "https://github.com/pinf/genesis.pinf.org.git" "$CLONE_PATH~tmp"
 			BO_log "$VERBOSE" "... cloned PINF.Genesis."
 			pushd "$CLONE_PATH~tmp" > /dev/null
+				touch ".pgs/.provisioned"
 				BO_log "$VERBOSE" "Installing PINF.Genesis ..."
 				if [ "$VERBOSE" == "1" ]; then
-					./boot expand -v
+					./boot activate -v
 				else
-					./boot expand > /dev/null
+					./boot activate > /dev/null
 				fi
 				BO_log "$VERBOSE" "... PINF.Genesis install done."
 				mv "$CLONE_PATH~tmp" "$CLONE_PATH"
 			popd > /dev/null
 		fi
-
+		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+			if [ ! -e ".deps" ]; then
+				mkdir ".deps"
+			fi
+			for dir in $CLONE_PATH/.deps/* ; do
+				dir="$(basename $dir)"
+				if [ ! -e ".deps/$dir" ]; then
+					BO_log "$VERBOSE" "Copy '$CLONE_PATH/.deps/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
+					cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
+				fi
+			done
+		popd > /dev/null
 	}
 
 	function ensureProvisioned {
