@@ -8,6 +8,6 @@
 		"bash.origin": "0.1.x"
 	},
 	"scripts": {
-    	"install": "./node_modules/.bin/bash.origin BO install -f"
+    	"install": "./node_modules/.bin/bash.origin BO install"
 	}
 }

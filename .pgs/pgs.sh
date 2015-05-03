@@ -6,25 +6,10 @@ function init {
 	BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
 	PGS_DIR="$___TMP___"
 
-	function format {
-		if [ "$1" != "1" ]; then
-			return;
-		fi
-		if [ "$2" == "HEADER" ]; then
-			echo "##################################################";
-			echo "# $3";
-			echo "##################################################";
-		fi
-		if [ "$2" == "FOOTER" ]; then
-			echo "##################################################";
-			echo ""
-		fi
-	}
-
 	function install {
 		BO_checkVerbose "VERBOSE" "$@"
 
-		format "$VERBOSE" "HEADER" "Installing PINF.Genesis System"
+		BO_format "$VERBOSE" "HEADER" "Installing PINF.Genesis System"
 
 		local TARGET_PATH="$1"
 
@@ -65,7 +50,7 @@ function init {
 
 		BO_log "$VERBOSE" "Action: You can now run './boot' to boot the system!"
 
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	function runExample {
@@ -75,7 +60,7 @@ function init {
 		local EXAMPLE_DIR="$1"
 		local EXAMPLE_NAME="$(basename "$EXAMPLE_DIR")"
 
-		format "$VERBOSE" "HEADER" "Run example $EXAMPLE_NAME"
+		BO_format "$VERBOSE" "HEADER" "Run example $EXAMPLE_NAME"
 
 		local DIFFERENT="0"
 
@@ -139,7 +124,7 @@ function init {
 				fi
 
 				if [ "$FIRST_RUN" == "1" ]; then
-					format "1" "HEADER" "First run output"
+					BO_format "1" "HEADER" "First run output"
 					cat ".result/actual.log"
 				fi
 			fi
@@ -149,7 +134,7 @@ function init {
 			exit 1
 		fi;
 
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	if [ "$1" == "install" ]; then		
@@ -189,13 +174,13 @@ function init {
 		BO_checkVerbose "VERBOSE" "$@"
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
 		local PREVIOUS_PGS_PINF_DIRPATH="$PGS_PINF_DIRPATH"
-		format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
+		BO_format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_DIRPATH="$PGS_DIR/.pinf"
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
 			export PGS_WORKSPACE_UID="`cat "$PREVIOUS_PGS_PINF_DIRPATH/uid"`"
 		popd > /dev/null
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 		export PGS_PINF_DIRPATH="$PREVIOUS_PGS_PINF_DIRPATH"
 	}
 
@@ -203,21 +188,21 @@ function init {
 		BO_checkVerbose "VERBOSE" "$@"
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
 		# TODO: Remove this once turning happens automatically on first spin.
-		format "$VERBOSE" "HEADER" "Turning system"
+		BO_format "$VERBOSE" "HEADER" "Turning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
 		popd > /dev/null
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	function pgsSpin {
 		BO_checkVerbose "VERBOSE" "$@"
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
-		format "$VERBOSE" "HEADER" "Spinning system"
+		BO_format "$VERBOSE" "HEADER" "Spinning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto spin $@
 		popd > /dev/null
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	function ensureDepsForClone {
@@ -261,7 +246,7 @@ function init {
 	}
 
 	function ensureProvisioned {
-		format "$VERBOSE" "HEADER" "Provisioning base system"
+		BO_format "$VERBOSE" "HEADER" "Provisioning base system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			if [ -f ".gitmodules" ]; then
 				if [ ! -f ".gitmodules.initialized" ]; then
@@ -300,7 +285,7 @@ function init {
 				touch ".provisioned"
 			popd > /dev/null
 		fi
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	ensureProvisioned
