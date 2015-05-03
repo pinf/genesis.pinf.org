@@ -37,7 +37,7 @@ if (FS.existsSync(depsPath)) {
 		});
 	}
 }
-console.log("ignorePrefixes", ignorePrefixes);
+
 
 var commands = [];
 var stop = false;

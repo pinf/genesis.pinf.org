@@ -239,6 +239,10 @@ function init {
 			fi
 			for dir in $CLONE_PATH/.deps/* ; do
 				dir="$(basename $dir)"
+				if [ -L ".deps/$dir" ]; then
+					BO_log "$VERBOSE" "Removing '$PGS_WORKSPACE_ROOT/.deps/$dir' because it is a symlink."
+					rm -f ".deps/$dir"
+				fi
 				if [ ! -e ".deps/$dir" ]; then
 					BO_log "$VERBOSE" "Copy '$CLONE_PATH/.deps/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
 					cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
