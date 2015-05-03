@@ -49,7 +49,11 @@ function init {
 	fi
 
 	# We always need to expand the PGS system to ensure all minimal code is in position.
-	pgsExpand $@
+	if [ "$VERBOSE" == "1" ]; then
+		pgsExpand -v
+	else
+		pgsExpand
+	fi
 
 	if [ "$1" == "expand" ]; then
 		return 0

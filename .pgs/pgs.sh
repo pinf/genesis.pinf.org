@@ -39,12 +39,12 @@ function init {
 		    echo -e "\n/.pgs" >> "$TARGET_PATH/.gitignore"
 		fi
 
-		BO_log "$VERBOSE" "Copying boot file to: $TARGET_PATH/boot"
+		BO_log "$VERBOSE" "Copying boot file from '$PGS_DIR/../boot' to '$TARGET_PATH/boot'"
 		cp -f "$PGS_DIR/../boot" "$TARGET_PATH/boot"
 		chmod ug+x "$TARGET_PATH/boot"
 
-		BO_log "$VERBOSE" "Copying PINF.Genesis System to: $TARGET_PATH/.pgs"
-		rsync -a --exclude-from="$PGS_DIR/.rsyncignore" "$PGS_DIR/" "$TARGET_PATH/.pgs/"
+		BO_log "$VERBOSE" "Copying PINF.Genesis System from '$PGS_DIR' to '$TARGET_PATH/.pgs'"
+		rsync -va --exclude-from="$PGS_DIR/.rsyncignore" "$PGS_DIR/" "$TARGET_PATH/.pgs/"
 
 		BO_log "$VERBOSE" "Copy done!"
 
