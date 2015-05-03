@@ -2,7 +2,6 @@
 @import .gitignore
 
 /.gitignore
-/.installed
 /WORKSPACE.md
 /program.json
 

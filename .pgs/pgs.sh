@@ -183,6 +183,8 @@ function init {
 	fi
 	export PGS_DIRPATH="$PGS_DIR"
 
+	BO_checkVerbose "VERBOSE" "$@"
+
 	function pgsExpand {
 		BO_checkVerbose "VERBOSE" "$@"
 		export PTO_USE_EXISTING_PGS_PINF_DIRPATH="1"
@@ -218,13 +220,37 @@ function init {
 		format "$VERBOSE" "FOOTER"
 	}
 
+	function ensureDepsForClone {
+		if [ -e "$PGS_WORKSPACE_ROOT/package.json" ]; then
+			if grep -q -e '"name": "genesis.pinf.org"' "$PGS_WORKSPACE_ROOT/package.json"; then
+				# Not a clone.
+				return 0
+			fi
+		fi
+		# TODO: Use `sm.genesis` to load deps from catalog.
+		local CLONE_PATH="$PGS_DIR/.clone"
+		if [ ! -e "$CLONE_PATH" ]; then
+			rm -Rf "$CLONE_PATH~tmp" > /dev/null || true
+			BO_log "$VERBOSE" "Cloning PINF.Genesis from 'https://github.com/pinf/genesis.pinf.org.git' to '$CLONE_PATH~tmp' ..."
+			git clone --depth 1 "https://github.com/pinf/genesis.pinf.org.git" "$CLONE_PATH~tmp"
+			BO_log "$VERBOSE" "... cloned PINF.Genesis."
+			pushd "$CLONE_PATH~tmp" > /dev/null
+				BO_log "$VERBOSE" "Installing PINF.Genesis ..."
+				if [ "$VERBOSE" == "1" ]; then
+					./boot expand -v
+				else
+					./boot expand > /dev/null
+				fi
+				BO_log "$VERBOSE" "... PINF.Genesis install done."
+				mv "$CLONE_PATH~tmp" "$CLONE_PATH"
+			popd > /dev/null
+		fi
+
+	}
+
 	function ensureProvisioned {
-		BO_checkVerbose "VERBOSE" "$@"
 		format "$VERBOSE" "HEADER" "Provisioning base system"
-		if [ -e "$PGS_DIR/.provisioned" ]; then
-			BO_log "$VERBOSE" "Skip provision. Already provisioned."
-		else
-			pushd "$PGS_DIR/.." > /dev/null
+		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			if [ -f ".gitmodules" ]; then
 				if [ ! -f ".gitmodules.initialized" ]; then
 					BO_log "$VERBOSE" "Init submodules ..."
@@ -235,35 +261,36 @@ function init {
 					BO_log "$VERBOSE" "Skip init submodules. Already initialized."
 				fi
 			fi
-			if [ ! -f ".installed" ]; then
+		popd > /dev/null
+		if [ -e "$PGS_DIR/.provisioned" ]; then
+			BO_log "$VERBOSE" "Skip provision. Already provisioned."
+		else
+			ensureDepsForClone
+			pushd "$PGS_DIR" > /dev/null
 				BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
-				if [ ! -e "$SMI_BASE_PATH/.installed" ]; then
-					BO_log "$VERBOSE" "Install smi ..."
-					pushd "$SMI_BASE_PATH" > /dev/null
+				pushd "$SMI_BASE_PATH" > /dev/null
+					if [ ! -e ".installed" ]; then
+						BO_log "$VERBOSE" "Install smi ..."
 					 	if [ "$VERBOSE" == "1" ]; then
 							BO_run_npm install --production
 					 	else
 							BO_run_npm install --production > /dev/null
 					 	fi
-						touch "$SMI_BASE_PATH/.installed"
-					popd > /dev/null
-					BO_log "$VERBOSE" "... smi install done"
-				fi
-				pushd "$PGS_DIR" > /dev/null
-				 	if [ "$VERBOSE" == "1" ]; then
-						BO_run_smi install -v
-				 	else
-						BO_run_smi install > /dev/null
-				 	fi
+						touch ".installed"
+						BO_log "$VERBOSE" "... smi install done"
+					fi
 				popd > /dev/null
-				touch ".installed"
-			fi
+			 	if [ "$VERBOSE" == "1" ]; then
+					BO_run_smi install -v
+			 	else
+					BO_run_smi install > /dev/null
+			 	fi
+				touch ".provisioned"
 			popd > /dev/null
-			touch "$PGS_DIR/.provisioned"
 		fi
 		format "$VERBOSE" "FOOTER"
 	}
 
-	ensureProvisioned ${*:2}
+	ensureProvisioned
 }
 init $@

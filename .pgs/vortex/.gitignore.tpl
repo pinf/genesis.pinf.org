@@ -12,7 +12,6 @@
 # Created on PGS Install (remove on clean)
 ##################################################
 
-/.installed
 /.pgs
 /.pgs/.provisioned
 /boot
@@ -72,7 +71,6 @@
 
 /.deps
 /.gitmodules.initialized
-/.installed
 
 
 ##################################################
