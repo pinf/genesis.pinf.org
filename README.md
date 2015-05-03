@@ -37,7 +37,7 @@ Setup
 Use
 ---
 
-#### Install [Development Workspace](http://genesis.pinf.org)
+#### Install [Development Workspace](http://devcomp.org)
 
 	npm install
 

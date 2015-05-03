@@ -7,6 +7,11 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
+	if [ ! -e "$__BO_DIR__/../.pgs/.provisioned" ]; then
+		echo "ERROR: Cannot link globally. Not provisioned. Call './boot turn' first!"
+		exit 1
+	fi
+
 	rm -Rf "$HOME/.bash.origin" > /dev/null || true
 	ln -s "$__BO_DIR__/../.deps/github.com~bash-origin~bash.origin~0/source/installed/master/bash.origin" "$HOME/.bash.origin"
 
@@ -15,7 +20,6 @@ function init {
 	fi
 
 	pushd "$HOME/.bash.origin.cache" > /dev/null
-
 		BO_log "$VERBOSE" "Link '$__BO_DIR__/..' to '$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master'."
 		if [ -d "github.com~pinf~genesis.pinf.org~0/source/installed" ]; then
 			rm -Rf "github.com~pinf~genesis.pinf.org~0/source/installed/master" > /dev/null || true

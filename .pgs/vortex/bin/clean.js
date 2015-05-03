@@ -23,10 +23,21 @@ function getCleanIgnoreRule () {
 var cleanIgnoreRules = getCleanIgnoreRule();
 
 
-var ignorePrefixes = [
-	[new RegExp("^\\/\\.deps"), FS.lstatSync(PATH.join(process.cwd(), ".deps")).isSymbolicLink()]
-];
+var ignorePrefixes = [];
 
+var depsPath = PATH.join(process.cwd(), ".deps");
+if (FS.existsSync(depsPath)) {
+	if (FS.lstatSync(depsPath).isSymbolicLink()) {
+		ignorePrefixes.push(new RegExp("^\\/\\.deps"));
+	} else {
+		FS.readdirSync(depsPath).forEach(function (dir) {
+			if (FS.lstatSync(PATH.join(depsPath, dir)).isSymbolicLink()) {
+				ignorePrefixes.push(new RegExp("^\\/\\.deps\\/" + dir.replace(/\./g, "\\.")));
+			}
+		});
+	}
+}
+console.log("ignorePrefixes", ignorePrefixes);
 
 var commands = [];
 var stop = false;
@@ -41,10 +52,7 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	if (/^#/.test(line)) return;
 	if (cleanIgnoreRules.indexOf(line) > -1) return;
 	for (var i = 0; i < ignorePrefixes.length ; i++) {
-		if (
-			ignorePrefixes[i][1] === true &&
-			ignorePrefixes[i][0].test(line)
-		) {
+		if (ignorePrefixes[i].test(line)) {
 			return;
 		}
 	}

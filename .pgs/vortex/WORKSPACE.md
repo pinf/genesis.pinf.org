@@ -9,7 +9,7 @@ Requirements:
   * OSX
   * NodeJS 10
 
-#### Install [Development Workspace](http://genesis.pinf.org)
+#### Install [Development Workspace](http://devcomp.org)
 
 	git clone <uri> %%BASENAME%%
 	cd %%BASENAME%%
@@ -20,7 +20,7 @@ Requirements:
 
 	./boot [-vd]
 
-Upon `boot` a system will be initialized and running ready for exploration using your default browser which should have been opened.
+Upon `boot` a system will be initialized and running ready for exploration. If using [devcomp.org](http://devcomp.org) a *companion window* should have been opened.
 
 #### Make changes
 
@@ -30,7 +30,7 @@ Upon `boot` a system will be initialized and running ready for exploration using
 
 	test
 
-	clean
+	source clean
 
 	# Commit changes & push
 
@@ -40,4 +40,4 @@ Upon `activation` a command-line environment is loaded from which the system may
 Provenance
 ==========
 
-The **Development Workspace** is a clone of [genesis.pinf.org](http://genesis.pinf.org) with original source logic [UNLICENSED](http://unlicense.org/) by [Christoph Dorn](http://christophdorn.com).
+The **Development Workspace** is a clone of [devcomp.org](http://devcomp.org) with original source logic [UNLICENSED](http://unlicense.org/) by [Christoph Dorn](http://christophdorn.com).

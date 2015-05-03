@@ -212,7 +212,7 @@ function init {
 				return 0
 			fi
 		fi
-		# TODO: Use `sm.genesis` to load deps from catalog.
+		# TODO: Use `sm.genesis` to load deps from catalog if not in `$HOME/.bash.origin.cache`
 		local CLONE_PATH="$PGS_DIR/.clone"
 		if [ ! -e "$CLONE_PATH" ]; then
 			rm -Rf "$CLONE_PATH~tmp" > /dev/null || true
@@ -238,8 +238,13 @@ function init {
 			for dir in $CLONE_PATH/.deps/* ; do
 				dir="$(basename $dir)"
 				if [ ! -e ".deps/$dir" ]; then
-					BO_log "$VERBOSE" "Copy '$CLONE_PATH/.deps/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
-					cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
+					if [ -e "$HOME/.bash.origin.cache/$dir" ]; then
+						BO_log "$VERBOSE" "Linking '$HOME/.bash.origin.cache/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
+						ln -s "$HOME/.bash.origin.cache/$dir" ".deps/$dir"
+					else
+						BO_log "$VERBOSE" "Copy '$CLONE_PATH/.deps/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
+						cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
+					fi
 				fi
 			done
 		popd > /dev/null

@@ -53,7 +53,9 @@ function init {
 		for path in ${PATH//:/ }; do
 		    echo "      $path"
 		done
+		echo "    PGS_WORKSPACE_UID: $PGS_WORKSPACE_UID"
 		echo "    PGS_WORKSPACE_ROOT: $PGS_WORKSPACE_ROOT"
+		echo "    PGS_DIRPATH: $PGS_DIRPATH"
 		echo "    PGS_PINF_DIRPATH: $PGS_PINF_DIRPATH"
 		echo "    PGS_WORKSPACE_PINF_DIRPATH: $PGS_WORKSPACE_PINF_DIRPATH"
 		echo "    PGS_PACKAGES_DIRPATH: $PGS_PACKAGES_DIRPATH"
