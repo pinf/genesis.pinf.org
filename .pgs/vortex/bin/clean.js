@@ -51,9 +51,11 @@ FS.readFileSync(PATH.join(process.cwd(), ".gitignore"), "utf8").split("\n").forE
 	}
 	if (/^#/.test(line)) return;
 	if (cleanIgnoreRules.indexOf(line) > -1) return;
-	for (var i = 0; i < ignorePrefixes.length ; i++) {
-		if (ignorePrefixes[i].test(line)) {
-			return;
+	if (ignorePrefixes.length > 0) {
+		for (var i = 0; i < ignorePrefixes.length ; i++) {
+			if (ignorePrefixes[i].test(line)) {
+				return;
+			}
 		}
 	}
 	if (/^!\//.test(line)) {

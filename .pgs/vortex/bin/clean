@@ -32,12 +32,16 @@ function init {
 			BO_run_node "$__BO_DIR__/clean.js" $@
 		popd > /dev/null
 
-		BO_log "$VERBOSE" "Resetting 'PS1' environment variable."
-		export PS1="$PGS_PS1_BEFORE"
-		unset PGS_PS1_BEFORE
-		BO_log "$VERBOSE" "Resetting 'PATH' environment variable."
-		export PATH="$PGS_PATH_BEFORE"
-		unset PGS_PATH_BEFORE
+		if [ ! -z "$PGS_PS1_BEFORE" ]; then
+			BO_log "$VERBOSE" "Resetting 'PS1' environment variable."
+			export PS1="$PGS_PS1_BEFORE"
+			unset PGS_PS1_BEFORE
+		fi
+		if [ ! -z "$PGS_PATH_BEFORE" ]; then
+			BO_log "$VERBOSE" "Resetting 'PATH' environment variable."
+			export PATH="$PGS_PATH_BEFORE"
+			unset PGS_PATH_BEFORE
+		fi
 
 		BO_log "$VERBOSE" "Resetting 'PGS_*' and 'BO_*' environment variables."
 		unset PGS_WORKSPACE_UID

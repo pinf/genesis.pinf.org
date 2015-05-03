@@ -206,12 +206,14 @@ function init {
 	}
 
 	function ensureDepsForClone {
+		BO_setResult $1 "0"
 		if [ -e "$PGS_WORKSPACE_ROOT/package.json" ]; then
 			if grep -q -e '"name": "genesis.pinf.org"' "$PGS_WORKSPACE_ROOT/package.json"; then
 				# Not a clone.
 				return 0
 			fi
 		fi
+		BO_setResult $1 "1"
 		# TODO: Use `sm.genesis` to load deps from catalog if not in `$HOME/.bash.origin.cache`
 		local CLONE_PATH="$PGS_DIR/.clone"
 		if [ ! -e "$CLONE_PATH" ]; then
@@ -238,13 +240,22 @@ function init {
 			for dir in $CLONE_PATH/.deps/* ; do
 				dir="$(basename $dir)"
 				if [ ! -e ".deps/$dir" ]; then
-					if [ -e "$HOME/.bash.origin.cache/$dir" ]; then
-						BO_log "$VERBOSE" "Linking '$HOME/.bash.origin.cache/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
-						ln -s "$HOME/.bash.origin.cache/$dir" ".deps/$dir"
-					else
-						BO_log "$VERBOSE" "Copy '$CLONE_PATH/.deps/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
-						cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
-					fi
+					BO_log "$VERBOSE" "Copy '$CLONE_PATH/.deps/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
+					cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
+				fi
+			done
+		popd > /dev/null
+	}
+
+	function linkDepsForClone {
+		local CLONE_PATH="$PGS_DIR/.clone"
+		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+			for dir in $CLONE_PATH/.deps/* ; do
+				dir="$(basename $dir)"
+				if [ -e "$HOME/.bash.origin.cache/$dir" ]; then
+					BO_log "$VERBOSE" "Linking '$HOME/.bash.origin.cache/$dir' to '$PGS_WORKSPACE_ROOT/.deps/$dir'."
+					rm -Rf ".deps/$dir" > /dev/null || true
+					ln -s "$HOME/.bash.origin.cache/$dir" ".deps/$dir"
 				fi
 			done
 		popd > /dev/null
@@ -267,7 +278,7 @@ function init {
 		if [ -e "$PGS_DIR/.provisioned" ]; then
 			BO_log "$VERBOSE" "Skip provision. Already provisioned."
 		else
-			ensureDepsForClone
+			ensureDepsForClone "IS_CLONE"
 			pushd "$PGS_DIR" > /dev/null
 				BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
 				pushd "$SMI_BASE_PATH" > /dev/null
@@ -289,6 +300,9 @@ function init {
 			 	fi
 				touch ".provisioned"
 			popd > /dev/null
+			if [ "$IS_CLONE" == "1" ]; then
+				linkDepsForClone
+			fi
 		fi
 		BO_format "$VERBOSE" "FOOTER"
 	}
