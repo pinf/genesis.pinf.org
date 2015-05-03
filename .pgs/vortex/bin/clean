@@ -27,9 +27,22 @@ function init {
 
 	function runClean {
 		format "$VERBOSE" "HEADER" "Cleaning"
+
 		pushd "$__BO_DIR__/.." > /dev/null
 			BO_run_node "$__BO_DIR__/clean.js" $@
 		popd > /dev/null
+
+		export PS1="$PGS_PS1_BEFORE"
+		export PATH="$PGS_PATH_BEFORE"
+
+		export PGS_WORKSPACE_ROOT=""
+		export PGS_PINF_DIRPATH=""
+		export PGS_WORKSPACE_PINF_DIRPATH=""
+		export PGS_PACKAGES_DIRPATH=""
+		export BO_PACKAGES_DIR=""
+		export BO_SYSTEM_CACHE_DIR=""
+		export BO_ROOT_SCRIPT_PATH=""
+
 		format "$VERBOSE" "FOOTER"
 	}
 
