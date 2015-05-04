@@ -69,7 +69,6 @@ function init {
 		alias home="cd $SYSTEM_ROOT_PATH"
 		alias help='echo "$(printHelp)"'
 		alias reload="source $SYSTEM_ROOT_PATH/bin/activate"
-		alias clean='$SYSTEM_ROOT_PATH/bin/clean.harness'
 		alias demo='$SYSTEM_ROOT_PATH/bin/demo.harness'
 		alias test='$SYSTEM_ROOT_PATH/bin/test.harness'
 		BO_link_node "$__BO_DIR__"
