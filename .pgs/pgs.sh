@@ -38,6 +38,13 @@ function init {
 			# TODO: Do a cleaner append
 		    echo -e "\n/.pgs" >> "$TARGET_PATH/.gitignore"
 		fi
+		if [ -e "$TARGET_PATH/.gitmodules" ]; then
+			if ! grep -qe "^\/\.gitmodules\.initialized$" "$TARGET_PATH/.gitignore"; then
+				BO_log "$VERBOSE" "Append '/.gitmodules.initialized' to ignore file: $TARGET_PATH/.gitignore"
+				# TODO: Do a cleaner append
+			    echo -e "\n/.gitmodules.initialized" >> "$TARGET_PATH/.gitignore"
+			fi
+		fi
 
 		BO_log "$VERBOSE" "Copying boot file from '$PGS_DIR/../boot' to '$TARGET_PATH/boot'"
 		cp -f "$PGS_DIR/../boot" "$TARGET_PATH/boot"

@@ -19,7 +19,7 @@ function init {
 				# TODO: Export test result
 			popd > /dev/null
 		else
-			echo "ERROR: No '$PGS_WORKSPACE_ROOT/bin/test' script found!"
+			echo "WARNING: No '$PGS_WORKSPACE_ROOT/bin/test' script found!"
 		fi
 		format "$VERBOSE" "FOOTER"
 	}

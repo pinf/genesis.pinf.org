@@ -37,11 +37,9 @@ function init {
 
 
  	BO_checkVerbose "VERBOSE" "$@"
- 	if [ "$VERBOSE" == "1" ]; then
-		BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot" -v
- 	else
-		BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
- 	fi
+
+
+	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
 
 
 	if [ "$1" == "activate" ]; then
@@ -49,10 +47,18 @@ function init {
 	fi
 
 	# We always need to expand the PGS system to ensure all minimal code is in position.
-	if [ "$VERBOSE" == "1" ]; then
-		pgsExpand -v
-	else
-		pgsExpand
+	pgsExpand
+
+	if [ -e "$PGS_WORKSPACE_ROOT/.call.on.provisioned" ]; then
+		# Remove provisioned flag for now until we have called all scripts.
+		local SCRIPT=`cat "$PGS_WORKSPACE_ROOT/.call.on.provisioned"`
+		BO_log "$VERBOSE" "Found install trigger '$SCRIPT' at '$PGS_WORKSPACE_ROOT/.call.on.provisioned'"
+		$SCRIPT
+		if [[ $? != 0 ]]; then
+			# We had an error so we ensure the install runs again.
+			rm -f "$__BO_DIR__/.pgs/.provisioned"
+		fi
+		rm -f "$PGS_WORKSPACE_ROOT/.call.on.provisioned"
 	fi
 
 	if [ "$1" == "expand" ]; then
