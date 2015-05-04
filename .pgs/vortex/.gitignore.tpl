@@ -38,7 +38,7 @@
 /bin/smi
 /bin/activate
 /bin/activate.js
-/bin/clean
+/bin/clean.harness
 /bin/clean.js
 /bin/demo.harness
 /bin/test.harness

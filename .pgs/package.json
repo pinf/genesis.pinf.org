@@ -52,7 +52,8 @@
         "smt-copy": {
             "location": "../.deps/github.com~sourcemint~smt-copy~0/source/installed/master",
             "install": true
-        }
+        },
+        "@translocate": "!{{__DIRNAME__}}/../PINF.json"
     },
     "config": {
     	"smi.cli": {
