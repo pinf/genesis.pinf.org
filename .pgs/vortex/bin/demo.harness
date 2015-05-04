@@ -11,7 +11,7 @@ function init {
 	BO_checkVerbose "VERBOSE" "$@"
 
 	function runDemos {
-		format "$VERBOSE" "HEADER" "Running Demos"
+		BO_format "$VERBOSE" "HEADER" "Running Demos"
 		if [ -e "$PGS_WORKSPACE_ROOT/bin/demo" ]; then
 			BO_ensure_executable "$PGS_WORKSPACE_ROOT/bin/demo"
 			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
@@ -20,7 +20,7 @@ function init {
 		else
 			echo "WARNING: No '$PGS_WORKSPACE_ROOT/bin/demo' script found!"
 		fi
-		format "$VERBOSE" "FOOTER"
+		BO_format "$VERBOSE" "FOOTER"
 	}
 
 	runDemos
