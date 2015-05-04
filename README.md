@@ -19,23 +19,45 @@ Requirements:
 Use PINF.Genesis
 ================
 
-	cd YourNodeJSPackage
-
 Setup
 -----
 
-#### Add 'genesis.pinf.org' as dependency
+	cd Your-NodeJS-Package
 
-	npm install --save genesis.pinf.org
+#### Create install script using [Bash.Origin](https://github.com/cadorn/bash.origin)
 
-#### Trigger Initialization on install by adding to 'package.json'
+**chmod ug+x** `bin/install`:
 
+	#!/bin/bash
+	# Source https://github.com/cadorn/bash.origin
+	. "$HOME/.bash.origin"
+	function init {
+		eval BO_SELF_BASH_SOURCE="$BO_READ_SELF_BASH_SOURCE"
+		BO_deriveSelfDir ___TMP___ "$BO_SELF_BASH_SOURCE"
+		local __BO_DIR__="$___TMP___"
+
+
+		pushd "$__BO_DIR__/.." > /dev/null
+			if [ ! -e ".pgs/.provisioned" ]; then
+				BO_callPlugin "bash.origin.pinf@0.1.1" ensure genesis $@
+			fi
+		popd > /dev/null
+	}
+	init $@
+
+#### Trigger install script on *npm install* by adding to 'package.json'
+
+	"dependencies": {
+		"bash.origin": "0.1.x"
+	},
 	"scripts": {
-		"install": "./node_modules/.bin/genesis.pinf.org install -v"
+		"install": "./bin/install"
 	}
 
 Use
 ---
+
+	cd Your-NodeJS-Package
 
 #### Install [Development Workspace](http://devcomp.org)
 
@@ -47,7 +69,7 @@ Use
 
 #### Use Workspace
 
-Upon workspace initialization above, [more instructions](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/WORKSPACE.md) will be available at `YourNodeJSPackage/WORKSPACE.md`.
+Upon workspace initialization above, [more instructions](https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/WORKSPACE.md) will be available at `Your-NodeJS-Package/WORKSPACE.md`.
 
 
 Contribute to PINF.Genesis

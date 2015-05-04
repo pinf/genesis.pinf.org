@@ -49,18 +49,6 @@ function init {
 	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand
 
-	if [ -e "$PGS_WORKSPACE_ROOT/.call.on.provisioned" ]; then
-		# Remove provisioned flag for now until we have called all scripts.
-		local SCRIPT=`cat "$PGS_WORKSPACE_ROOT/.call.on.provisioned"`
-		BO_log "$VERBOSE" "Found install trigger '$SCRIPT' at '$PGS_WORKSPACE_ROOT/.call.on.provisioned'"
-		$SCRIPT
-		if [[ $? != 0 ]]; then
-			# We had an error so we ensure the install runs again.
-			rm -f "$__BO_DIR__/.pgs/.provisioned"
-		fi
-		rm -f "$PGS_WORKSPACE_ROOT/.call.on.provisioned"
-	fi
-
 	if [ "$1" == "expand" ]; then
 		return 0
 	fi
