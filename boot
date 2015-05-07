@@ -39,6 +39,11 @@ function init {
  	BO_checkVerbose "VERBOSE" "$@"
 
 
+	if [ -e "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh" ]; then
+		BO_sourcePrototype "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh"
+	fi
+
+
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
 
 
