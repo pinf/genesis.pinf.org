@@ -20,11 +20,13 @@ function init {
 
 	# Seed the PINF.Genesis System
 	export PGS_WORKSPACE_ROOT="$__BO_DIR__"
-	export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
-	export PGS_WORKSPACE_PINF_DIRPATH="$PGS_PINF_DIRPATH"
+	# TODO: Deprecate PGS_WORKSPACE_PINF_DIRPATH
+	export PGS_WORKSPACE_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
+	export PGS_PINF_DIRPATH="$PGS_WORKSPACE_PINF_DIRPATH"
 	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.deps"
 	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
 	export BO_SYSTEM_CACHE_DIR="$BO_PACKAGES_DIR"
+	export PIO_PROFILE_PATH="$__BO_DIR__/../$(basename $__BO_DIR__).profile.json"
 
 
 	if [ -f "$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0/source/installed/master/bash.origin" ]; then
@@ -39,12 +41,19 @@ function init {
  	BO_checkVerbose "VERBOSE" "$@"
 
 
-	if [ -e "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh" ]; then
-		BO_sourcePrototype "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh"
-	fi
+ 	function activateExpanded {
+		if [ -e "$PGS_PINF_DIRPATH/uid" ]; then
+			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/uid"`"
+			export PIO_PROFILE_KEY="$PGS_WORKSPACE_UID"
+		fi
+		if [ -e "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh" ]; then
+			BO_sourcePrototype "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh"
+		fi
+ 	}
 
 
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
+ 	activateExpanded
 
 
 	if [ "$1" == "activate" ]; then
@@ -53,6 +62,8 @@ function init {
 
 	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand
+	# We call it again to updated any changes after expansion.
+	activateExpanded
 
 	if [ "$1" == "expand" ]; then
 		return 0
