@@ -39,7 +39,7 @@ Setup
 
 		pushd "$__BO_DIR__/.." > /dev/null
 			if [ ! -e ".pgs/.provisioned" ]; then
-				BO_callPlugin "bash.origin.pinf@0.1.1" ensure genesis $@
+				BO_callPlugin "bash.origin.pinf@0.1.2" ensure genesis $@
 			fi
 		popd > /dev/null
 	}
