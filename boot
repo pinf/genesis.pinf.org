@@ -80,10 +80,10 @@ function init {
 			if [ ! -e "$2" ]; then
 				rm -Rf "$2" > /dev/null || true
 			fi
-			if [ -L "$2" ]
+			if [ -L "$2" ]; then
 				# Already a symlink so we leave it alone.
 				return 0
-			if
+			fi
 			# Replace file with symlink
 			rm -Rf "$2" > /dev/null || true
 			BO_log "$VERBOSE" "Linking '$1' to '$2'"
@@ -103,10 +103,10 @@ function init {
 				linkDependency "$__BO_DIR__/.." "$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master"
 			fi
 		fi
-		for dir in $__BO_DIR__/../.deps/* ; do
+		for dir in "$__BO_DIR__/.deps/"* ; do
 			dir="$(basename $dir)"
-			if [ -e "$__BO_DIR__/../.deps/$dir/source/installed/master" ]; then
-				linkDependency "$__BO_DIR__/../.deps/$dir/source/installed/master" "$HOME/.bash.origin.cache/$dir/source/installed/master"
+			if [ -e "$__BO_DIR__/.deps/$dir/source/installed/master" ]; then
+				linkDependency "$__BO_DIR__/.deps/$dir/source/installed/master" "$HOME/.bash.origin.cache/$dir/source/installed/master"
 			fi
 		done
 	}
