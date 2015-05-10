@@ -1,7 +1,6 @@
 {
 	"@comment01": "NOTE: This file is AUTO-GENERATED once by './.pgs/' by taking the template",
 	"@comment02": "      from https://github.com/pinf/genesis.pinf.org/blob/master/.pgs/vortex/program.json",
-	"@comment03": "      and inserting any content from a pre-existing file into '%%__EXISTING__%%'.",
 	"@comment04": "      This file may be comitted to git and maintained manually from now on. If not comitted",
 	"@comment05": "      to git, the pre-existing file content will be recovered on 'clean' by doing",
 	"@comment06": "      a 'git reset'.",
