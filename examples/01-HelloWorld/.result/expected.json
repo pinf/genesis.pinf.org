@@ -28,9 +28,6 @@
                     "PGS_PINF_DIRPATH": {
                         "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.pinf"
                     },
-                    "PGS_WORKSPACE_PINF_DIRPATH": {
-                        "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.pinf"
-                    },
                     "PGS_PACKAGES_DIRPATH": {
                         "value": "/pinf.genesis/01-genesis.pinf.org/examples/01-HelloWorld/.deps"
                     },

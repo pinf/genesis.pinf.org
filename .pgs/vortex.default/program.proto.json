@@ -30,9 +30,6 @@
 						"PGS_PINF_DIRPATH": {
 							"value": "{{env.PGS_PINF_DIRPATH}}"
 						},
-						"PGS_WORKSPACE_PINF_DIRPATH": {
-							"value": "{{env.PGS_WORKSPACE_PINF_DIRPATH}}"
-						},
 						"PGS_PACKAGES_DIRPATH": {
 							"value": "{{env.PGS_PACKAGES_DIRPATH}}"
 						},

@@ -165,10 +165,6 @@ function init {
 		echo "ERROR: 'PGS_WORKSPACE_ROOT' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1
 	fi
-	if [ -z "$PGS_WORKSPACE_PINF_DIRPATH" ]; then
-		echo "ERROR: 'PGS_WORKSPACE_PINF_DIRPATH' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
-		exit 1
-	fi
 	if [ -z "$BO_PACKAGES_DIR" ]; then
 		echo "ERROR: 'BO_PACKAGES_DIR' environment variable is not set (file: $PGS_DIR/pgs.sh)!"
 		exit 1

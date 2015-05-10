@@ -24,7 +24,6 @@
                 "OVERLAYS": "[\"/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/PINF.json\"]",
                 "PGS_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pgs",
                 "PGS_WORKSPACE_ROOT": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System",
-                "PGS_WORKSPACE_PINF_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pinf",
                 "PGS_PINF_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.pinf",
                 "PGS_PACKAGES_DIRPATH": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.packages",
                 "BO_PACKAGES_DIR": "/genesis.live/open-source/genesis.pinf.org/examples/02-Sub-System/.packages"
