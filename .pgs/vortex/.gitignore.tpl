@@ -36,7 +36,6 @@
 ##################################################
 
 /.pgs/.pinf/
-/.pgs/program.rt.json
 /bin/node
 /bin/npm
 /bin/smi
@@ -47,7 +46,6 @@
 /bin/demo.harness
 /bin/test.harness
 /.pinf/
-/program.rt.json
 
 # Is always taken from the workspace implementation plugin such as devcomp.org
 /WORKSPACE.md
