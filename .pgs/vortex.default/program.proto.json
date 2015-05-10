@@ -6,7 +6,12 @@
 		"genesis.pinf.org/0": {
 			"$impl": "{{__DIRNAME__}}/../pgs-run.js",
 			"programs": {
-				".pgs": "{{env.PGS_DIRPATH}}/program.json"
+				".pgs": {
+					"location": "{{env.PGS_DIRPATH}}/program.json",
+					"env": {
+						"PGS_PINF_EPOCH": "expand.genesis.pinf.org"
+					}
+				}
 			}
 		},
 		"pgs-vortex-default/0": {
