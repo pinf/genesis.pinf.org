@@ -30,7 +30,7 @@ function init {
 		echo "    reload - Reload the current environment (source bin/activate)"
 		echo "    demo - Runs all demos (bin/demo)"
 		echo "    test - Runs all tests (bin/test)"
-		echo "    clean - Remove everything dynamically generated and fetched"
+		echo "    source clean - Remove everything dynamically generated and fetched"
 		echo " "
 		echo "  Runtimes:"
 		echo " "
