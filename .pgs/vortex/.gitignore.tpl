@@ -14,7 +14,10 @@
 ##################################################
 
 /.pgs
+
+# Stops provisioning from being re-run during boot
 /.pgs/.provisioned
+
 /boot
 /node_modules/
 
@@ -37,20 +40,24 @@
 /.pinf/
 /program.rt.json
 
+# Is always taken from the workspace implementation plugin such as devcomp.org
+/WORKSPACE.md
+
+# Is always generated based on PINF.json and is environment dependent.
+/program.json
+/%%BASENAME%%.inf
+/%%BASENAME%%.inf.js
+
 
 ##################################################
 # Created on PGS Expand (reset on clean)
 ##################################################
 
-!/WORKSPACE.md
 !/.gitignore
 !/.distignore
 !/.cleanignore
 !/vortex.js
-!/program.json
 !/package.json
-!/%%BASENAME%%.inf
-!/%%BASENAME%%.inf.js
 
 
 # Mark the end of all files that will be cleaned
@@ -61,7 +68,10 @@
 # Created on PGS Install (keep on clean)
 ##################################################
 
+# Contains git submodules in pattern '.deps/github.com~ORG~REPO~MAJOR_VER/source/installed/master' if any
 /.deps
+
+# Stops git submodules from being re-initialized on provisioning during first boot
 /.gitmodules.initialized
 
 

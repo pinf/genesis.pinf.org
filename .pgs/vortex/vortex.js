@@ -4,6 +4,10 @@ exports.for = function (API) {
 
 	API.insight.debug("PINF.Genesis Vortex Booted!");
 
+	// This is the place where you can intercept **ANYTHING** that is accessible
+	// to the PINF.Genesis system.
+	// Use it for making hacks on existing systems or to orchestrate new systems.
+
 	var exports = {};
 
 	exports.resolve = function (resolver, config, previousResolvedConfig) {
