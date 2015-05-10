@@ -39,7 +39,7 @@ var depsPath = PATH.join(cwd, ".deps");
 if (FS.existsSync(depsPath)) {
 	// If '.deps' is a symlink we don't touch it at all.
 	if (!FS.lstatSync(depsPath).isSymbolicLink()) {
-		FS.readdirSync(depsPath).forEach(function (id) {			
+		FS.readdirSync(depsPath).forEach(function (dir) {			
 			// If dependency is symlinked we don't touch it.
 			if (
 				!FS.lstatSync(PATH.join(depsPath, dir)).isSymbolicLink() &&

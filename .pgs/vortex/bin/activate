@@ -62,6 +62,8 @@ function init {
 		echo "    BO_PACKAGES_DIR: $BO_PACKAGES_DIR"
 		echo "    BO_SYSTEM_CACHE_DIR: $BO_SYSTEM_CACHE_DIR"
 		echo "    BO_ROOT_SCRIPT_PATH: $BO_ROOT_SCRIPT_PATH"
+		echo "    PIO_PROFILE_PATH: $PIO_PROFILE_PATH"
+		echo "    PIO_PROFILE_KEY: $PIO_PROFILE_KEY"
 		echo " "
 	}
 

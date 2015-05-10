@@ -40,6 +40,7 @@ function init {
 		fi
 
 		BO_log "$VERBOSE" "Resetting 'PGS_*' and 'BO_*' environment variables."
+		# TODO: Dynamically find all vars with prefixes instead of hardcoding.
 		unset PGS_WORKSPACE_UID
 		unset PGS_WORKSPACE_ROOT
 		unset PGS_DIRPATH
@@ -49,8 +50,12 @@ function init {
 		unset BO_PACKAGES_DIR
 		unset BO_SYSTEM_CACHE_DIR
 		unset BO_ROOT_SCRIPT_PATH
-
+		unset PIO_PROFILE_PATH
+		unset PIO_PROFILE_KEY
 		BO_format "$VERBOSE" "FOOTER"
+
+		# And finally
+		unset VERBOSE
 	}
 
 	runClean $@

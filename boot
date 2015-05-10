@@ -100,7 +100,7 @@ function init {
 		fi
 		if [ -e "$PGS_WORKSPACE_ROOT/package.json" ]; then
 			if grep -q -e '"name": "genesis.pinf.org"' "$PGS_WORKSPACE_ROOT/package.json"; then
-				linkDependency "$__BO_DIR__/.." "$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master"
+				linkDependency "$__BO_DIR__" "$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master"
 			fi
 		fi
 		for dir in "$__BO_DIR__/.deps/"* ; do
