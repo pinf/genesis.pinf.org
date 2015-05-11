@@ -28,3 +28,12 @@
 [submodule ".deps/github.com~sourcemint~smt-copy~0/source/installed/master"]
 	path = .deps/github.com~sourcemint~smt-copy~0/source/installed/master
 	url = git@github.com:sourcemint/smt-copy.git
+[submodule ".deps/github.com~bash-origin~bash.origin.sourcemint~0/source/installed/master"]
+	path = .deps/github.com~bash-origin~bash.origin.sourcemint~0/source/installed/master
+	url = git@github.com:bash-origin/bash.origin.sourcemint.git
+[submodule ".deps/github.com~sourcemint~smi-for-npm~0/source/installed/master"]
+	path = .deps/github.com~sourcemint~smi-for-npm~0/source/installed/master
+	url = git@github.com:sourcemint/smi-for-npm.git
+[submodule ".deps/github.com~cadorn~fswalker~0/source/installed/master"]
+	path = .deps/github.com~cadorn~fswalker~0/source/installed/master
+	url = git@github.com:cadorn/fswalker.git

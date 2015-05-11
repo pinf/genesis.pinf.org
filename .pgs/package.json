@@ -9,10 +9,29 @@
             "location": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/installed/master",
             "install": true
         },
-    	"bash.origin.prompt": {
+        "bash.origin.prompt": {
             "location": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/installed/master",
             "install": true
         },
+        "fswalker": {
+            "location": "../.deps/github.com~cadorn~fswalker~0/source/installed/master",
+            "install": true
+        },
+        "smi-for-npm": {
+            "depends": [
+                "bash.origin",
+                "fswalker"
+            ],
+            "location": "../.deps/github.com~sourcemint~smi-for-npm~0/source/installed/master",
+            "install": true
+        },
+        "bash.origin.sourcemint": {
+            "depends": [
+                "smi-for-npm"
+            ],
+            "location": "../.deps/github.com~bash-origin~bash.origin.sourcemint~0/source/installed/master",
+            "install": true
+        },        
         "pinf-it-filetree-insight": {
             "location": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/installed/master",
             "install": true
