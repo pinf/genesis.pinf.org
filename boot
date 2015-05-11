@@ -20,7 +20,9 @@ function init {
 
 	# Seed the PINF.Genesis System
 	export PGS_WORKSPACE_ROOT="$__BO_DIR__"
-	export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
+	if [ -z "$PGS_PINF_DIRPATH" ]; then
+		export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
+	fi
 	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.deps"
 	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
 	export BO_SYSTEM_CACHE_DIR="$BO_PACKAGES_DIR"
@@ -39,19 +41,21 @@ function init {
  	BO_checkVerbose "VERBOSE" "$@"
 
 
- 	function activateExpanded {
-		if [ -e "$PGS_PINF_DIRPATH/uid" ]; then
-			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/uid"`"
-			export PIO_PROFILE_KEY="$PGS_WORKSPACE_UID"
-		fi
+ 	function activateProfile {
 		if [ -e "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh" ]; then
 			BO_sourcePrototype "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh"
+		fi
+		if [ -e "$PGS_PINF_DIRPATH/expand.genesis.pinf.org/uid" ]; then
+			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/expand.genesis.pinf.org/uid"`"
+			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
+			export PIO_PROFILE_KEY="$PGS_WORKSPACE_UID"
 		fi
  	}
 
 
+ 	activateProfile
 	BO_sourcePrototype "$__BO_DIR__/.pgs/pgs.sh" "boot"
- 	activateExpanded
+ 	activateProfile
 
 
 	if [ "$1" == "activate" ]; then
@@ -61,7 +65,7 @@ function init {
 	# We always need to expand the PGS system to ensure all minimal code is in position.
 	pgsExpand
 	# We call it again to updated any changes after expansion.
-	activateExpanded
+	activateProfile
 
 	function linkDependencies {
 		if [ ! -e "$__BO_DIR__/.pgs/.provisioned" ]; then

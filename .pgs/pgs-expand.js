@@ -21,7 +21,7 @@ exports.for = function (API) {
 			},
 			ensureUid: function (partiallyResolvedConfig) {
 
-				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceVariables.PGS_PINF_DIRPATH, "uid");
+				var uidPath = API.PATH.join(partiallyResolvedConfig.workspaceVariables.PGS_PINF_DIRPATH, partiallyResolvedConfig.workspaceVariables.PGS_PINF_EPOCH, "uid");
 
 				// Recover the '.pinf/uid' file from various sources
 

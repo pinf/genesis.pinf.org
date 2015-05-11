@@ -53,6 +53,7 @@ function init {
 		unset PGS_WORKSPACE_ROOT
 		unset PGS_DIRPATH
 		unset PGS_PINF_DIRPATH
+		unset PGS_PINF_EPOCH
 		unset PGS_PACKAGES_DIRPATH
 		unset BO_PACKAGES_DIR
 		unset BO_SYSTEM_CACHE_DIR

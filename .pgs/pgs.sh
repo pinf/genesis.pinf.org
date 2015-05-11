@@ -180,7 +180,7 @@ function init {
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_EPOCH="expand.genesis.pinf.org"
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
-			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/uid"`"
+			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/$PGS_PINF_EPOCH/uid"`"
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}
