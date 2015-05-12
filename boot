@@ -26,6 +26,10 @@ function init {
 	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.deps"
 	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
 	export BO_SYSTEM_CACHE_DIR="$BO_PACKAGES_DIR"
+
+	# Global static cache for SMI
+	export SMI_CACHE_DIRPATH="$PGS_PINF_DIRPATH/github.com~sourcemint~smi~0/cache"
+
 	export PIO_PROFILE_PATH="$__BO_DIR__/../$(basename $__BO_DIR__).profile.json"
 
 

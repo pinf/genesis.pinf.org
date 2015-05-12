@@ -47,7 +47,7 @@ function init {
 			unset PGS_PATH_BEFORE
 		fi
 
-		BO_log "$VERBOSE" "Resetting 'PGS_*' and 'BO_*' environment variables."
+		BO_log "$VERBOSE" "Resetting 'PGS_*', 'BO_*' and 'SMI_*' environment variables."
 		# TODO: Dynamically find all vars with prefixes instead of hardcoding.
 		unset PGS_WORKSPACE_UID
 		unset PGS_WORKSPACE_ROOT
@@ -55,6 +55,7 @@ function init {
 		unset PGS_PINF_DIRPATH
 		unset PGS_PINF_EPOCH
 		unset PGS_PACKAGES_DIRPATH
+		unset SMI_CACHE_DIRPATH
 		unset BO_PACKAGES_DIR
 		unset BO_SYSTEM_CACHE_DIR
 		unset BO_ROOT_SCRIPT_PATH
