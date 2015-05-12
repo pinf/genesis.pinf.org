@@ -182,6 +182,14 @@ function init {
 			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/$PGS_PINF_EPOCH/uid"`"
 		popd > /dev/null
+		if [ ! -e "$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID" ]; then
+			rm -f "$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID" > /dev/null || true
+			BO_log "$VERBOSE" "Linking workspace '$PGS_WORKSPACE_ROOT' to shortcut '$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID'."
+			if [ ! -e "$PGS_REGISTRY_DIRPATH/workspaces" ]; then
+				mkdir -p "$PGS_REGISTRY_DIRPATH/workspaces"
+			fi
+			ln -s "$PGS_WORKSPACE_ROOT" "$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID"
+		fi
 		BO_format "$VERBOSE" "FOOTER"
 	}
 
@@ -218,6 +226,8 @@ function init {
 		fi
 		BO_setResult $1 "1"
 		# TODO: Use `sm.genesis` to load deps from catalog if not in `$HOME/.bash.origin.cache`
+		# NOTE: We don't want to symlink CLONE_PATH to our central install yet as smi will update some paths.
+		#       This also needs to be fixed.
 		local CLONE_PATH="$PGS_DIR/.clone"
 		if [ ! -e "$CLONE_PATH" ]; then
 			rm -Rf "$CLONE_PATH~tmp" > /dev/null || true

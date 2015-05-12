@@ -61,6 +61,7 @@ function init {
 		for path in ${PATH//:/ }; do
 		    echo "      $path"
 		done
+		echo "    PGS_REGISTRY_DIRPATH: $PGS_REGISTRY_DIRPATH"
 		echo "    PGS_WORKSPACE_UID: $PGS_WORKSPACE_UID"
 		echo "    PGS_WORKSPACE_ROOT: $PGS_WORKSPACE_ROOT"
 		echo "    PGS_DIRPATH: $PGS_DIRPATH"

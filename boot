@@ -27,6 +27,8 @@ function init {
 
 
 	# Seed the PINF.Genesis System
+	export PGS_REGISTRY_DIRPATH="$HOME/.pgs.registry"
+	# TODO: Rename to 'PGS_WORKSPACE_DIRPATH'
 	export PGS_WORKSPACE_ROOT="$__BO_DIR__"
 	if [ -z "$PGS_PINF_DIRPATH" ]; then
 		export PGS_PINF_DIRPATH="$PGS_WORKSPACE_ROOT/.pinf"
