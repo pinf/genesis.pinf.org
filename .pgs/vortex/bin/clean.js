@@ -71,6 +71,10 @@ if (FS.existsSync(depsPath)) {
 			if (
 				FS.existsSync(globalPath) &&
 				FS.lstatSync(globalPath).isSymbolicLink() &&
+				FS.existsSync(PATH.join(depsPath, dir)) &&
+				FS.existsSync(PATH.join(depsPath, dir, "source")) &&
+				FS.existsSync(PATH.join(depsPath, dir, "source", "installed")) &&
+				FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master")) &&
 				FS.realpathSync(globalPath) === FS.realpathSync(PATH.join(depsPath, dir, "source", "installed", "master"))
 			) {
 				commands.push('rm -f ' + globalPath);
