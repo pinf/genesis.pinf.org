@@ -63,6 +63,9 @@ if (FS.existsSync(depsPath)) {
 				if (FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master", ".installed"))) {
 					commands.push('rm -f ' + PATH.join(".deps", dir, "source", "installed", "master", ".installed"));
 				}
+				if (FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master", ".smi-for-npm"))) {
+					commands.push('rm -f ' + PATH.join(".deps", dir, "source", "installed", "master", ".smi-for-npm"));
+				}
 			}
 			var globalPath = PATH.join(process.env.HOME, ".bash.origin.cache", dir, "source", "installed", "master");
 			if (

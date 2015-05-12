@@ -7,7 +7,10 @@ function init {
 	local __BO_DIR__="$___TMP___"
 
 
-	rm -Rf "$__BO_DIR__/../.deps/*/source/installed/master/node_modules"
-	rm -Rf "$__BO_DIR__/../.deps/*/source/installed/master/.installed"
+	rm -Rf "$__BO_DIR__"/../node_modules
+	rm -Rf "$__BO_DIR__"/../.pgs/.provisioned
+	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/node_modules
+	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.installed
+	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.smi-for-npm
 }
 init $@

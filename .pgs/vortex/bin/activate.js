@@ -8,8 +8,18 @@
 
 const PATH = require("path");
 
+if (!process.env.PGS_PINF_DIRPATH) {
+	throw new Error("'process.env.PGS_PINF_DIRPATH' must be set!");
+}
+if (!process.env.PGS_PINF_EPOCH) {
+	throw new Error("'process.env.PGS_PINF_EPOCH' must be set!");
+}
 
-var runtimeDescriptor = require(PATH.join(process.cwd(), "program.rt.json"));
+var runtimeDescriptor = require(PATH.join(
+	process.env.PGS_PINF_DIRPATH,
+	process.env.PGS_PINF_EPOCH,
+	"program.rt.json"
+));
 
 // TODO: Match based on info mapped by "pgs-vortex-prompt" at $aspects = [ "jsonld contect uri", {} ]
 if (runtimeDescriptor["pgs-vortex-prompt"]) {
