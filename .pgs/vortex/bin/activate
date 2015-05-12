@@ -42,12 +42,12 @@ function init {
 		echo " "
 		echo "  Runtimes:"
 		echo " "
-		# TODO: Feed this dynamically
+		# TODO: Feed this dynamically and display compactly
 		echo "    node"
 		echo " "
 		echo "  Tools:"
 		echo " "
-		# TODO: Feed this dynamically
+		# TODO: Feed this dynamically and display compactly
 		echo "    nvm"
 		echo "    npm"
 		echo "    smi"
@@ -84,8 +84,6 @@ function init {
 		alias test='$SYSTEM_ROOT_PATH/bin/test.harness'
 		BO_link_node "$__BO_DIR__"
 		BO_link_npm "$__BO_DIR__"
-		BO_link_smi "$__BO_DIR__"
-		alias pto='"/genesis.live/open-source/codi.sh/node_modules/bash.origin.pinf/bash.origin.pinf" pto'
 	}
 
 	function modifyCommandPath {
@@ -95,7 +93,7 @@ function init {
 		# Always ensure our bin dir is at the top!
 		BO_strip_PATH "$__BO_DIR__"
 		BO_dedupe_PATH
-		BO_prepend_PATH "$__BO_DIR__"
+		BO_prepend_PATH "$__BO_DIR__:$__BO_DIR__/../node_modules/.bin"
 	}
 
 	function loadEnvironmentVariables {
