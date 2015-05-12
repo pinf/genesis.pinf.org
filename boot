@@ -1,4 +1,12 @@
 #!/bin/bash
+#
+# NOTE: This file is AUTO-GENERATED once by '../.pgs/' by taking the file
+#       from https://github.com/pinf/genesis.pinf.org/blob/master/boot
+#       This file may be comitted to git and maintained manually from now on. If not committed
+#       to git, the file will be removed again on 'clean'.
+#       If you don't want './.pgs/' to leave any trace behind in your original code,
+#       DO NOT COMMIT THIS CODE (remove line if you decide to do so)
+#
 if [ -z "$HOME" ]; then
 	echo "ERROR: 'HOME' environment variable is not set!"
 	exit 1

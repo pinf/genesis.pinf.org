@@ -60,6 +60,7 @@
 # Created on PGS Expand (reset on clean)
 ##################################################
 
+!/bin/reset
 !/.gitignore
 !/.distignore
 !/.cleanignore
