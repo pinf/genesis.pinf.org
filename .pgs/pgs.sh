@@ -236,13 +236,13 @@ function init {
 			BO_log "$VERBOSE" "... cloned PINF.Genesis."
 			pushd "$CLONE_PATH~tmp" > /dev/null
 				touch ".pgs/.provisioned"
-				BO_log "$VERBOSE" "Installing PINF.Genesis ..."
+				BO_log "$VERBOSE" "Activating PINF.Genesis ..."
 				if [ "$VERBOSE" == "1" ]; then
 					./boot activate -v
 				else
 					./boot activate > /dev/null
 				fi
-				BO_log "$VERBOSE" "... PINF.Genesis install done."
+				BO_log "$VERBOSE" "... PINF.Genesis activation done."
 				mv "$CLONE_PATH~tmp" "$CLONE_PATH"
 			popd > /dev/null
 		fi
@@ -261,6 +261,13 @@ function init {
 					cp -Rf "$CLONE_PATH/.deps/$dir" ".deps/$dir"
 				fi
 			done
+			# If 'github.com~sourcemint~smi~0' is found in central cache we
+			# use it instead of the one from genesis.pinf.org.
+			if [ -L "$HOME/.bash.origin.cache/github.com~sourcemint~smi~0/source/installed/master" ]; then
+				BO_log "$VERBOSE" "Linking 'github.com~sourcemint~smi~0' from '$HOME/.bash.origin.cache/github.com~sourcemint~smi~0' to '$PGS_WORKSPACE_ROOT.deps/github.com~sourcemint~smi~0'."
+				rm -Rf ".deps/github.com~sourcemint~smi~0"
+				ln -s "$HOME/.bash.origin.cache/github.com~sourcemint~smi~0" ".deps/github.com~sourcemint~smi~0"
+			fi
 		popd > /dev/null
 	}
 
@@ -300,7 +307,7 @@ function init {
 				BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
 				pushd "$SMI_BASE_PATH" > /dev/null
 					if [ ! -e ".installed" ]; then
-						BO_log "$VERBOSE" "Install smi ..."
+						BO_log "$VERBOSE" "Install smi using 'npm install' in directory '$SMI_BASE_PATH' ..."
 					 	if [ "$VERBOSE" == "1" ]; then
 							BO_run_npm install --production
 					 	else

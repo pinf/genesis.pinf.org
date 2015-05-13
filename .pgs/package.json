@@ -9,6 +9,10 @@
             "location": "../.deps/github.com~cadorn~fswalker~0/source/installed/master",
             "install": true
         },
+        "smi": {
+            "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
+            "install": false
+        },
         "smi-for-npm": {
             "depends": [
                 "bash.origin",
@@ -80,7 +84,6 @@
             "location": "../.deps/github.com~pinf~org.pinf.lib~0/source/installed/master",
             "install": true
         },
-        "smi": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
         "smt-copy": {
             "depends": [
                 "smi-for-npm"
