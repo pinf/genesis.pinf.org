@@ -37,3 +37,6 @@
 [submodule ".deps/github.com~cadorn~fswalker~0/source/installed/master"]
 	path = .deps/github.com~cadorn~fswalker~0/source/installed/master
 	url = git@github.com:cadorn/fswalker.git
+[submodule ".deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master"]
+	path = .deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master
+	url = git@github.com:pinf-it/pinf-it-package-insight.git
