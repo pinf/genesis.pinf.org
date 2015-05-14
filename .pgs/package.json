@@ -13,6 +13,10 @@
             "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
             "install": false
         },
+        "smi.cli": {
+            "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
+            "install": false
+        },
         "smi-for-npm": {
             "depends": [
                 "bash.origin",

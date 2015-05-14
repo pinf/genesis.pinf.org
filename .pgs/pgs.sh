@@ -231,8 +231,13 @@ function init {
 		local CLONE_PATH="$PGS_DIR/.clone"
 		if [ ! -e "$CLONE_PATH" ]; then
 			rm -Rf "$CLONE_PATH~tmp" > /dev/null || true
-			BO_log "$VERBOSE" "Cloning PINF.Genesis from 'https://github.com/pinf/genesis.pinf.org.git' to '$CLONE_PATH~tmp' ..."
-			git clone --depth 1 "https://github.com/pinf/genesis.pinf.org.git" "$CLONE_PATH~tmp"
+			if [ -e "$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master/.git" ]; then
+				BO_log "$VERBOSE" "Cloning PINF.Genesis from '$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master/.git' to '$CLONE_PATH~tmp' ..."
+				git clone --depth 1 "file://$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master" "$CLONE_PATH~tmp"
+			else
+				BO_log "$VERBOSE" "Cloning PINF.Genesis from 'https://github.com/pinf/genesis.pinf.org.git' to '$CLONE_PATH~tmp' ..."
+				git clone --depth 1 "https://github.com/pinf/genesis.pinf.org.git" "$CLONE_PATH~tmp"
+			fi
 			BO_log "$VERBOSE" "... cloned PINF.Genesis."
 			pushd "$CLONE_PATH~tmp" > /dev/null
 				touch ".pgs/.provisioned"
@@ -318,7 +323,7 @@ function init {
 					fi
 				popd > /dev/null
 			 	if [ "$VERBOSE" == "1" ]; then
-					BO_run_smi install -v
+					BO_run_smi install -vd
 			 	else
 					BO_run_smi install > /dev/null
 			 	fi
