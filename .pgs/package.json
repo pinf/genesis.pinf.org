@@ -17,10 +17,15 @@
             "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
             "install": false
         },
+        "pinf-it-package-insight": {
+            "location": "../.deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master",
+            "install": true
+        },
         "smi-for-npm": {
             "depends": [
                 "bash.origin",
-                "fswalker"
+                "fswalker",
+                "pinf-it-package-insight"
             ],
             "location": "../.deps/github.com~sourcemint~smi-for-npm~0/source/installed/master",
             "install": true
@@ -93,10 +98,6 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~sourcemint~smt-copy~0/source/installed/master",
-            "install": true
-        },
-        "pinf-it-package-insight": {
-            "location": "../.deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master",
             "install": true
         },
         "@translocate": "!{{__DIRNAME__}}/../PINF.json"
