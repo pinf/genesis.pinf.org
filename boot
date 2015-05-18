@@ -42,6 +42,15 @@ function init {
 
 	export PIO_PROFILE_PATH="$__BO_DIR__/../$(basename $__BO_DIR__).profile.json"
 
+	# XDG Base Directory Specification
+	# @see http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+	export XDG_DATA_HOME="$PGS_PINF_DIRPATH/standards.freedesktop.org~basedir-spec~0"
+	export XDG_CONFIG_HOME="$XDG_DATA_HOME/config"
+	export XDG_CONFIG_DIRS="$XDG_DATA_HOME/config"
+	export XDG_DATA_DIRS="$XDG_DATA_HOME/data"
+	export XDG_CACHE_HOME="$XDG_DATA_HOME/cache"
+	export XDG_RUNTIME_DIR="$XDG_DATA_HOME/runtime"
+
 
 	if [ -f "$BO_PACKAGES_DIR/github.com~bash-origin~bash.origin~0/source/installed/master/bash.origin" ]; then
 		# Use OUR Bash.Origin script from now on (even to handle the install if the previously

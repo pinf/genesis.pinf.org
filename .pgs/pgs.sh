@@ -14,37 +14,40 @@ function init {
 		local TARGET_PATH="$1"
 
 		BO_log "$VERBOSE" "Ensuring ignore file: $TARGET_PATH/.gitignore"
-		if [ ! -f "$TARGET_PATH/.gitignore" ]; then
-			BO_log "$VERBOSE" "Create ignore file: $TARGET_PATH/.gitignore"
-			touch "$TARGET_PATH/.gitignore"
-		fi
-		if ! grep -qe "^\/node_modules\/$" "$TARGET_PATH/.gitignore"; then
-			BO_log "$VERBOSE" "Append '/node_modules/' to ignore file: $TARGET_PATH/.gitignore"
-			# TODO: Do a cleaner append
-		    echo -e "\n/node_modules/" >> "$TARGET_PATH/.gitignore"
-		fi
-		if ! grep -qe "^\/.deps$" "$TARGET_PATH/.gitignore"; then
-			BO_log "$VERBOSE" "Append '/.deps' to ignore file: $TARGET_PATH/.gitignore"
-			# TODO: Do a cleaner append
-		    echo -e "\n/.deps" >> "$TARGET_PATH/.gitignore"
-		fi
-		if ! grep -qe "^\/boot$" "$TARGET_PATH/.gitignore"; then
-			BO_log "$VERBOSE" "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
-			# TODO: Do a cleaner append
-		    echo -e "\n/boot" >> "$TARGET_PATH/.gitignore"
-		fi
-		if ! grep -qe "^\/\.pgs$" "$TARGET_PATH/.gitignore"; then
-			BO_log "$VERBOSE" "Append '/.pgs' to ignore file: $TARGET_PATH/.gitignore"
-			# TODO: Do a cleaner append
-		    echo -e "\n/.pgs" >> "$TARGET_PATH/.gitignore"
-		fi
-		if [ -e "$TARGET_PATH/.gitmodules" ]; then
-			if ! grep -qe "^\/\.gitmodules\.initialized$" "$TARGET_PATH/.gitignore"; then
-				BO_log "$VERBOSE" "Append '/.gitmodules.initialized' to ignore file: $TARGET_PATH/.gitignore"
-				# TODO: Do a cleaner append
-			    echo -e "\n/.gitmodules.initialized" >> "$TARGET_PATH/.gitignore"
+
+		pushd "$TARGET_PATH" > /dev/null
+
+			# Ensure trailing newline
+			# @source http://stackoverflow.com/a/16198793/330439
+			[[ $(tail -c1 ".gitignore") && -f ".gitignore" ]] && echo '' >> ".gitignore"
+
+			if [ ! -f ".gitignore" ]; then
+				BO_log "$VERBOSE" "Create ignore file: .gitignore"
+				touch ".gitignore"
 			fi
-		fi
+			if ! grep -qe "^\/node_modules\/$" .gitignore; then
+				BO_log "$VERBOSE" "Append '/node_modules/' to ignore file: .gitignore"
+			    echo -e "\n/node_modules/" >> .gitignore
+			fi
+			if ! grep -qe "^\/\.deps$" .gitignore; then
+				BO_log "$VERBOSE" "Append '/.deps' to ignore file: $TARGET_PATH/.gitignore"
+			    echo -e "\n/.deps" >> .gitignore
+			fi
+			if ! grep -qe "^\/boot$" .gitignore; then
+				BO_log "$VERBOSE" "Append '/boot' to ignore file: $TARGET_PATH/.gitignore"
+			    echo -e "\n/boot" >> .gitignore
+			fi
+			if ! grep -qe "^\/\.pgs$" .gitignore; then
+				BO_log "$VERBOSE" "Append '/.pgs' to ignore file: $TARGET_PATH/.gitignore"
+			    echo -e "\n/.pgs" >> .gitignore
+			fi
+			if [ -e ".gitmodules" ]; then
+				if ! grep -qe "^\/\.gitmodules\.initialized$" .gitignore; then
+					BO_log "$VERBOSE" "Append '/.gitmodules.initialized' to ignore file: $TARGET_PATH/.gitignore"
+				    echo -e "\n/.gitmodules.initialized" >> .gitignore
+				fi
+			fi
+		popd > /dev/null
 
 		BO_log "$VERBOSE" "Copying boot file from '$PGS_DIR/../boot' to '$TARGET_PATH/boot'"
 		cp -f "$PGS_DIR/../boot" "$TARGET_PATH/boot"
@@ -290,6 +293,39 @@ function init {
 		popd > /dev/null
 	}
 
+	function ensureGitExclude {
+
+		function ensureGitExcludesForFile {
+			if [ ! -e "$1" ]; then
+				if [ ! -d "$(dirname "$1")" ]; then
+					mkdir -p "$(dirname "$1")"
+				fi
+				touch "$1"
+			fi
+
+			# Ensure trailing newline
+			# @source http://stackoverflow.com/a/16198793/330439
+			[[ $(tail -c1 "$1") && -f "$1" ]] && echo '' >> "$1"
+
+			if ! grep -qe "^\.installed$" "$1"; then
+				BO_log "$VERBOSE" "Append '.installed' to exclude file: '$1'"
+			    echo -e ".installed" >> "$1"
+			fi
+			if ! grep -qe "^\.smi-for-npm$" "$1"; then
+				BO_log "$VERBOSE" "Append '.smi-for-npm' to exclude file: '$1'"
+			    echo -e ".smi-for-npm" >> "$1"
+			fi
+		}
+
+		# @see http://git-scm.com/docs/git-config
+		if [ -z "$XDG_CONFIG_HOME" ]; then
+			echo "ERROR: 'XDG_CONFIG_HOME' environment varibale not set! It should have been set during booting!"
+			exit 1
+		fi
+
+		ensureGitExcludesForFile "$XDG_CONFIG_HOME/git/ignore"
+	}
+
 	function ensureProvisioned {
 		BO_format "$VERBOSE" "HEADER" "Provisioning base system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
@@ -307,6 +343,7 @@ function init {
 		if [ -e "$PGS_DIR/.provisioned" ]; then
 			BO_log "$VERBOSE" "Skip provision. Already provisioned."
 		else
+			ensureGitExclude
 			ensureDepsForClone "IS_CLONE"
 			pushd "$PGS_DIR" > /dev/null
 				BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"

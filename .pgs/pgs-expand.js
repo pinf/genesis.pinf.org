@@ -94,17 +94,105 @@ exports.for = function (API) {
 		});
 	}
 
-/*
 	exports.turn = function (resolvedConfig) {
-		if (
-			resolvedConfig.workspaceFilesVariables &&
-			resolvedConfig.workspaceFilesVariables[lastPath] &&
-			typeof resolvedConfig.workspaceFilesVariables[lastPath][matched] !== "undefined"
-		) {
-			return resolvedConfig.workspaceFilesVariables[lastPath][matched];
+
+		function ensureXDGEnvironment () {
+			// The Environment variables are already set. Now we ensure the directories exist.
+			// @see http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+			var paths = [
+				API.PATH.join(resolvedConfig.workspaceVariables.XDG_DATA_HOME, "data"),
+				resolvedConfig.workspaceVariables.XDG_CONFIG_HOME,
+				resolvedConfig.workspaceVariables.XDG_CACHE_HOME,
+				resolvedConfig.workspaceVariables.XDG_RUNTIME_DIR
+			];
+			paths.forEach(function (path) {
+				if (!API.FS.existsSync(path)) {
+					API.FS.mkdirsSync(path);
+				}
+			});
+			return API.Q.resolve();
 		}
+
+		function ensureGitExcludesInGitRepositories () {
+
+			var excludeRulesPath = API.PATH.join(resolvedConfig.workspaceVariables.XDG_CONFIG_HOME, "git/ignore");
+			var excludeRules = API.FS.readFileSync(excludeRulesPath, "utf8");
+			excludeRules = excludeRules.split("\n").filter(function (line) {
+				if (!line || /^#/.test(line)) return false;
+				return true;
+			});
+			API.console.verbose("Loaded git exclude rules from file '" + excludeRulesPath + "': " + JSON.stringify(excludeRules, null, 4));
+
+			// @see https://help.github.com/articles/ignoring-files/#explicit-repository-excludes			
+			function ensureGitExcludesForGitPath (gitPath, callback) {
+				if (!API.FS.existsSync(API.PATH.join(gitPath, "info/exclude"))) {
+					API.FS.writeFileSync(API.PATH.join(gitPath, "info/exclude"), "", "utf8");
+				}
+				var excludes = API.FS.readFileSync(API.PATH.join(gitPath, "info/exclude"), "utf8");
+				var lengthBefore = excludes.length;
+				excludes = excludes.split("\n");
+				excludeRules.forEach(function (rule) {
+					if (excludes.indexOf(rule) === -1) {
+						API.console.verbose("Append rule '" + rule + "' to exclude file: '" + gitPath + "/info/exclude'");
+						excludes.push(rule);
+					}
+				});
+				excludes = excludes.join("\n");
+				if (excludes.length !== lengthBefore) {
+					API.FS.writeFileSync(API.PATH.join(gitPath, "info/exclude"), excludes, "utf8");
+				}
+				function traverseUntilAllFound (basePath, callback) {
+					return API.FS.readdir(basePath, function (err, filenames) {
+						if (err) return callback(err);
+						var headFound = false;
+						filenames.forEach(function (filename) {
+							if (headFound === true) return;
+							if (filename === "HEAD") {
+								headFound = true;
+							}
+						});
+						if (headFound) {
+							return ensureGitExcludesForGitPath(basePath, callback);
+						}
+						var waitfor = API.WAITFOR.parallel(callback);
+						filenames.forEach(function (filename) {
+							return waitfor(API.PATH.join(basePath, filename), traverseUntilAllFound);
+						});
+						return waitfor();
+					});
+				}
+				return API.FS.exists(API.PATH.join(gitPath, "modules"), function (exists) {
+					if (!exists) {
+						return callback(null);
+					}
+					return traverseUntilAllFound(API.PATH.join(gitPath, "modules"), callback);
+				});
+			}
+
+			return API.Q.denodeify(function (callback) {
+				var gitPath = API.PATH.join(resolvedConfig.workspaceVariables.PGS_WORKSPACE_ROOT, ".git");
+				return API.FS.exists(gitPath, function (exists) {
+					if (!exists) {
+						return callback(null);
+					}
+					return API.FS.stat(gitPath, function (err, stat) {
+						if (err) return callback(err);
+						if (stat.isFile()) {
+							var path = API.PATH.join(gitPath, "..", API.FS.readFileSync(gitPath, "utf8").match(/^gitdir: (.*)\n/)[1]);
+							return ensureGitExcludesForGitPath(path, callback);
+						} else {
+							return ensureGitExcludesForGitPath(gitPath, callback);
+						}
+					});
+				});
+			})();
+		}
+
+		return ensureXDGEnvironment().then(function () {
+
+			return ensureGitExcludesInGitRepositories();
+		});
 	}
-*/
 
 	return exports;
 }
