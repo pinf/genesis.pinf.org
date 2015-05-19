@@ -116,6 +116,12 @@ exports.for = function (API) {
 		function ensureGitExcludesInGitRepositories () {
 
 			var excludeRulesPath = API.PATH.join(resolvedConfig.workspaceVariables.XDG_CONFIG_HOME, "git/ignore");
+
+			if (!API.FS.existsSync(excludeRulesPath)) {
+				API.console.verbose("Skip loading git exclude rules from file '" + excludeRulesPath + "' as it does not exist. Also skip writing git exclude files into submodule repositories.");
+				return API.Q.resolve();
+			}
+
 			var excludeRules = API.FS.readFileSync(excludeRulesPath, "utf8");
 			excludeRules = excludeRules.split("\n").filter(function (line) {
 				if (!line || /^#/.test(line)) return false;
