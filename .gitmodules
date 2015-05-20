@@ -40,3 +40,6 @@
 [submodule ".deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master"]
 	path = .deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master
 	url = git@github.com:pinf-it/pinf-it-package-insight.git
+[submodule ".deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master"]
+	path = .deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master
+	url = git@github.com:sourcemint/org.sourcemint.genesis.lib.git

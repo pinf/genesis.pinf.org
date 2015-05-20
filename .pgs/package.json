@@ -50,7 +50,14 @@
             ],
             "location": "../.deps/github.com~bash-origin~bash.origin.sourcemint~0/source/installed/master",
             "install": true
-        },        
+        },
+        "org.sourcemint.genesis.lib": {
+            "depends": {
+                "org.pinf.genesis.lib"
+            },
+            "location": "../.deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master",
+            "install": true
+        },
         "pinf-it-filetree-insight": {
             "depends": [
                 "smi-for-npm"

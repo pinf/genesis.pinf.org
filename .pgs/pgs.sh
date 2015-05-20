@@ -272,9 +272,15 @@ function init {
 			# If 'github.com~sourcemint~smi~0' is found in central cache we
 			# use it instead of the one from genesis.pinf.org.
 			if [ -L "$HOME/.bash.origin.cache/github.com~sourcemint~smi~0/source/installed/master" ]; then
-				BO_log "$VERBOSE" "Linking 'github.com~sourcemint~smi~0' from '$HOME/.bash.origin.cache/github.com~sourcemint~smi~0' to '$PGS_WORKSPACE_ROOT.deps/github.com~sourcemint~smi~0'."
+				BO_log "$VERBOSE" "Linking 'github.com~sourcemint~smi~0' from '$HOME/.bash.origin.cache/github.com~sourcemint~smi~0' to '$PGS_WORKSPACE_ROOT/.deps/github.com~sourcemint~smi~0'."
 				rm -Rf ".deps/github.com~sourcemint~smi~0"
 				ln -s "$HOME/.bash.origin.cache/github.com~sourcemint~smi~0" ".deps/github.com~sourcemint~smi~0"
+			fi
+			if [ -e "node_modules/bash.origin" ]; then
+			if [ -L "$HOME/.bash.origin.cache/github.com~bash-origin~bash.origin~0/source/installed/master" ]; then
+				BO_log "$VERBOSE" "Linking from '$HOME/.bash.origin.cache/github.com~bash-origin~bash.origin~0/source/installed/master' to '$PGS_WORKSPACE_ROOT/node_modules/bash.origin'."
+				rm -Rf "node_modules/bash.origin" > /dev/null || true
+				ln -s "$HOME/.bash.origin.cache/github.com~bash-origin~bash.origin~0/source/installed/master" "node_modules/bash.origin"
 			fi
 		popd > /dev/null
 	}
