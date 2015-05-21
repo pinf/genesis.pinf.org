@@ -52,9 +52,9 @@
             "install": true
         },
         "org.sourcemint.genesis.lib": {
-            "depends": {
+            "depends": [
                 "org.pinf.genesis.lib"
-            },
+            ],
             "location": "../.deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master",
             "install": true
         },

@@ -64,6 +64,13 @@ function init {
  	BO_checkVerbose "VERBOSE" "$@"
 
 
+ 	# TODO: Move these elsewhere
+ 	if [ "$VERBOSE" == "1" ]; then
+ 		# @see https://github.com/kriskowal/q#long-stack-traces
+	 	export Q_DEBUG=1
+ 	fi
+
+
  	function activateProfile {
 		if [ -e "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh" ]; then
 			BO_sourcePrototype "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh"
