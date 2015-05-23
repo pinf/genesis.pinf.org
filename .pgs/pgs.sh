@@ -203,7 +203,7 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Turning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
+			BO_callPlugin "bash.origin.pinf@0.1.2" pto turn $@
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}
@@ -214,7 +214,7 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Spinning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto spin $@
+			BO_callPlugin "bash.origin.pinf@0.1.2" pto spin $@
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}
