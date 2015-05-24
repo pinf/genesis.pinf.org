@@ -66,18 +66,20 @@ if (FS.existsSync(depsPath)) {
 				if (FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master", ".smi-for-npm"))) {
 					commands.push('rm -f ' + PATH.join(".deps", dir, "source", "installed", "master", ".smi-for-npm"));
 				}
-			}
-			var globalPath = PATH.join(process.env.HOME, ".bash.origin.cache", dir, "source", "installed", "master");
-			if (
-				FS.existsSync(globalPath) &&
-				FS.lstatSync(globalPath).isSymbolicLink() &&
-				FS.existsSync(PATH.join(depsPath, dir)) &&
-				FS.existsSync(PATH.join(depsPath, dir, "source")) &&
-				FS.existsSync(PATH.join(depsPath, dir, "source", "installed")) &&
-				FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master")) &&
-				FS.realpathSync(globalPath) === FS.realpathSync(PATH.join(depsPath, dir, "source", "installed", "master"))
-			) {
-				commands.push('rm -f ' + globalPath);
+
+				// If not symlinked we see if our service is linked globally
+				var globalPath = PATH.join(process.env.BO_SYSTEM_CACHE_DIR, dir, "source", "installed", "master");
+				if (
+					FS.existsSync(globalPath) &&
+					FS.lstatSync(globalPath).isSymbolicLink() &&
+					FS.existsSync(PATH.join(depsPath, dir)) &&
+					FS.existsSync(PATH.join(depsPath, dir, "source")) &&
+					FS.existsSync(PATH.join(depsPath, dir, "source", "installed")) &&
+					FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master")) &&
+					FS.realpathSync(globalPath) === FS.realpathSync(PATH.join(depsPath, dir, "source", "installed", "master"))
+				) {
+					commands.push('rm -f ' + globalPath);
+				}
 			}
 		});
 	}
