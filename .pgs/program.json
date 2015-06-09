@@ -41,6 +41,9 @@
         },
 		"github.com/sourcemint/smt-copy/0": {
 			"$to": "pgs-expand-copy",
+			"$depends": [
+				"pgs-smi-git"
+			],
 			"fromPath": "{{__DIRNAME__}}/vortex",
 			"toPath": "{{$from.pgs-expand.workspaceRoot}}",
 			"ignore": {
