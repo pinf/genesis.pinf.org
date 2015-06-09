@@ -30,6 +30,13 @@
             "location": "../.deps/github.com~sourcemint~smi-for-npm~0/source/installed/master",
             "install": true
         },
+        "smi-for-git": {
+            "depends": [
+                "smi-for-npm"
+            ],
+            "location": "../.deps/github.com~sourcemint~smi-for-git~0/source/installed/master",
+            "install": true
+        },
     	"bash.origin.pinf": {
             "depends": [
                 "smi-for-npm"

@@ -43,3 +43,6 @@
 [submodule ".deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master"]
 	path = .deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master
 	url = git@github.com:sourcemint/org.sourcemint.genesis.lib.git
+[submodule ".deps/github.com~sourcemint~smi-for-git~0/source/installed/master"]
+	path = .deps/github.com~sourcemint~smi-for-git~0/source/installed/master
+	url = git@github.com:sourcemint/smi-for-git.git

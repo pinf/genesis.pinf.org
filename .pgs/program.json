@@ -36,6 +36,9 @@
 			"workspaceFiles": "{{getWorkspaceFiles()}}",
 			"@translocate": "!{{__DIRNAME__}}/../PINF.json"
 		},
+        "github.com/sourcemint/smi-for-git/0": {
+			"$to": "pgs-smi-git"
+        },
 		"github.com/sourcemint/smt-copy/0": {
 			"$to": "pgs-expand-copy",
 			"fromPath": "{{__DIRNAME__}}/vortex",
