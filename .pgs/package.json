@@ -3,10 +3,12 @@
     "mappings": {
     	"bash.origin": {
             "location": "../.deps/github.com~bash-origin~bash.origin~0/source/installed/master",
+            "giturl": "git@github.com:bash-origin/bash.origin.git",
             "install": true
         },
         "fswalker": {
             "location": "../.deps/github.com~cadorn~fswalker~0/source/installed/master",
+            "giturl": "git@github.com:cadorn/fswalker.git",
             "install": true
         },
         "smi": {
@@ -14,6 +16,7 @@
                 "org.pinf.lib"
             ],
             "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
+            "giturl": "git@github.com:sourcemint/smi.git",
             "install": false
         },
         "smi.cli": {
@@ -21,10 +24,12 @@
                 "org.pinf.lib"
             ],
             "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
+            "giturl": "git@github.com:sourcemint/smi.git",
             "install": false
         },
         "pinf-it-package-insight": {
             "location": "../.deps/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master",
+            "giturl": "git@github.com:pinf-it/pinf-it-package-insight.git",
             "install": true
         },
         "smi-for-npm": {
@@ -34,6 +39,7 @@
                 "pinf-it-package-insight"
             ],
             "location": "../.deps/github.com~sourcemint~smi-for-npm~0/source/installed/master",
+            "giturl": "git@github.com:sourcemint/smi-for-npm.git",
             "install": true
         },
         "smi-for-git": {
@@ -41,6 +47,7 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~sourcemint~smi-for-git~0/source/installed/master",
+            "giturl": "git@github.com:sourcemint/smi-for-git.git",
             "install": true
         },
     	"bash.origin.pinf": {
@@ -48,6 +55,7 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~bash-origin~bash.origin.pinf~0/source/installed/master",
+            "giturl": "git@github.com:bash-origin/bash.origin.pinf.git",
             "install": true
         },
         "bash.origin.prompt": {
@@ -55,6 +63,7 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~bash-origin~bash.origin.prompt~0/source/installed/master",
+            "giturl": "git@github.com:bash-origin/bash.origin.prompt.git",
             "install": true
         },
         "bash.origin.sourcemint": {
@@ -62,6 +71,7 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~bash-origin~bash.origin.sourcemint~0/source/installed/master",
+            "giturl": "git@github.com:bash-origin/bash.origin.sourcemint.git",
             "install": true
         },
         "org.sourcemint.genesis.lib": {
@@ -69,6 +79,7 @@
                 "org.pinf.genesis.lib"
             ],
             "location": "../.deps/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master",
+            "giturl": "git@github.com:sourcemint/org.sourcemint.genesis.lib.git",
             "install": true
         },
         "pinf-it-filetree-insight": {
@@ -76,6 +87,7 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~pinf-it~pinf-it-filetree-insight~0/source/installed/master",
+            "giturl": "git@github.com:pinf-it/pinf-it-filetree-insight.git",
             "install": true
         },
         "pto-for-npm": {
@@ -85,6 +97,7 @@
                 "to.pinf.lib"
             ],
             "location": "../.deps/github.com~pinf-to~pto-for-npm~0/source/installed/master",
+            "giturl": "git@github.com:pinf-to/pto-for-npm.git",
             "install": true
         },
         "to.pinf.lib": {
@@ -94,6 +107,7 @@
                 "org.pinf.genesis.lib"
             ],
             "location": "../.deps/github.com~pinf-to~to.pinf.lib~0/source/installed/master",
+            "giturl": "git@github.com:pinf-to/to.pinf.lib.git",
             "install": true
         },
         "org.pinf.genesis.lib": {
@@ -103,6 +117,7 @@
                 "org.pinf.lib"
             ],
             "location": "../.deps/github.com~pinf~org.pinf.genesis.lib~0/source/installed/master",
+            "giturl": "git@github.com:pinf/org.pinf.genesis.lib.git",
             "install": true
         },
         "org.pinf.lib": {
@@ -111,6 +126,7 @@
                 "bash.origin"
             ],
             "location": "../.deps/github.com~pinf~org.pinf.lib~0/source/installed/master",
+            "giturl": "git@github.com:pinf/org.pinf.lib.git",
             "install": true
         },
         "smt-copy": {
@@ -118,6 +134,7 @@
                 "smi-for-npm"
             ],
             "location": "../.deps/github.com~sourcemint~smt-copy~0/source/installed/master",
+            "giturl": "git@github.com:sourcemint/smt-copy.git",
             "install": true
         },
         "@translocate": "!{{__DIRNAME__}}/../PINF.json"

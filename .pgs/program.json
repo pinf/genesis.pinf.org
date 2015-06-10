@@ -37,7 +37,8 @@
 			"@translocate": "!{{__DIRNAME__}}/../PINF.json"
 		},
         "github.com/sourcemint/smi-for-git/0": {
-			"$to": "pgs-smi-git"
+			"$to": "pgs-smi-git",
+			"gitRootPath": "{{env.PGS_WORKSPACE_ROOT}}"
         },
 		"github.com/sourcemint/smt-copy/0": {
 			"$to": "pgs-expand-copy",
