@@ -10,10 +10,16 @@
             "install": true
         },
         "smi": {
+            "depends": [
+                "org.pinf.lib"
+            ],
             "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
             "install": false
         },
         "smi.cli": {
+            "depends": [
+                "org.pinf.lib"
+            ],
             "location": "../.deps/github.com~sourcemint~smi~0/source/installed/master",
             "install": false
         },
