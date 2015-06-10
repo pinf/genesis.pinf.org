@@ -368,6 +368,16 @@ function init {
 					 	if [ ! -L "node_modules/org.pinf.lib" ]; then
 							BO_isInSystemCache "PL_BASE_PATH" "github.com/pinf/org.pinf.lib" "0.x"
 					 		if [ -e "$PL_BASE_PATH" ]; then
+								pushd "$PL_BASE_PATH" > /dev/null
+									if [ ! -e "node_modules" ]; then
+										BO_log "$VERBOSE" "Install org.pinf.lib using 'npm install' in directory '$PL_BASE_PATH'"
+									 	if [ "$VERBOSE" == "1" ]; then
+											BO_run_npm install --production
+									 	else
+											BO_run_npm install --production > /dev/null
+									 	fi
+									fi
+								popd > /dev/null
 								BO_log "$VERBOSE" "Linking '$PL_BASE_PATH' to '$SMI_BASE_PATH/node_modules/org.pinf.lib'"
 						 		rm -Rf "node_modules/org.pinf.lib"
 						 		ln -s "$PL_BASE_PATH" "node_modules/org.pinf.lib"
