@@ -362,6 +362,18 @@ function init {
 					 	else
 							BO_run_npm install --production > /dev/null
 					 	fi
+
+					 	# Link some packages we have to hack on smi.
+					 	# NOTE: The packages need to be installed first.
+					 	if [ ! -L "node_modules/org.pinf.lib" ]; then
+							BO_isInSystemCache "PL_BASE_PATH" "github.com/pinf/org.pinf.lib" "0.x"
+					 		if [ -e "$PL_BASE_PATH" ]; then
+								BO_log "$VERBOSE" "Linking '$PL_BASE_PATH' to '$SMI_BASE_PATH/node_modules/org.pinf.lib'"
+						 		rm -Rf "node_modules/org.pinf.lib"
+						 		ln -s "$PL_BASE_PATH" "node_modules/org.pinf.lib"
+					 		fi
+					 	fi
+
 						touch ".installed"
 						BO_log "$VERBOSE" "... smi install done"
 					fi
@@ -371,6 +383,10 @@ function init {
 			 	else
 					BO_run_smi install > /dev/null
 			 	fi
+
+			 	# TODO: Run an smi command to link all unlinked node_modules dependencies
+			 	#       for which we now have provisioned dependencies now that everything is installed.
+
 				touch ".provisioned"
 			popd > /dev/null
 			if [ "$IS_CLONE" == "1" ]; then
