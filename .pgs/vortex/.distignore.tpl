@@ -15,6 +15,13 @@
 /program.json
 
 
+# TODO: Remove these once file-watching can be selectively enabled
+#       and intelligently monitored with "github.com/pinf-it/pinf-it-filetree-insight/0"
+/.deps/
+/.pinf/
+/node_modules/
+
+
 ##################################################
 # Custom rules
 ##################################################
