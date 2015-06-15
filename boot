@@ -38,9 +38,15 @@ function init {
 	export BO_SYSTEM_CACHE_DIR="$BO_PACKAGES_DIR"
 
 	# Global static cache for SMI
-	export SMI_CACHE_DIRPATH="$PGS_PINF_DIRPATH/github.com~sourcemint~smi~0/cache"
+	if [ -z "$SMI_CACHE_DIRPATH" ]; then
+		export SMI_CACHE_DIRPATH="$PGS_PINF_DIRPATH/github.com~sourcemint~smi~0/cache"
+	fi
 
-	export PIO_PROFILE_PATH="$__BO_DIR__/../$(basename $__BO_DIR__).profile.json"
+	if [ -z "$PIO_PROFILE_PATH" ]; then
+		BO_realpath "PIO_PROFILE_PATH" "$__BO_DIR__/../$(basename $__BO_DIR__).profile.json"
+		export PIO_PROFILE_PATH
+	fi
+
 
 	# XDG Base Directory Specification
 	# @see http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
