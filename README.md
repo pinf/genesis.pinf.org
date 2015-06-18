@@ -8,7 +8,7 @@ PINF.Genesis System (PGS)
   * Web Software Systems and
   * Web Software Development Workspaces
 
-[PINF](http://pinf.org) is an abstract **Virtual Holographic Nodal Platform** discovered over more than 15 years of trial and error. **PINF.Genesis** is my first publicly consumable iteration of the implementation of the virtual PINF system.
+[PINF](http://pinf.org) is an abstract **Virtual Holographic Nodal Platform** discovered over more than 15 years of trial and error. **PINF.Genesis** is my first isomorphic publicly consumable iteration of the implementation of the virtual PINF system.
 
 Requirements:
 
