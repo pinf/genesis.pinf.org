@@ -182,7 +182,7 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_EPOCH="expand.genesis.pinf.org"
-			BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
+			BO_callPlugin "bash.origin.pinf@0.1.2" pto turn $@
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/$PGS_PINF_EPOCH/uid"`"
 		popd > /dev/null
 		if [ ! -e "$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID" ]; then
