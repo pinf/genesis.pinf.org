@@ -182,7 +182,12 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_EPOCH="expand.genesis.pinf.org"
-			BO_callPlugin "bash.origin.pinf@0.1.2" pto turn $@
+			# TODO: Clean this up once we publish packages nicer.
+			if [ -e "$PGS_DIRPATH/../node_modules/pto-for-npm" ]; then
+				"$PGS_DIRPATH/../node_modules/pto-for-npm/bin/pto" turn $@
+			else
+				BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
+			fi
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/$PGS_PINF_EPOCH/uid"`"
 		popd > /dev/null
 		if [ ! -e "$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID" ]; then
@@ -203,7 +208,7 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Turning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
-			BO_callPlugin "bash.origin.pinf@0.1.2" pto turn $@
+			BO_callPlugin "bash.origin.pinf@0.1.7" pto turn $@
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}
@@ -214,7 +219,7 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Spinning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
-			BO_callPlugin "bash.origin.pinf@0.1.2" pto spin $@
+			BO_callPlugin "bash.origin.pinf@0.1.7" pto spin $@
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}

@@ -132,6 +132,9 @@ exports.for = function (API) {
 			// @see https://help.github.com/articles/ignoring-files/#explicit-repository-excludes			
 			function ensureGitExcludesForGitPath (gitPath, callback) {
 				if (!API.FS.existsSync(API.PATH.join(gitPath, "info/exclude"))) {
+					if (!API.FS.existsSync(API.PATH.join(gitPath, "info"))) {
+						API.FS.mkdirSync(API.PATH.join(gitPath, "info"));
+					}
 					API.FS.writeFileSync(API.PATH.join(gitPath, "info/exclude"), "", "utf8");
 				}
 				var excludes = API.FS.readFileSync(API.PATH.join(gitPath, "info/exclude"), "utf8");
