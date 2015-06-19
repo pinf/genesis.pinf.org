@@ -99,7 +99,7 @@ function init {
 	fi
 
 	# We always need to expand the PGS system to ensure all minimal code is in position.
-	pgsExpand
+	pgsExpand $@
 	# We call it again to updated any changes after expansion.
 	activateProfile
 
