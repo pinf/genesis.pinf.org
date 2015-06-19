@@ -184,7 +184,8 @@ function init {
 			export PGS_PINF_EPOCH="expand.genesis.pinf.org"
 			# TODO: Clean this up once we publish packages nicer.
 			if [ -e "$PGS_DIRPATH/../node_modules/pto-for-npm" ]; then
-				"$PGS_DIRPATH/../node_modules/pto-for-npm/bin/pto" turn $@
+				BO_sourcePrototype "$PGS_DIRPATH/../node_modules/pto-for-npm/bin/pto"
+				runFor "`pwd`" turn $@
 			else
 				BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
 			fi
