@@ -77,6 +77,13 @@ function init {
  	fi
 
 
+ 	if [ "$VERBOSE" == "1" ]; then
+ 		if BO_has printenv ; then
+	 		printenv
+	 	fi
+ 	fi
+
+
  	function activateProfile {
 		if [ -e "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh" ]; then
 			BO_sourcePrototype "$__BO_DIR__/../$(basename $__BO_DIR__).activate.sh"
