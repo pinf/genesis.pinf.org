@@ -1,7 +1,14 @@
 {
 	"uid": "expand.genesis.pinf.org",
     "mappings": {
+        "sm.resolve": {
+            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.resolve~0/source/installed/master",
+            "install": true
+        },
     	"bash.origin": {
+            "depends": [
+                "sm.resolve"
+            ],
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~bash-origin~bash.origin~0/source/installed/master",
             "install": true
         },
@@ -11,6 +18,7 @@
         },
         "smi": {
             "depends": [
+                "sm.resolve",
                 "org.pinf.lib"
             ],
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smi~0/source/installed/master",
