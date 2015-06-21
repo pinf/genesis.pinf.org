@@ -359,6 +359,39 @@ function init {
 			ensureGitExclude
 			ensureDepsForClone "IS_CLONE"
 			pushd "$PGS_DIR" > /dev/null
+
+				# Link source resolver so we can override lookups for dev and easy system ops.
+				BO_isInSystemCache "SMRESOLVE_BASE_PATH" "github.com/sourcemint/sm.resolve" "0.1.0"
+				pushd "$SMRESOLVE_BASE_PATH" > /dev/null
+					if [ ! -e ".installed" ]; then
+						BO_log "$VERBOSE" "Install sm.resolve using 'npm install' in directory '$SMRESOLVE_BASE_PATH' ..."
+					 	if [ "$VERBOSE" == "1" ]; then
+							BO_run_npm install --production
+					 	else
+							BO_run_npm install --production > /dev/null
+					 	fi
+						touch ".installed"
+						BO_log "$VERBOSE" "... sm.resolve install done"
+					fi
+				popd > /dev/null
+				pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+					if [ ! -e "node_modules" ]; then
+						mkdir "node_modules"
+					fi
+					if [ ! -e "node_modules/sm.resolve" ]; then
+						rm -Rf "node_modules/sm.resolve" > /dev/null || true
+						ln -s "$SMRESOLVE_BASE_PATH" "node_modules/sm.resolve"
+					fi
+					if [ ! -e "bin" ]; then
+						mkdir "bin"
+					fi
+					if [ ! -e "bin/sm.resolve" ]; then
+						rm -Rf "bin/sm.resolve" > /dev/null || true
+						ln -s "$SMRESOLVE_BASE_PATH/sm.resolve" "bin/sm.resolve"
+					fi
+				popd > /dev/null
+
+				# Use our own smi installer if provided in system
 				BO_isInSystemCache "SMI_BASE_PATH" "github.com/sourcemint/smi" "0.x"
 				pushd "$SMI_BASE_PATH" > /dev/null
 					if [ ! -e ".installed" ]; then
@@ -394,6 +427,10 @@ function init {
 						BO_log "$VERBOSE" "... smi install done"
 					fi
 				popd > /dev/null
+
+				# Use smi installer from bash.origin which may download it if not installed.
+				# bash.origin may use the same cache path as us above so it will be available
+				# above on the second run.
 			 	if [ "$VERBOSE" == "1" ]; then
 					BO_run_smi install -vd
 			 	else
