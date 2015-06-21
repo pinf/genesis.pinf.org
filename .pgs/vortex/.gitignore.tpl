@@ -39,6 +39,7 @@
 /bin/node
 /bin/npm
 /bin/smi
+/bin/sm.resolve
 /bin/activate
 /bin/activate.js
 /bin/clean
