@@ -91,6 +91,35 @@ exports.for = function (API) {
 					return basename;
 				});
 			}
+		}).then(function (resolvedConfig) {
+
+
+			function resetCacheIfPGSChanged () {
+
+				return API.Q.fcall(function () {
+
+					var pgsProvisionTime = ""+API.FS.statSync(resolvedConfig.workspaceVariables.PGS_DIRPATH).mtime.getTime();
+
+					if (
+						!(
+							previousResolvedConfig &&
+							previousResolvedConfig.provisionTime === pgsProvisionTime
+						)
+					) {
+
+						resolvedConfig.provisionTime = pgsProvisionTime;
+
+						API.console.verbose("Resetting 'PGS_PINF_DIRPATH' (" + resolvedConfig.workspaceVariables.PGS_PINF_DIRPATH + ") as 'PGS_DIRPATH' mtime changed!");
+
+						API.forceTurnAllFurtherNodes();
+					}
+				});
+			}
+
+			return resetCacheIfPGSChanged().then(function () {
+
+				return resolvedConfig;
+			});
 		});
 	}
 
