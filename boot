@@ -44,6 +44,9 @@ function init {
 
 	if [ -z "$PIO_PROFILE_PATH" ]; then
 		BO_realpath "PIO_PROFILE_PATH" "$__BO_DIR__/../$(basename $__BO_DIR__).profile.json"
+		if [ "$PIO_PROFILE_PATH" == "" ]; then
+			PIO_PROFILE_PATH="$__BO_DIR__/profile.json"
+		fi
 		export PIO_PROFILE_PATH
 	fi
 
