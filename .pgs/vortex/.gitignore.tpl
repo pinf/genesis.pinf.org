@@ -67,6 +67,7 @@
 !/.cleanignore
 !/vortex.js
 !/package.json
+!/profile.json
 
 
 # Mark the end of all files that will be cleaned
