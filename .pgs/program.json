@@ -2,7 +2,7 @@
 	"uid": "expand.genesis.pinf.org",
 	"boot": {
 		"config": "expand/0",
-		"package": "./package.json"
+		"package": "{{__DIRNAME__}}/package.json"
 	},
 	"config": {		
 		"expand/0": {

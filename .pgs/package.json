@@ -128,13 +128,13 @@
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smt-copy~0/source/installed/master",
             "install": true
         },
-        "@translocate": "!{{__DIRNAME__}}/../PINF.json"
+        "@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
     },
     "config": {
     	"smi.cli": {
 	        "latestOnly": false,
-            "packagesDirectory": "../node_modules",
-            "binDirectory": "../node_modules/.bin"
+            "packagesDirectory": "{{env.PGS_WORKSPACE_ROOT}}/node_modules",
+            "binDirectory": "{{env.PGS_WORKSPACE_ROOT}}/node_modules/.bin"
 	    }
     }
 }
