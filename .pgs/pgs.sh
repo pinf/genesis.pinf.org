@@ -199,6 +199,13 @@ function init {
 			fi
 			ln -s "$PGS_WORKSPACE_ROOT" "$PGS_REGISTRY_DIRPATH/workspaces/$PGS_WORKSPACE_UID"
 		fi
+		# Call postinstall if available
+		# TODO: Copy bin template from default on expand and use 'postinstall.extra'.
+		if [ -f "$PGS_WORKSPACE_ROOT/bin/postinstall" ]; then
+			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+				bin/postinstall
+			popd > /dev/null
+		fi
 		BO_format "$VERBOSE" "FOOTER"
 	}
 
