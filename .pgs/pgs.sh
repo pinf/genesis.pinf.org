@@ -341,6 +341,10 @@ function init {
 
 	function ensureProvisioned {
 		BO_format "$VERBOSE" "HEADER" "Provisioning base system"
+
+		BO_log "$VERBOSE" "Using PGS_WORKSPACE_ROOT: $PGS_WORKSPACE_ROOT"
+		BO_log "$VERBOSE" "Using PGS_DIR: $PGS_DIR"
+
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			if [ -f ".gitmodules" ]; then
 				if [ ! -f ".gitmodules.initialized" ]; then
