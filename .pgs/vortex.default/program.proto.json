@@ -40,6 +40,9 @@
 						},
 						"BO_PACKAGES_DIR": {
 							"value": "{{env.BO_PACKAGES_DIR}}"
+						},
+						"BO_GLOBAL_SYSTEM_CACHE_DIR": {
+							"value": "{{env.BO_GLOBAL_SYSTEM_CACHE_DIR}}"
 						}
 					}
 				}

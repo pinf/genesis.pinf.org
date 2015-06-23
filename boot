@@ -35,6 +35,11 @@ function init {
 	fi
 	export PGS_PACKAGES_DIRPATH="$PGS_WORKSPACE_ROOT/.deps"
 	export BO_PACKAGES_DIR="$PGS_PACKAGES_DIRPATH"
+
+	if [ -z "$BO_GLOBAL_SYSTEM_CACHE_DIR" ]; then
+		BO_ensure_env_HOME "Use default .bash.origin.cache"
+		export BO_GLOBAL_SYSTEM_CACHE_DIR="$HOME/.bash.origin.cache"
+	fi
 	export BO_SYSTEM_CACHE_DIR="$BO_PACKAGES_DIR"
 
 	# Global static cache for SMI

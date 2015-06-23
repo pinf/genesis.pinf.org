@@ -226,9 +226,55 @@ exports.for = function (API) {
 			})();
 		}
 
+		function ensureInGlobalBashOriginSystemCache () {
+			return API.Q.denodeify(function (callback) {
+
+				if (!resolvedConfig.workspaceVariables.BO_GLOBAL_SYSTEM_CACHE_DIR) {
+					API.console.verbose("Skip linking '" + resolvedConfig.workspaceVariables.PGS_WORKSPACE_ROOT + "' to Bash.Origin system cache as 'BO_GLOBAL_SYSTEM_CACHE_DIR' not set!");
+					return callback(null);
+				}
+
+				var globalPath = API.PATH.join(
+					resolvedConfig.workspaceVariables.BO_GLOBAL_SYSTEM_CACHE_DIR,
+					resolvedConfig.workspaceVariables.UID,
+					"source/installed/master"
+				);
+
+				function link (callback) {
+					try {
+						API.FS.removeSync(globalPath);
+					} catch (err) {}
+					if (!API.FS.existsSync(API.PATH.dirname(globalPath))) {
+						API.FS.mkdirsSync(API.PATH.dirname(globalPath));
+					}
+					return API.FS.symlink(
+						resolvedConfig.workspaceVariables.PGS_WORKSPACE_ROOT,
+						globalPath,
+						callback
+					);
+				}
+
+				return API.FS.exists(globalPath, function (exists) {
+					if (exists) {
+						return API.FS.lstat(globalPath, function (err, stat) {
+							if (err) return callback(err);
+							if (stat.isSymbolicLink()) {
+								return callback(null);
+							}
+							return link(callback);
+						});
+					}
+					return link(callback);
+				});
+			})();
+		}
+
 		return ensureXDGEnvironment().then(function () {
 
-			return ensureGitExcludesInGitRepositories();
+			return ensureGitExcludesInGitRepositories().then(function () {
+
+				return ensureInGlobalBashOriginSystemCache();
+			});
 		});
 	}
 
