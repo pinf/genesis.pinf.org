@@ -335,6 +335,10 @@ function init {
 				BO_log "$VERBOSE" "Append '.smi-for-npm' to exclude file: '$1'"
 			    echo -e ".smi-for-npm" >> "$1"
 			fi
+			if ! grep -qe "^npm-debug\.log$" "$1"; then
+				BO_log "$VERBOSE" "Append 'npm-debug.log' to exclude file: '$1'"
+			    echo -e "npm-debug.log" >> "$1"
+			fi
 		}
 
 		# @see http://git-scm.com/docs/git-config
