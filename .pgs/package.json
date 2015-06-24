@@ -5,6 +5,13 @@
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.resolve~0/source/installed/master",
             "install": true
         },
+        "sm.expand": {
+            "depends": [
+                "sm.resolve"
+            ],
+            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.expand~0/source/installed/master",
+            "install": true
+        },
     	"bash.origin": {
             "depends": [
                 "sm.resolve"

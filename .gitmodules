@@ -52,3 +52,6 @@
 [submodule ".deps/github.com~cadorn~ncp~0/source/installed/master"]
 	path = .deps/github.com~cadorn~ncp~0/source/installed/master
 	url = git@github.com:cadorn/ncp.git
+[submodule ".deps/github.com~sourcemint~sm.expand~0/source/installed/master"]
+	path = .deps/github.com~sourcemint~sm.expand~0/source/installed/master
+	url = git@github.com:sourcemint/sm.expand.git
