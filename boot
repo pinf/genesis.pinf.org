@@ -85,11 +85,11 @@ function init {
  	fi
 
 
- 	if [ "$VERBOSE" == "1" ]; then
- 		if BO_has printenv ; then
-	 		printenv
-	 	fi
- 	fi
+# 	if [ "$VERBOSE" == "1" ]; then
+# 		if BO_has printenv ; then
+#	 		printenv
+#	 	fi
+# 	fi
 
 
  	function activateProfile {
