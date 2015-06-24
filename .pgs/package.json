@@ -12,6 +12,10 @@
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~bash-origin~bash.origin~0/source/installed/master",
             "install": true
         },
+        "ncp": {
+            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~cadorn~ncp~0/source/installed/master",
+            "install": true
+        },
         "fswalker": {
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~cadorn~fswalker~0/source/installed/master",
             "install": true
@@ -74,7 +78,8 @@
         },
         "org.sourcemint.genesis.lib": {
             "depends": [
-                "org.pinf.genesis.lib"
+                "org.pinf.genesis.lib",
+                "ncp"
             ],
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master",
             "install": true
