@@ -5,9 +5,16 @@
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.resolve~0/source/installed/master",
             "install": true
         },
+        "pinf.logic-for-json": {
+            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf-logic~pinf.logic-for-json~0/source/installed/master",
+            "install": true
+        },
         "sm.expand": {
             "depends": [
-                "sm.resolve"
+                "sm.resolve",
+                "smi-for-npm",
+                "smi-for-git",
+                "pinf.logic-for-json"
             ],
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.expand~0/source/installed/master",
             "install": true
