@@ -135,7 +135,8 @@
         "org.pinf.lib": {
             "depends": [
                 "smi-for-npm",
-                "bash.origin"
+                "bash.origin",
+                "pinf.logic-for-json"
             ],
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf~org.pinf.lib~0/source/installed/master",
             "install": true
