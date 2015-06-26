@@ -58,3 +58,6 @@
 [submodule ".deps/github.com~pinf-logic~pinf.logic-for-json~0/source/installed/master"]
 	path = .deps/github.com~pinf-logic~pinf.logic-for-json~0/source/installed/master
 	url = git@github.com:pinf-logic/pinf.logic-for-json.git
+[submodule ".deps/github.com~sourcemint~sm.contract~0/source/installed/master"]
+	path = .deps/github.com~sourcemint~sm.contract~0/source/installed/master
+	url = git@github.com:sourcemint/sm.contract.git

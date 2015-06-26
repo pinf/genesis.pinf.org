@@ -19,6 +19,16 @@
             "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.expand~0/source/installed/master",
             "install": true
         },
+        "sm.contract": {
+            "depends": [
+                "sm.resolve",
+                "smi-for-npm",
+                "smi-for-git",
+                "pinf.logic-for-json"
+            ],
+            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.contract~0/source/installed/master",
+            "install": true
+        },
     	"bash.origin": {
             "depends": [
                 "sm.resolve"
