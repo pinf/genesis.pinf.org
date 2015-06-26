@@ -1,170 +1,157 @@
 {
-	"uid": "expand.genesis.pinf.org",
-    "mappings": {
-        "sm.resolve": {
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.resolve~0/source/installed/master",
-            "install": true
+    "uid": "expand.genesis.pinf.org",
+    "@github.com~sourcemint~sm.expand~0/map": {
+        "sources": {
+            "github.com~bash-origin~bash.origin.pinf~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.pinf.git#98104e050e661398f4821363e06c6dba1a249a9d"
+                }
+            },
+            "github.com~bash-origin~bash.origin.prompt~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.prompt.git#138ae6abd6e5ccdc8c5e01c790c9f314a935b812",
+                    "installer": "npm"
+                }
+            },
+            "github.com~bash-origin~bash.origin.sourcemint~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.sourcemint.git#4b60bc488da315225481df58b8d4ab62bba76dc1"
+                }
+            },
+            "github.com~bash-origin~bash.origin~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.git#f8ce407fa0b6d3def4295dbbd8341ef5109e58bd"
+                }
+            },
+            "github.com~cadorn~fswalker~0": {
+                "master": {
+                    "uri": "git://git@github.com:cadorn/fswalker.git#559647a10235e0a6ef7cce4bb787c9eceb0a285b(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~cadorn~ncp~0": {
+                "master": {
+                    "uri": "git://git@github.com:cadorn/ncp.git#3c88d8a3f30b27876ac7c29881be5b1bde47e09c(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-it~pinf-it-filetree-insight~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-it/pinf-it-filetree-insight.git#7ef79fba95643b8e7716534374575b6ba0f2a1bf",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-it~pinf-it-package-insight~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-it/pinf-it-package-insight.git#fef2d98f43f47d2644790a4c6d91057e5492ef05",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-logic~pinf.logic-for-json~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-logic/pinf.logic-for-json.git#b10f3815c1714d5b5b93762a613616bb0882e4ef(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-to~pto-for-npm~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-to/pto-for-npm.git#6e9720ee38b6edcfc31ae7637e21c7a48491406c",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-to~to.pinf.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-to/to.pinf.lib.git#03c97d85fda87344064e85fe0529ac37938ad327",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf~org.pinf.genesis.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf/org.pinf.genesis.lib.git#2411c34987d5fe1ef75689f0c97acf89d1fa7071(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf~org.pinf.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf/org.pinf.lib.git#1bb55b012771864b49c957c23029996789eec0ca(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~org.sourcemint.genesis.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/org.sourcemint.genesis.lib.git#02591b76bed14165290e7efcf564861b7addfd64(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.contract~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.contract.git#0fec11d57c5d8de0432bf148c9bb1e5c2e9b696d(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.expand~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.expand.git#8a7e3285b0a711ae8e7de4ce31d391c02c08309a(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.resolve~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.resolve.git#4632d23001ad91bb1d3529c1c7799c75246bd0f3(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~smi-for-git~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smi-for-git.git#6eb7cf2e25c2979ee691995c5c251e6dbbb1a9de(master)"
+                }
+            },
+            "github.com~sourcemint~smi-for-npm~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smi-for-npm.git#42cbaa0bf3d40fe1315134646290aef77b88fef7(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~smi~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smi.git#2a1a68b7adde83bd8bd09881b7c4ee8874d1b890",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~smt-copy~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smt-copy.git#07de206d61805eb785309bb08433552c9a19a0c4"
+                }
+            }
         },
-        "pinf.logic-for-json": {
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf-logic~pinf.logic-for-json~0/source/installed/master",
-            "install": true
+        "mappings": {
+            "bash.origin": "github.com~bash-origin~bash.origin~0/master",
+            "bash.origin.pinf": "github.com~bash-origin~bash.origin.pinf~0/master",
+            "bash.origin.prompt": "github.com~bash-origin~bash.origin.prompt~0/master",
+            "bash.origin.sourcemint": "github.com~bash-origin~bash.origin.sourcemint~0/master",
+            "fswalker": "github.com~cadorn~fswalker~0/master",
+            "ncp": "github.com~cadorn~ncp~0/master",
+            "org.pinf.genesis.lib": "github.com~pinf~org.pinf.genesis.lib~0/master",
+            "org.pinf.lib": "github.com~pinf~org.pinf.lib~0/master",
+            "org.sourcemint.genesis.lib": "github.com~sourcemint~org.sourcemint.genesis.lib~0/master",
+            "pinf-it-filetree-insight": "github.com~pinf-it~pinf-it-filetree-insight~0/master",
+            "pinf-it-package-insight": "github.com~pinf-it~pinf-it-package-insight~0/master",
+            "pinf.logic-for-json": "github.com~pinf-logic~pinf.logic-for-json~0/master",
+            "pto-for-npm": "github.com~pinf-to~pto-for-npm~0/master",
+            "sm.contract": "github.com~sourcemint~sm.contract~0/master",
+            "sm.expand": "github.com~sourcemint~sm.expand~0/master",
+            "sm.resolve": "github.com~sourcemint~sm.resolve~0/master",
+            "smi": "github.com~sourcemint~smi~0/master",
+            "smi-for-git": "github.com~sourcemint~smi-for-git~0/master",
+            "smi-for-npm": "github.com~sourcemint~smi-for-npm~0/master",
+            "smi.cli": "github.com~sourcemint~smi~0/master",
+            "smt-copy": "github.com~sourcemint~smt-copy~0/master",
+            "to.pinf.lib": "github.com~pinf-to~to.pinf.lib~0/master"
         },
-        "sm.expand": {
-            "depends": [
-                "sm.resolve",
-                "smi-for-npm",
-                "smi-for-git",
-                "pinf.logic-for-json"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.expand~0/source/installed/master",
-            "install": true
-        },
-        "sm.contract": {
-            "depends": [
-                "sm.resolve",
-                "smi-for-npm",
-                "smi-for-git",
-                "pinf.logic-for-json"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.contract~0/source/installed/master",
-            "install": true
-        },
-    	"bash.origin": {
-            "depends": [
-                "sm.resolve"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~bash-origin~bash.origin~0/source/installed/master",
-            "install": true
-        },
-        "ncp": {
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~cadorn~ncp~0/source/installed/master",
-            "install": true
-        },
-        "fswalker": {
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~cadorn~fswalker~0/source/installed/master",
-            "install": true
-        },
-        "smi": {
-            "depends": [
-                "sm.resolve",
-                "org.pinf.lib"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smi~0/source/installed/master",
-            "install": false
-        },
-        "smi.cli": {
-            "depends": [
-                "org.pinf.lib"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smi~0/source/installed/master",
-            "install": false
-        },
-        "pinf-it-package-insight": {
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf-it~pinf-it-package-insight~0/source/installed/master",
-            "install": true
-        },
-        "smi-for-npm": {
-            "depends": [
-                "bash.origin",
-                "fswalker",
-                "pinf-it-package-insight"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smi-for-npm~0/source/installed/master",
-            "install": true
-        },
-        "smi-for-git": {
-            "depends": [
-                "smi-for-npm"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smi-for-git~0/source/installed/master",
-            "install": true
-        },
-    	"bash.origin.pinf": {
-            "depends": [
-                "smi-for-npm"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~bash-origin~bash.origin.pinf~0/source/installed/master",
-            "install": true
-        },
-        "bash.origin.prompt": {
-            "depends": [
-                "smi-for-npm"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~bash-origin~bash.origin.prompt~0/source/installed/master",
-            "install": true
-        },
-        "bash.origin.sourcemint": {
-            "depends": [
-                "smi-for-npm"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~bash-origin~bash.origin.sourcemint~0/source/installed/master",
-            "install": true
-        },
-        "org.sourcemint.genesis.lib": {
-            "depends": [
-                "org.pinf.genesis.lib",
-                "ncp"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~org.sourcemint.genesis.lib~0/source/installed/master",
-            "install": true
-        },
-        "pinf-it-filetree-insight": {
-            "depends": [
-                "smi-for-npm"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf-it~pinf-it-filetree-insight~0/source/installed/master",
-            "install": true
-        },
-        "pto-for-npm": {
-            "depends": [
-                "smi-for-npm",
-                "bash.origin",
-                "to.pinf.lib"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf-to~pto-for-npm~0/source/installed/master",
-            "install": true
-        },
-        "to.pinf.lib": {
-            "depends": [
-                "smi-for-npm",
-                "bash.origin",
-                "org.pinf.genesis.lib"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf-to~to.pinf.lib~0/source/installed/master",
-            "install": true
-        },
-        "org.pinf.genesis.lib": {
-            "depends": [
-                "smi-for-npm",
-                "bash.origin",
-                "org.pinf.lib"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf~org.pinf.genesis.lib~0/source/installed/master",
-            "install": true
-        },
-        "org.pinf.lib": {
-            "depends": [
-                "smi-for-npm",
-                "bash.origin",
-                "pinf.logic-for-json"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf~org.pinf.lib~0/source/installed/master",
-            "install": true
-        },
-        "smt-copy": {
-            "depends": [
-                "smi-for-npm"
-            ],
-            "location": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~smt-copy~0/source/installed/master",
-            "install": true
+        "@github.com~sourcemint~sm.expand~0/locations": {
+            "sources": ".deps/{uid}/source/installed/{rev}",
+            "mappings": "node_modules/{alias}"
         },
         "@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
-    },
-    "config": {
-    	"smi.cli": {
-	        "latestOnly": false,
-            "packagesDirectory": "{{env.PGS_WORKSPACE_ROOT}}/node_modules",
-            "binDirectory": "{{env.PGS_WORKSPACE_ROOT}}/node_modules/.bin"
-	    }
     }
 }
