@@ -339,7 +339,7 @@ function init {
 				BO_log "$VERBOSE" "Append 'npm-debug.log' to exclude file: '$1'"
 			    echo -e "npm-debug.log" >> "$1"
 			fi
-			if ! grep -qe "^\.sm\.*$" "$1"; then
+			if ! grep -qe "^\.sm\.\*$" "$1"; then
 				BO_log "$VERBOSE" "Append '.sm.*' to exclude file: '$1'"
 			    echo -e ".sm.*" >> "$1"
 			fi
@@ -391,7 +391,7 @@ function init {
 
 			"$PGS_WORKSPACE_ROOT/node_modules/sm.expand/sm.expand" "$PGS_DIR/package.json"
 
-			touch ".provisioned"
+			touch "$PGS_DIR/.provisioned"
 
 
 			function TODO_REMOVE {
