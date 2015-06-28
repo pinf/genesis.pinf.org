@@ -100,6 +100,10 @@ function init {
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/expand.genesis.pinf.org/uid"`"
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
 			export PIO_PROFILE_KEY="$PGS_WORKSPACE_UID"
+			# TODO: Set these vars in plugins that get loaded here.
+			#       i.e. load the script files from the plugins here by providing a
+			#       given container environment.
+			export SM_KEEP_NS_RAW="$PGS_WORKSPACE_UID"
 		fi
  	}
 
