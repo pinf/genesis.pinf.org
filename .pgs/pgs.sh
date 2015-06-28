@@ -372,10 +372,18 @@ function init {
 				fi
 			fi
 		popd > /dev/null
+
 		if [ -e "$PGS_DIR/.provisioned" ]; then
 			BO_log "$VERBOSE" "Skip provision. Already provisioned due to flagfile '$PGS_DIR/.provisioned'."
 		else
 			ensureGitExclude
+
+			BO_isInSystemCache "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
+			pushd "$SM_EXPAND_BASE_PATH" > /dev/null
+				if [ ! -e "node_modules" ]; then
+					"$SM_EXPAND_BASE_PATH/bin/install-for-config" "$PGS_DIR/package.json"
+				fi
+			popd > /dev/null
 
 			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 				# TODO: Embed 'sm.expand' in pinf genesis releases so we don't need to install it here.
