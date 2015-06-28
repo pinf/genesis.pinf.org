@@ -150,7 +150,8 @@
         },
         "@github.com~sourcemint~sm.expand~0/locations": {
             "sources": ".deps/{uid}/source/installed/{rev}",
-            "mappings": "node_modules/{alias}"
+            "mappings": "node_modules/{alias}",
+            "binaries": "node_modules/.bin/{bin}"
         },
         "@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
     }
