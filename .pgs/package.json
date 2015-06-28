@@ -155,5 +155,12 @@
             "registries": "{{env.HOME}}/.bash.origin.cache/{uid}"
         },
         "@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
+    },
+    "@github.com~sourcemint~smi-for-git~0/ignore": {
+        "rules": [
+            ".sm.expand.ensured",
+            ".sm.expand.installed",
+            "node_modules/"
+        ]
     }
 }

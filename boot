@@ -167,7 +167,8 @@ function init {
 			fi
 		done
 	}
-	linkDependencies
+	# TODO: Do this via a 'smi-for-bash.origin' module (the same one sm.expand uses).
+	#linkDependencies
 
 	if [ "$1" == "expand" ]; then
 		return 0
