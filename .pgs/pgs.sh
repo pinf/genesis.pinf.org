@@ -373,7 +373,7 @@ function init {
 			fi
 		popd > /dev/null
 		if [ -e "$PGS_DIR/.provisioned" ]; then
-			BO_log "$VERBOSE" "Skip provision. Already provisioned."
+			BO_log "$VERBOSE" "Skip provision. Already provisioned due to flagfile '$PGS_DIR/.provisioned'."
 		else
 			ensureGitExclude
 
