@@ -376,7 +376,27 @@ function init {
 			BO_log "$VERBOSE" "Skip provision. Already provisioned."
 		else
 			ensureGitExclude
+
+			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+				# TODO: Embed 'sm.expand' in pinf genesis releases so we don't need to install it here.
+				if [ ! -e "node_modules/sm.expand" ]; then
+					BO_log "$VERBOSE" "Install sm.expand using 'npm install' in directory '$PGS_WORKSPACE_ROOT/node_modules'"
+				 	if [ "$VERBOSE" == "1" ]; then
+						BO_run_npm install --production sm.expand
+				 	else
+						BO_run_npm install --production sm.expand > /dev/null
+				 	fi
+				fi
+			pushd
+
+			"$PGS_WORKSPACE_ROOT/node_modules/sm.expand/sm.expand" "$PGS_DIR/package.json"
+
+exit 1
+
+
+			# TODO: Remove this once 'sm.expand works'.
 			ensureDepsForClone "IS_CLONE"
+
 			pushd "$PGS_DIR" > /dev/null
 
 				# Link source resolver so we can override lookups for dev and easy system ops.
