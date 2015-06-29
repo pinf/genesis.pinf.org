@@ -66,6 +66,12 @@ if (FS.existsSync(depsPath)) {
 				if (FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master", ".smi-for-npm"))) {
 					commands.push('rm -f ' + PATH.join(".deps", dir, "source", "installed", "master", ".smi-for-npm"));
 				}
+				if (FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master", ".sm.expand.ensured"))) {
+					commands.push('rm -f ' + PATH.join(".deps", dir, "source", "installed", "master", ".sm.expand.ensured"));
+				}
+				if (FS.existsSync(PATH.join(depsPath, dir, "source", "installed", "master", ".sm.expand.installed"))) {
+					commands.push('rm -f ' + PATH.join(".deps", dir, "source", "installed", "master", ".sm.expand.installed"));
+				}
 
 				// If not symlinked we see if our service is linked globally
 				var globalPath = PATH.join(process.env.BO_SYSTEM_CACHE_DIR, dir, "source", "installed", "master");
