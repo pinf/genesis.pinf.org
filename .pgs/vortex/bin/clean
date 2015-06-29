@@ -51,6 +51,7 @@ function init {
 		# TODO: Dynamically find all vars with prefixes instead of hardcoding.
 		unset PGS_REGISTRY_DIRPATH
 		unset PGS_WORKSPACE_UID
+		unset PGS_WORKSPACE_UID_DOMAINSAFE
 		unset PGS_WORKSPACE_ROOT
 		unset PGS_DIRPATH
 		unset PGS_PINF_DIRPATH

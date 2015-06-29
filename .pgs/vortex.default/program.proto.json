@@ -29,6 +29,9 @@
 						"PGS_WORKSPACE_UID": {
 							"value": "{{env.PGS_WORKSPACE_UID}}"
 						},
+						"PGS_WORKSPACE_UID_DOMAINSAFE": {
+							"value": "{{env.PGS_WORKSPACE_UID_DOMAINSAFE}}"
+						},
 						"PGS_WORKSPACE_ROOT": {
 							"value": "{{env.PGS_WORKSPACE_ROOT}}"
 						},
