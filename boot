@@ -131,7 +131,7 @@ function init {
 
 		function linkDependency {
 			if [ ! -e "$1" ]; then
-				# We don't include the source for 'bash.origin'.
+				BO_log "$VERBOSE" "Skip linking (source does not exist) '$1' to '$2'"
 				return 0;
 			fi
 			if [ ! -e "$2" ]; then
@@ -139,6 +139,7 @@ function init {
 			fi
 			if [ -L "$2" ]; then
 				# Already a symlink so we leave it alone.
+				BO_log "$VERBOSE" "Skip linking (already a symlink at target) '$1' to '$2'"
 				return 0
 			fi
 			# Replace file with symlink
@@ -149,7 +150,7 @@ function init {
 			fi
 			ln -s "$1" "$2"
 		}
-		linkDependency "$__BO_DIR__/../.deps/github.com~bash-origin~bash.origin~0/source/installed/master/bash.origin" "$HOME/.bash.origin"
+		linkDependency "$PGS_PACKAGES_DIRPATH/github.com~bash-origin~bash.origin~0/source/installed/master/bash.origin" "$HOME/.bash.origin"
 
 		# TODO: Use configurable base directory instead of assuming '$HOME'.
 		if [ ! -e "$HOME/.bash.origin.cache" ]; then

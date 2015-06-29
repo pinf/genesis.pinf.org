@@ -187,7 +187,7 @@ function init {
 				BO_sourcePrototype "$PGS_DIRPATH/../node_modules/pto-for-npm/bin/pto"
 				runFor "`pwd`" turn $@
 			else
-				BO_callPlugin "github.com~bash-origin~bash.origin.pinf~0/source/installed/master/bash.origin.pinf" pto turn $@
+				BO_callPlugin "bash.origin.pinf@0.1.7" pto turn $@
 			fi
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/$PGS_PINF_EPOCH/uid"`"
 		popd > /dev/null
@@ -378,11 +378,19 @@ function init {
 		else
 			ensureGitExclude
 
+
 			BO_isInSystemCache "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
+			if [ "$SM_EXPAND_BASE_PATH" == "" ]; then
+				BO_globalSystemCachePath "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
+			fi
+			if [ "$SM_EXPAND_BASE_PATH" == "" ]; then
+echo "TODO: Download SM.expand snapshot for installation (in: $PGS_DIR)"
+				exit 1
+			fi
 			pushd "$SM_EXPAND_BASE_PATH" > /dev/null
 				if [ ! -e "node_modules" ]; then
 					"$SM_EXPAND_BASE_PATH/bin/install-for-config" "$PGS_DIR/package.json"
-				fi				
+				fi
 			popd > /dev/null
 
 			"$SM_EXPAND_BASE_PATH/sm.expand" "$PGS_DIR/package.json"

@@ -23,5 +23,6 @@ function init {
 	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.installed
 	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.smi-*
 	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.sm.*
+
 }
 init $@
