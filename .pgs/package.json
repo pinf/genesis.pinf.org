@@ -152,7 +152,7 @@
             "sources": ".deps/{uid}/source/installed/{rev}",
             "mappings": "node_modules/{alias}",
             "binaries": "node_modules/.bin/{bin}",
-            "registries": "{{env.HOME}}/.bash.origin.cache/{uid}"
+            "registries": "{{env.HOME}}/.bash.origin.cache/{uid}/source/installed/{rev}"
         },
         "@translocate": "!{{env.PGS_WORKSPACE_ROOT}}/PINF.json"
     },
