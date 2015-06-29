@@ -160,15 +160,15 @@ function init {
 				linkDependency "$__BO_DIR__" "$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master"
 			fi
 		fi
-		for dir in "$__BO_DIR__/.deps/"* ; do
-			dir="$(basename $dir)"
-			if [ -e "$__BO_DIR__/.deps/$dir/source/installed/master" ]; then
-				linkDependency "$__BO_DIR__/.deps/$dir/source/installed/master" "$HOME/.bash.origin.cache/$dir/source/installed/master"
-			fi
-		done
+		#for dir in "$__BO_DIR__/.deps/"* ; do
+		#	dir="$(basename $dir)"
+		#	if [ -e "$__BO_DIR__/.deps/$dir/source/installed/master" ]; then
+		#		linkDependency "$__BO_DIR__/.deps/$dir/source/installed/master" "$HOME/.bash.origin.cache/$dir/source/installed/master"
+		#	fi
+		#done
 	}
 	# TODO: Do this via a 'smi-for-bash.origin' module (the same one sm.expand uses).
-	#linkDependencies
+	linkDependencies
 
 	if [ "$1" == "expand" ]; then
 		return 0

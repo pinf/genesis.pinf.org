@@ -21,6 +21,8 @@ function init {
 	rm -Rf "$__BO_DIR__"/../.pgs/.provisioned
 	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/node_modules
 	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.installed
-	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.smi-for-npm
+	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.smi-*
+	rm -Rf "$__BO_DIR__"/../.deps/*/source/installed/master/.sm.*
+
 }
 init $@
