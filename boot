@@ -131,7 +131,7 @@ function init {
 
 		function linkDependency {
 			if [ ! -e "$1" ]; then
-				BO_log "$VERBOSE" "Skip linking (source does not exist) '$1' to '$2'"
+				BO_log "$DEBUG" "Skip linking (source does not exist) '$1' to '$2'"
 				return 0;
 			fi
 			if [ ! -e "$2" ]; then
@@ -139,7 +139,7 @@ function init {
 			fi
 			if [ -L "$2" ]; then
 				# Already a symlink so we leave it alone.
-				BO_log "$VERBOSE" "Skip linking (already a symlink at target) '$1' to '$2'"
+				BO_log "$DEBUG" "Skip linking (already a symlink at target) '$1' to '$2'"
 				return 0
 			fi
 			# Replace file with symlink
@@ -161,12 +161,12 @@ function init {
 				linkDependency "$__BO_DIR__" "$HOME/.bash.origin.cache/github.com~pinf~genesis.pinf.org~0/source/installed/master"
 			fi
 		fi
-		#for dir in "$__BO_DIR__/.deps/"* ; do
-		#	dir="$(basename $dir)"
-		#	if [ -e "$__BO_DIR__/.deps/$dir/source/installed/master" ]; then
-		#		linkDependency "$__BO_DIR__/.deps/$dir/source/installed/master" "$HOME/.bash.origin.cache/$dir/source/installed/master"
-		#	fi
-		#done
+		for dir in "$__BO_DIR__/.deps/"* ; do
+			dir="$(basename $dir)"
+			if [ -e "$__BO_DIR__/.deps/$dir/source/installed/master" ]; then
+				linkDependency "$__BO_DIR__/.deps/$dir/source/installed/master" "$HOME/.bash.origin.cache/$dir/source/installed/master"
+			fi
+		done
 	}
 	# TODO: Do this via a 'smi-for-bash.origin' module (the same one sm.expand uses).
 	linkDependencies
