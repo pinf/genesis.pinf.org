@@ -381,7 +381,7 @@ function init {
 
 			BO_isInSystemCache "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
 			if [ "$SM_EXPAND_BASE_PATH" == "" ]; then
-				BO_globalSystemCachePath "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
+				BO_isInGlobalSystemCachePath "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
 			fi
 			if [ "$SM_EXPAND_BASE_PATH" == "" ]; then
 echo "TODO: Download SM.expand snapshot for installation (in: $PGS_DIR)"
