@@ -382,9 +382,10 @@ function init {
 			pushd "$SM_EXPAND_BASE_PATH" > /dev/null
 				if [ ! -e "node_modules" ]; then
 					"$SM_EXPAND_BASE_PATH/bin/install-for-config" "$PGS_DIR/package.json"
-				fi
+				fi				
 			popd > /dev/null
 
+			"$SM_EXPAND_BASE_PATH/sm.expand" "$PGS_DIR/package.json"
 			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 				# TODO: Embed 'sm.expand' in pinf genesis releases so we don't need to install it here.
 				if [ ! -e "node_modules/sm.expand" ]; then
