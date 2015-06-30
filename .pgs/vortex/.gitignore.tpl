@@ -61,13 +61,20 @@
 # Created on PGS Expand (reset on clean)
 ##################################################
 
-!/bin/reset
-!/.gitignore
-!/.distignore
-!/.cleanignore
-!/vortex.js
-!/package.json
-!/profile.json
+#RESET:/bin/reset
+/bin/reset
+#RESET:/.gitignore
+/.gitignore
+#RESET:/.distignore
+/.distignore
+#RESET:/.cleanignore
+/.cleanignore
+#RESET:/vortex.js
+/vortex.js
+#RESET:/package.json
+/package.json
+#RESET:/profile.json
+/profile.json
 
 
 # Mark the end of all files that will be cleaned

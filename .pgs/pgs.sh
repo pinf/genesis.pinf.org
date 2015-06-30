@@ -315,7 +315,7 @@ function init {
 
 	function ensureGitExclude {
 
-		function ensureGitExcludesForFile {
+		function ensureGitExcludesForFile_global {
 			if [ ! -e "$1" ]; then
 				if [ ! -d "$(dirname "$1")" ]; then
 					mkdir -p "$(dirname "$1")"
@@ -351,7 +351,26 @@ function init {
 			exit 1
 		fi
 
-		ensureGitExcludesForFile "$XDG_CONFIG_HOME/git/ignore"
+		ensureGitExcludesForFile_global "$XDG_CONFIG_HOME/git/ignore"
+
+		function ensureGitIgnoreChanges_top {
+
+			pushd "$PGS_WORKSPACE_ROOT" > /dev/null
+
+				git update-index --assume-unchanged ".gitignore"
+				git update-index --assume-unchanged "package.json"
+				git update-index --assume-unchanged ".cleanignore"
+				git update-index --assume-unchanged ".distignore"
+				git update-index --assume-unchanged "bin/reset"
+				git update-index --assume-unchanged "vortex.js"
+
+			popd > /dev/null
+
+		}
+
+		# TODO: Lock these files as well so that if user modifies them and we clean
+		#       we can stop the clean and warn user before removing changes.
+		#ensureGitIgnoreChanges_top
 	}
 
 	function ensureProvisioned {

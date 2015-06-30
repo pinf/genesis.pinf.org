@@ -105,9 +105,9 @@ FS.readFileSync(PATH.join(cwd, ".gitignore"), "utf8").split("\n").forEach(functi
 	}
 	if (/^#/.test(line)) return;
 	if (cleanIgnoreRules.indexOf(line) > -1) return;
-	if (/^!\//.test(line)) {
-		commands.push('rm -Rf ' + line.substring(2));
-		commands.push("git checkout HEAD -- " + line.substring(2));
+	if (/^RESET:\//.test(line)) {
+		commands.push('rm -Rf ' + line.substring(6));
+		commands.push("git checkout HEAD -- " + line.substring(6));
 		return;
 	}
 	if (/^\//.test(line)) {
