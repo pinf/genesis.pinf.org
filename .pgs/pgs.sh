@@ -370,7 +370,7 @@ function init {
 
 		# TODO: Lock these files as well so that if user modifies them and we clean
 		#       we can stop the clean and warn user before removing changes.
-		#ensureGitIgnoreChanges_top
+		ensureGitIgnoreChanges_top
 	}
 
 	function ensureProvisioned {

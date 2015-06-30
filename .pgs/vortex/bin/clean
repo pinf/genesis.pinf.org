@@ -34,12 +34,12 @@ function init {
 
 		# TODO: Lock these files as well so that if user modifies them and we clean
 		#       we can stop the clean and warn user before removing changes.
-		#git update-index --no-assume-unchanged ".gitignore"
-		#git update-index --no-assume-unchanged "package.json"
-		#git update-index --no-assume-unchanged ".cleanignore"
-		#git update-index --no-assume-unchanged ".distignore"
-		#git update-index --no-assume-unchanged "bin/reset"
-		#git update-index --no-assume-unchanged "vortex.js"
+		git update-index --no-assume-unchanged ".gitignore"
+		git update-index --no-assume-unchanged "package.json"
+		git update-index --no-assume-unchanged ".cleanignore"
+		git update-index --no-assume-unchanged ".distignore"
+		git update-index --no-assume-unchanged "bin/reset"
+		git update-index --no-assume-unchanged "vortex.js"
 
 
 		pushd "$__BO_DIR__/.." > /dev/null
