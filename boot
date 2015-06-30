@@ -98,7 +98,7 @@ function init {
 		fi
 		if [ -e "$PGS_PINF_DIRPATH/expand.genesis.pinf.org/uid" ]; then
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/expand.genesis.pinf.org/uid"`"
-			export PGS_WORKSPACE_UID_DOMAINSAFE=`echo "$PGS_WORKSPACE_UID" | sed 's/~/-/g'`
+			export PGS_WORKSPACE_UID_DOMAINSAFE=`echo "$PGS_WORKSPACE_UID" | sed 's/~/-/g' | sed 's/\./-/g'`
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
 			export PIO_PROFILE_KEY="$PGS_WORKSPACE_UID"
 			# TODO: Set these vars in plugins that get loaded here.
