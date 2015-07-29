@@ -397,6 +397,8 @@ function init {
 		else
 			ensureGitExclude
 
+			# We are going to need 'node' so we make sure its there
+			BO_ensure_node
 
 			BO_isInSystemCache "SM_EXPAND_BASE_PATH" "github.com/sourcemint/sm.expand" "0.1.0"
 			if [ "$SM_EXPAND_BASE_PATH" == "" ]; then
