@@ -122,6 +122,11 @@
                 "master": {
                     "uri": "git://git@github.com:sourcemint/smt-copy.git#07de206d61805eb785309bb08433552c9a19a0c4"
                 }
+            },
+            "github.com~pinf~pg.condense~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf/pg.condense.git"
+                }
             }
         },
         "mappings": {
@@ -146,7 +151,8 @@
             "smi-for-npm": "github.com~sourcemint~smi-for-npm~0/master",
             "smi.cli": "github.com~sourcemint~smi~0/master",
             "smt-copy": "github.com~sourcemint~smt-copy~0/master",
-            "to.pinf.lib": "github.com~pinf-to~to.pinf.lib~0/master"
+            "to.pinf.lib": "github.com~pinf-to~to.pinf.lib~0/master",
+            "pg.condense": "github.com~pinf~pg.condense~0/master"
         },
         "@github.com~sourcemint~sm.expand~0/locations": {
             "sources": ".deps/{uid}/source/installed/{rev}",

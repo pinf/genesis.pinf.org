@@ -15,6 +15,10 @@
 			}
 		},
 		"pgs-vortex-default/0": {
+			"$depends": [
+				"pgs-vortex-sm-contract",
+				"pgs-vortex-pg-condense"
+			],
 			"$impl": "{{$from.pgs.workspaceRoot}}/vortex.js",
 			"$to": "pgs-vortex-default",
 			"rootPath": "{{$from.pgs-vortex-prompt.services.pgs.variables.PGS_WORKSPACE_ROOT}}"
@@ -50,6 +54,14 @@
 					}
 				}
 			}
+		},
+		"github.com/sourcemint/sm.contract/0": {
+			"$impl": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.contract~0/source/installed/master/api/pgl.plugin.js",
+			"$to": "pgs-vortex-sm-contract"
+		},
+		"github.com/pinf/pg.condense/0": {
+			"$impl": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf~pg.condense~0/source/installed/master/api/pgl.plugin.js",
+			"$to": "pgs-vortex-pg-condense"
 		}
 	}
 }

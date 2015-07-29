@@ -67,3 +67,6 @@
 [submodule ".deps/github.com~sourcemint~sm.keep~0/source/installed/master"]
 	path = .deps/github.com~sourcemint~sm.keep~0/source/installed/master
 	url = git@github.com:sourcemint/sm.keep.git
+[submodule ".deps/github.com~pinf~pg.condense~0/source/installed/master"]
+	path = .deps/github.com~pinf~pg.condense~0/source/installed/master
+	url = git@github.com:pinf/pg.condense.git
