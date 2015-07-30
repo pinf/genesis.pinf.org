@@ -61,7 +61,8 @@
 		},
 		"github.com/pinf/pg.condense/0": {
 			"$impl": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf~pg.condense~0/source/installed/master/api/pgl.plugin.js",
-			"$to": "pgs-vortex-pg-condense"
+			"$to": "pgs-vortex-pg-condense",
+			"sources": "{{$from.pgs-vortex-sm-contract.sources}}"
 		}
 	}
 }

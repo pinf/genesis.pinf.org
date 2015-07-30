@@ -1,0 +1,79 @@
+{
+    "@extends": {
+        "vortex.default": {
+            "location": "{{env.PGS_WORKSPACE_ROOT}}/.pgs/vortex.default/program.proto.json",
+            "@args": {}
+        }
+    },
+    "config": {
+        "genesis.pinf.org/0": {
+            "$impl": "{{env.PGS_WORKSPACE_ROOT}}/.pgs/vortex.default/../pgs-run.js",
+            "programs": {
+                ".pgs": {
+                    "location": "{{env.PGS_WORKSPACE_ROOT}}/.pgs/program.json",
+                    "env": {
+                        "PGS_PINF_EPOCH": "expand.genesis.pinf.org"
+                    }
+                }
+            },
+            "$to": "pgs",
+            "uid": "{{env.PIO_PROFILE_KEY}}",
+            "basename": "genesis.pinf.org",
+            "workspaceRoot": "{{env.PGS_WORKSPACE_ROOT}}"
+        },
+        "pgs-vortex-default/0": {
+            "$depends": [
+                "pgs-vortex-sm-contract",
+                "pgs-vortex-pg-condense"
+            ],
+            "$impl": "{{$from.pgs.workspaceRoot}}/vortex.js",
+            "$to": "pgs-vortex-default",
+            "rootPath": "{{$from.pgs-vortex-prompt.services.pgs.variables.PGS_WORKSPACE_ROOT}}"
+        },
+        "github.com/bash-origin/bash.origin.prompt/0": {
+            "$to": "pgs-vortex-prompt",
+            "services": {
+                "pgs": {
+                    "label": "PINF.Genesis System",
+                    "url": "http://genesis.pinf.org",
+                    "variables": {
+                        "PGS_WORKSPACE_UID": {
+                            "value": "{{env.PIO_PROFILE_KEY}}"
+                        },
+                        "PGS_WORKSPACE_UID_DOMAINSAFE": {
+                            "value": "github-com-pinf-genesis-pinf-org-0"
+                        },
+                        "PGS_WORKSPACE_ROOT": {
+                            "value": "{{env.PGS_WORKSPACE_ROOT}}"
+                        },
+                        "PGS_PINF_DIRPATH": {
+                            "value": "/pinf.genesis.cache/01-genesis.pinf.org"
+                        },
+                        "PGS_PACKAGES_DIRPATH": {
+                            "value": "{{env.PGS_PACKAGES_DIRPATH}}"
+                        },
+                        "BO_PACKAGES_DIR": {
+                            "value": "{{env.PGS_PACKAGES_DIRPATH}}"
+                        },
+                        "BO_GLOBAL_SYSTEM_CACHE_DIR": {
+                            "value": "/Users/cadorn/.bash.origin.cache"
+                        }
+                    }
+                }
+            }
+        },
+        "github.com/sourcemint/sm.contract/0": {
+            "$impl": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~sourcemint~sm.contract~0/source/installed/master/api/pgl.plugin.js",
+            "$to": "pgs-vortex-sm-contract"
+        },
+        "github.com/pinf/pg.condense/0": {
+            "$impl": "{{env.PGS_PACKAGES_DIRPATH}}/github.com~pinf~pg.condense~0/source/installed/master/api/pgl.plugin.js",
+            "$to": "pgs-vortex-pg-condense",
+            "sources": "{{$from.pgs-vortex-sm-contract.sources}}"
+        }
+    },
+    "@github.com~sourcemint~sm.expand~0/map": {
+        "sources": {},
+        "mappings": {}
+    }
+}

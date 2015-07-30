@@ -1,0 +1,168 @@
+{
+    "@github.com~sourcemint~sm.expand~0/map": {
+        "sources": {
+            "github.com~bash-origin~bash.origin.pinf~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.pinf.git#71f525d08b6804e1b7417a5cb75214035d00ef55(master)"
+                }
+            },
+            "github.com~bash-origin~bash.origin.prompt~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.prompt.git#138ae6abd6e5ccdc8c5e01c790c9f314a935b812",
+                    "installer": "npm"
+                }
+            },
+            "github.com~bash-origin~bash.origin.sourcemint~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.sourcemint.git#4b60bc488da315225481df58b8d4ab62bba76dc1"
+                }
+            },
+            "github.com~bash-origin~bash.origin~0": {
+                "master": {
+                    "uri": "git://git@github.com:bash-origin/bash.origin.git#5f7442689ef0f0d519508ecae61835205e186f7f"
+                }
+            },
+            "github.com~cadorn~fswalker~0": {
+                "master": {
+                    "uri": "git://git@github.com:cadorn/fswalker.git#559647a10235e0a6ef7cce4bb787c9eceb0a285b",
+                    "installer": "npm"
+                }
+            },
+            "github.com~cadorn~ncp~0": {
+                "master": {
+                    "uri": "git://git@github.com:cadorn/ncp.git#3c88d8a3f30b27876ac7c29881be5b1bde47e09c"
+                }
+            },
+            "github.com~pinf-it~pinf-it-filetree-insight~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-it/pinf-it-filetree-insight.git#7ef79fba95643b8e7716534374575b6ba0f2a1bf",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-it~pinf-it-package-insight~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-it/pinf-it-package-insight.git#fef2d98f43f47d2644790a4c6d91057e5492ef05",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-logic~pinf.logic-for-json~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-logic/pinf.logic-for-json.git#a6af3be7310708e2228d2d7cdbdf793990f5abc3(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-to~pto-for-npm~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-to/pto-for-npm.git#6e9720ee38b6edcfc31ae7637e21c7a48491406c",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf-to~to.pinf.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf-to/to.pinf.lib.git#84d3d1b15ccf7039f1f58d9c318413852cee8f72(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf~org.pinf.genesis.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf/org.pinf.genesis.lib.git#94222129808638fe8cddb953549dbec9ea7bed19(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf~org.pinf.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf/org.pinf.lib.git#25673ba42b8cb77d716345ed98aa6c7007e9e0a0(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~pinf~pg.condense~0": {
+                "master": {
+                    "uri": "git://git@github.com:pinf/pg.condense.git#2ca119e3d396b8674eb2bdaeecc57392911816f6(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~org.sourcemint.genesis.lib~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/org.sourcemint.genesis.lib.git#02591b76bed14165290e7efcf564861b7addfd64",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.bump~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.bump.git#76546234fc252bdab3a2be1ea618551480b86414",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.contract~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.contract.git#7e668ea3bb13beb2375f96bdccdbf15bd0066509(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.expand~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.expand.git#4a6ede23a32bafeb967a96c880e06f64d01ace57(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~sm.keep~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.keep.git#3a61447f88eeb582b61d94cb12a01b7cfdd7576b"
+                }
+            },
+            "github.com~sourcemint~sm.resolve~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/sm.resolve.git#83bdf821d0defc01032d9d235bfba5c3b5e16ce7(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~smi-for-git~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smi-for-git.git#040fa3d0d79567cfdf29ead98c520dd548561a4c(master)"
+                }
+            },
+            "github.com~sourcemint~smi-for-npm~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smi-for-npm.git#4d0c873aa3fc37c7b352273c9eaa918109d713d1(master)",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~smi~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smi.git#2a1a68b7adde83bd8bd09881b7c4ee8874d1b890",
+                    "installer": "npm"
+                }
+            },
+            "github.com~sourcemint~smt-copy~0": {
+                "master": {
+                    "uri": "git://git@github.com:sourcemint/smt-copy.git#07de206d61805eb785309bb08433552c9a19a0c4"
+                }
+            }
+        },
+        "mappings": {
+            "bash.origin": "github.com~bash-origin~bash.origin~0/master",
+            "bash.origin.pinf": "github.com~bash-origin~bash.origin.pinf~0/master",
+            "bash.origin.prompt": "github.com~bash-origin~bash.origin.prompt~0/master",
+            "bash.origin.sourcemint": "github.com~bash-origin~bash.origin.sourcemint~0/master",
+            "fswalker": "github.com~cadorn~fswalker~0/master",
+            "ncp": "github.com~cadorn~ncp~0/master",
+            "org.pinf.genesis.lib": "github.com~pinf~org.pinf.genesis.lib~0/master",
+            "org.pinf.lib": "github.com~pinf~org.pinf.lib~0/master",
+            "org.sourcemint.genesis.lib": "github.com~sourcemint~org.sourcemint.genesis.lib~0/master",
+            "pg.condense": "github.com~pinf~pg.condense~0/master",
+            "pinf-it-filetree-insight": "github.com~pinf-it~pinf-it-filetree-insight~0/master",
+            "pinf-it-package-insight": "github.com~pinf-it~pinf-it-package-insight~0/master",
+            "pinf.logic-for-json": "github.com~pinf-logic~pinf.logic-for-json~0/master",
+            "pto-for-npm": "github.com~pinf-to~pto-for-npm~0/master",
+            "sm.contract": "github.com~sourcemint~sm.contract~0/master",
+            "sm.expand": "github.com~sourcemint~sm.expand~0/master",
+            "sm.resolve": "github.com~sourcemint~sm.resolve~0/master",
+            "smi": "github.com~sourcemint~smi~0/master",
+            "smi-for-git": "github.com~sourcemint~smi-for-git~0/master",
+            "smi-for-npm": "github.com~sourcemint~smi-for-npm~0/master",
+            "smi.cli": "github.com~sourcemint~smi~0/master",
+            "smt-copy": "github.com~sourcemint~smt-copy~0/master",
+            "to.pinf.lib": "github.com~pinf-to~to.pinf.lib~0/master"
+        }
+    }
+}
