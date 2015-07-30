@@ -182,12 +182,19 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Expanding PINF.Genesis System"
 		pushd "$PGS_DIR" > /dev/null
 			export PGS_PINF_EPOCH="expand.genesis.pinf.org"
+			_SUB_ARGS=""
+			if [ "$VERBOSE" == "1" ]; then
+				_SUB_ARGS="$_SUB_ARGS -v"
+			fi
+			if [ "$DEBUG" == "1" ]; then
+				_SUB_ARGS="$_SUB_ARGS -d"
+			fi
 			# TODO: Clean this up once we publish packages nicer.
 			if [ -e "$PGS_DIRPATH/../node_modules/pto-for-npm" ]; then
 				BO_sourcePrototype "$PGS_DIRPATH/../node_modules/pto-for-npm/bin/pto"
-				runFor "`pwd`" turn $@
+				runFor "`pwd`" turn
 			else
-				BO_callPlugin "bash.origin.pinf@0.1.7" pto turn $@
+				BO_callPlugin "bash.origin.pinf@0.1.7" pto turn
 			fi
 			export PGS_WORKSPACE_UID="`cat "$PGS_PINF_DIRPATH/$PGS_PINF_EPOCH/uid"`"
 		popd > /dev/null
@@ -216,7 +223,10 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Turning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
-			BO_callPlugin "bash.origin.pinf@0.1.7" pto turn $@
+			_SUB_ARGS="$@"
+			_SUB_ARGS_PREFIX="turn"
+			_SUB_ARGS=${_SUB_ARGS#$_SUB_ARGS_PREFIX}
+			BO_callPlugin "bash.origin.pinf@0.1.7" pto turn $_SUB_ARGS
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}
@@ -227,7 +237,10 @@ function init {
 		BO_format "$VERBOSE" "HEADER" "Spinning system"
 		pushd "$PGS_WORKSPACE_ROOT" > /dev/null
 			export PGS_PINF_EPOCH="$PGS_WORKSPACE_UID"
-			BO_callPlugin "bash.origin.pinf@0.1.7" pto spin $@
+			_SUB_ARGS="$@"
+			_SUB_ARGS_PREFIX="turn"
+			_SUB_ARGS=${_SUB_ARGS#$_SUB_ARGS_PREFIX}
+			BO_callPlugin "bash.origin.pinf@0.1.7" pto spin $_SUB_ARGS
 		popd > /dev/null
 		BO_format "$VERBOSE" "FOOTER"
 	}
