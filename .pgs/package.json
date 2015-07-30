@@ -125,7 +125,8 @@
             },
             "github.com~pinf~pg.condense~0": {
                 "master": {
-                    "uri": "git://git@github.com:pinf/pg.condense.git"
+                    "uri": "git://git@github.com:pinf/pg.condense.git",
+                    "installer": "npm"
                 }
             }
         },
