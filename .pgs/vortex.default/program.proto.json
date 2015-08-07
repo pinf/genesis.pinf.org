@@ -16,8 +16,7 @@
 		},
 		"pgs-vortex-default/0": {
 			"$depends": [
-				"pgs-vortex-sm-contract",
-				"pgs-vortex-pg-condense"
+				"pgs-vortex-sm-contract"
 			],
 			"$impl": "{{$from.pgs.workspaceRoot}}/vortex.js",
 			"$to": "pgs-vortex-default",
